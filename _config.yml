@@ -2,7 +2,7 @@
 #   Main Configs   #
 # ---------------- #
 baseurl:
-url: https://yupengzte.github.io
+url: https://yu3peng.github.io
 date_format: "ordinal"
 title: 山水过处
 subtitle: "若无闲事挂心头 便是人间好时节"
@@ -77,17 +77,17 @@ collections:
         output: true
         permalink: /wiki/:path/
 
-repository: yupengzte/yupengzte.github.io
+repository: yu3peng/yu3peng.github.io
 
 # ---------------- #
 #      Socials     #
 # ---------------- #
-github_username: yupengzte
-#douban_username: yupengzte#
-#facebook_username: yupengzte#
-#weibo_username: yupengzte#
-#zhihu_username: yupengzte#
-#twitter_username: yupengzte#
+github_username: yu3peng
+#douban_username: yu3peng#
+#facebook_username: yu3peng#
+#weibo_username: yu3peng#
+#zhihu_username: yu3peng#
+#twitter_username: yu3peng#
 
 # ---------------- #
 #      Comments    #
@@ -101,17 +101,17 @@ comments_provider: gitalk
 #   username: yupeng717
 # https://imsun.net/posts/gitment-introduction/
 #gitment:
-#    owner: YuPengZTE
+#    owner: yu3peng
 #    repo: blog-comments
 #    oauth:
 #        client_id: 762dda0c1827d8d15f53
 #        client_secret: 8e6d1f4e2f42c7db02e97a0a5abd30e1695bce82
 # https://github.com/gitalk/gitalk#install
 gitalk:
-    owner: YuPengZTE
+    owner: yu3peng
     repo: blog-comments
-    clientID: 762dda0c1827d8d15f53
-    clientSecret: 8e6d1f4e2f42c7db02e97a0a5abd30e1695bce82
+    clientID: cfdc151b690b8b002a27
+    clientSecret: 995751a824c4eb272acff0cc902394331842019a
 #disqus_username: yupeng717#
 # 在使用其它评论组件时可点击显示 Disqus
 #lazy_load_disqus : true

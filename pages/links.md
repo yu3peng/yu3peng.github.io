@@ -10,4 +10,4 @@ permalink: /links/
 
 > God made relatives. Thank God we can choose our friends.
 
-* [山水过处](http://yupengzte.github.io/)
+* [山水过处](http://y2p.cc/)

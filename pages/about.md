@@ -52,7 +52,7 @@ permalink: /about/
 
 ## 联系
 
-* GitHub：[@yplogin](https://github.com/yupengzte)
+* GitHub：[@yplogin](https://github.com/yu3peng)
 
 ## Skill Keywords
 
