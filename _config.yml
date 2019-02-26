@@ -104,14 +104,14 @@ gitment:
     owner: yu3peng
     repo: blog-comments
     oauth:
-        client_id: cfdc151b690b8b002a27
-        client_secret: 995751a824c4eb272acff0cc902394331842019a
+        client_id: b2ad054f2e4daf7ad564
+        client_secret: c742e4086336e58b70e0e88dc791e5bce6e37330
 # https://github.com/gitalk/gitalk#install
 gitalk:
     owner: yu3peng
     repo: blog-comments
-    clientID: cfdc151b690b8b002a27
-    clientSecret: 995751a824c4eb272acff0cc902394331842019a
+    clientID: b2ad054f2e4daf7ad564
+    clientSecret: c742e4086336e58b70e0e88dc791e5bce6e37330
 #disqus_username: yupeng717#
 # 在使用其它评论组件时可点击显示 Disqus
 #lazy_load_disqus : true
