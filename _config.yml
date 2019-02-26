@@ -100,12 +100,12 @@ comments_provider: gitalk
 #disqus:
 #   username: yupeng717
 # https://imsun.net/posts/gitment-introduction/
-#gitment:
-#    owner: yu3peng
-#    repo: blog-comments
-#    oauth:
-#        client_id: 762dda0c1827d8d15f53
-#        client_secret: 8e6d1f4e2f42c7db02e97a0a5abd30e1695bce82
+gitment:
+    owner: yu3peng
+    repo: blog-comments
+    oauth:
+        client_id: cfdc151b690b8b002a27
+        client_secret: 995751a824c4eb272acff0cc902394331842019a
 # https://github.com/gitalk/gitalk#install
 gitalk:
     owner: yu3peng
