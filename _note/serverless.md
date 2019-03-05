@@ -6,9 +6,6 @@ description: serverless
 keywords: serverless
 ---
 
-* [Chinese Traditional](http://sparanoid.com/note/chinese-copywriting-guidelines/)
-* [English](https://github.com/mzlogin/chinese-copywriting-guidelines/blob/Simplified/README.en.md)
-
 -----
 
 **目录**
