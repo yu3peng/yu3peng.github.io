@@ -18,10 +18,10 @@ keywords:
 ### 修改代码
    此处为示例，后面章节依据此示例，具体可根据实际情况修改
 
-   在[docker cmd main](https://github.com/YuPengZTE/docker/blob/dev/cmd/docker/docker.go#L97)中添加如图所示内容
+   在[docker cmd main](https://github.com/yu3peng/docker/blob/dev/cmd/docker/docker.go#L97)中添加如图所示内容
    ![docker debug log](/images/posts/docker_debug_log.jpg)
 
-   在[dockerd cmd main](https://github.com/YuPengZTE/docker/blob/dev/cmd/dockerd/docker.go#L95)中添加如图所示内容
+   在[dockerd cmd main](https://github.com/yu3peng/docker/blob/dev/cmd/dockerd/docker.go#L95)中添加如图所示内容
    ![dockerd debug log](/images/posts/dockerd_debug_log.jpg)
 
 ### 创建包含多种工具的docker环境
@@ -62,7 +62,7 @@ keywords:
    ```sh
    # cd ../
    # rm -rf docker/
-   # git clone https://github.com/YuPengZTE/docker.git
+   # git clone https://github.com/yu3peng/docker.git
    ``` 
    
    * 切换到要调试的分支
