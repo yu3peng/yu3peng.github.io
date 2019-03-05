@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: wiki
 title: Note Template
 categories: [cate1, cate2]
 description: some word here
