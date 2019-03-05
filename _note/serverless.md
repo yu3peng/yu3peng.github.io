@@ -6,6 +6,8 @@ description: serverless
 keywords: serverless
 ---
 
+* [CNCF Serverless Whitepaper English](https://github.com/mzlogin/chinese-copywriting-guidelines/blob/Simplified/README.en.md)
+
 -----
 
 **目录**
@@ -14,8 +16,6 @@ keywords: serverless
 {:toc}
 
 # CNCF Serverless 白皮书
-
-* [English](https://github.com/cncf/wg-serverless/tree/master/whitepapers/serverless-overview)
 
 ## 什么是serverless计算?
 
@@ -457,3 +457,22 @@ Serverless框架可以允许以下动作和方法来定义和控制函数生命�
 用户可能想要获得函数**统计**（例如调用次数，平均运行时间，平均延迟，失败，重试等），统计可以是当前度量值或时间序列值（例如存储在Prometheus或云提供者设施中例如AWS Cloud Watch）。
 
 用户可能希望检索函数**日志**数据。这可以通过严重性级别和/或时间范围和/或内容来进行过滤。 Log数据是每个函数都有的，它包括诸如函数创建和删除，显式错误，警告或调试消息之类的事件，以及可选的函数Stdout或Stderr。倾向每次调用有一个日志条目或者将日志条目与特定调用相关联的方式（以允许更简单地跟踪函数执行流程）。
+
+
+
+
+## 参考资料
+
+[1] [Serverless Architectures](https://martinfowler.com/articles/serverless.html): 非常经典，中文翻译版本见 [Serverless架构综述](http://dockone.io/article/1460)
+
+[2] [Serverless architecture@technology radar](https://www.thoughtworks.com/radar/techniques/serverless-architecture): ThoughtWorks在技术雷达中对serverless的定义
+
+[3] [所谓Serverless，你理解对了吗？](https://emacoo.cn/arch/serverless-overview/)
+
+[4] [InfoQ虚拟研讨会：无服务器计算的实践方法](http://www.infoq.com/cn/articles/practical-serverless-computing?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=%E6%9E%B6%E6%9E%84%20&%20%E8%AE%BE%E8%AE%A1-articles)
+
+[5] [姗姗来迟的Serverless如何助力微服务和DevOps](http://www.infoq.com/cn/news/2017/06/tengxun-cloud-serverless?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=DevOps)
+
+[6] [Serverless云函数架构精解](https://mp.weixin.qq.com/s?__biz=MzA5OTAyNzQ2OA%3D%3D&chksm=88931c6cbfe4957a702e66221e1bf997c4ba5a66de279294b08cccadd3ff5d6cabf103657484&idx=1&mid=2649694991&mpshare=1&scene=23&sn=818dea0cb058a08ac6b66ee865204630&srcid=0907dIsFi2ho3ez9orBMGatf)
+
+[7] [What makes serverless architectures so attractive?](https://developer.ibm.com/opentech/2016/09/06/what-makes-serverless-attractive/)
