@@ -458,9 +458,7 @@ Serverless框架可以允许以下动作和方法来定义和控制函数生命�
 
 用户可能希望检索函数**日志**数据。这可以通过严重性级别和/或时间范围和/或内容来进行过滤。 Log数据是每个函数都有的，它包括诸如函数创建和删除，显式错误，警告或调试消息之类的事件，以及可选的函数Stdout或Stderr。倾向每次调用有一个日志条目或者将日志条目与特定调用相关联的方式（以允许更简单地跟踪函数执行流程）。
 
-
-
-# serverless典型使用场景。
+# serverless典型使用场景
 
 ## 后端
 
@@ -677,7 +675,7 @@ CNCF白皮书：与人类交互不一定需要毫秒级别的响应时间，并�
 - 另请参阅下面的HTTP REST API和Web应用程序。
 
 
-## 参考资料
+# 参考资料
 
 [1] [Serverless Architectures](https://martinfowler.com/articles/serverless.html): 非常经典，中文翻译版本见 [Serverless架构综述](http://dockone.io/article/1460)
 
