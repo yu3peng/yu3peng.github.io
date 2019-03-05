@@ -1,14 +1,14 @@
 ---
 layout: page
 title: Wiki
-description: 记录点点滴滴
+description: 速查手册
 keywords: 维基, Wiki
 comments: false
 menu: 维基
 permalink: /wiki/
 ---
 
-> 好记性不如个烂笔头，何况这个还不错
+> 好记性不如个烂笔头
 
 <ul class="listing">
 {% for wiki in site.wiki %}
