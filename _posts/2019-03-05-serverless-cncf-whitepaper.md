@@ -10,8 +10,6 @@ Serverless CNCF 白皮书
 
   ![5G-Future](/images/posts/Serverless-cncf-whitepaper.jpg)
 
-* [CNCF Serverless Whitepaper English](https://github.com/cncf/wg-serverless/tree/master/whitepapers/serverless-overview)
-
 ## 什么是serverless计算?
 
 Serverless计算是指构建和运行不需要服务器管理的应用程序的概念。它描述了一种更细粒度的部署模型，应用程序捆绑一个或多个function，上载到平台，然后执行，缩放和计费，以响应当前所需的确切需求。
@@ -815,3 +813,4 @@ CNCF无服务器工作组与Redpoint Ventures合作，最近发布了无服务�
 
 # 参考资料
 
+[1] [CNCF Serverless Whitepaper](https://github.com/cncf/wg-serverless/tree/master/whitepapers/serverless-overview)
