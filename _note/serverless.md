@@ -245,3 +245,5 @@ CNCF白皮书：与人类交互不一定需要毫秒级别的响应时间，并�
 [6] [Serverless云函数架构精解](https://mp.weixin.qq.com/s?__biz=MzA5OTAyNzQ2OA%3D%3D&chksm=88931c6cbfe4957a702e66221e1bf997c4ba5a66de279294b08cccadd3ff5d6cabf103657484&idx=1&mid=2649694991&mpshare=1&scene=23&sn=818dea0cb058a08ac6b66ee865204630&srcid=0907dIsFi2ho3ez9orBMGatf)
 
 [7] [What makes serverless architectures so attractive?](https://developer.ibm.com/opentech/2016/09/06/what-makes-serverless-attractive/)
+
+[8] [基于Kubernetes的原生 Serverless 框架 Kubeless实践](http://blog.nsfocus.net/kubeless/)

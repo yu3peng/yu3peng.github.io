@@ -27,7 +27,7 @@ Cilium为Linux容器框架（如Docker和Kubernetes）带来了API感知网络�
 
 ### BPF
 
-柏克莱封包过滤器（Berkeley Packet Filter，缩写 BPF），是类Unix系统上数据链路层的一种原始接口，提供原始链路层封包的收发，除此之外，如果网卡驱动支持洪泛模式，那么它可以让网卡处于此种模式，这样可以收到网络上的所有包，不管他们的目的地是不是所在主机。参考维基百科和eBPF简史。
+柏克莱封包过滤器（Berkeley Packet Filter，缩写 BPF），是类Unix系统上数据链路层的一种原始接口，提供原始链路层封包的收发，除此之外，如果网卡驱动支持洪泛模式，那么它可以让网卡处于此种模式，这样可以收到网络上的所有包，不管他们的目的地是不是所在主机。参考维基百科和[eBPF简史](https://www.ibm.com/developerworks/cn/linux/l-lo-eBPF-history/index.html)。
 
 ## 为什么选择Cilium？
 
