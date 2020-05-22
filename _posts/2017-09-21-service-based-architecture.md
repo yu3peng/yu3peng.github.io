@@ -489,3 +489,5 @@ keywords:
 4. [再见MME…5G核心网你彻底变了！](http://www.sdnlab.com/19818.html)
 
 5. [鲜枣课堂：5G核心网，到底长啥样？](http://www.eeworld.com.cn/mp/xzclasscom/a51282.jspx)
+
+6. [3GPP 5G UPF](https://www.cnblogs.com/jmilkfan-fanguiju/p/11825022.html)
