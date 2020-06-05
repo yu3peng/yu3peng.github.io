@@ -1,4 +1,4 @@
-# ANDY
+# YuPeng
 
 欢迎 Star 和 Fork。
 
@@ -8,7 +8,7 @@
 * [Fork 指南](#fork-指南)
 * [贴心提示](#贴心提示)
 * [经验与思考](#经验与思考)
-* [致谢](#致谢)
+* [License](#License)
 
 <!-- vim-markdown-toc -->
 
@@ -46,9 +46,7 @@ Fork 本项目之后，还需要做一些事情才能让你的页面「正确」
 
 ## 贴心提示
 
-1. 排版建议遵照一定的规范，推荐 [中文文案排版指北（简体中文版）][1]。
-
-2. 在本地预览博客效果可以参考 [Setting up your Pages site locally with Jekyll][2]。
+排版建议遵照一定的规范，推荐 [中文文案排版指北（简体中文版）](https://www.y2p.cc/wiki/chinese-copywriting-guidelines/)。
 
 ## 经验与思考
 
@@ -64,9 +62,8 @@ Fork 本项目之后，还需要做一些事情才能让你的页面「正确」
 
 * 可以学习一下那些高质量的博主，他们的行文，内容组织方式，有什么值得借鉴的地方。
 
-## 致谢
+## License
 
-本博客外观基于 [mzlogin](http://mzlogin.github.io) 修改，感谢！
+[署名-非商业性使用-相同方式共享 4.0 (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)
 
-[1]: https://github.com/mzlogin/chinese-copywriting-guidelines
-[2]: https://help.github.com/articles/setting-up-your-pages-site-locally-with-jekyll/
+
