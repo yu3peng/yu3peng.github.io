@@ -8,6 +8,8 @@ menu: 关于
 permalink: /about/
 ---
 
+![](/images/about/0.jpeg)
+
 ![](/images/about/England-1.jpg)
 
 ![](/images/about/England-2.jpg)
