@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Yu Peng
-description: Yu Peng
+title: About
+description:
 keywords: 
 comments: false
 menu: 关于
