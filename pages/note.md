@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Note
+title: Notes
 description: 
 keywords: 
 comments: false
