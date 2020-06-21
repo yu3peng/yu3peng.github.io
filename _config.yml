@@ -5,13 +5,13 @@ baseurl:
 url: https://yu3peng.github.io
 date_format: "ordinal"
 title: Yu Peng
-subtitle: "若无闲事挂心头 便是人间好时节"
+#subtitle: "若无闲事挂心头 便是人间好时节"
 description: "个人博客"
 keywords: yupeng
 favicon: /favicon.ico
 timezone: Asia/Shanghai
 encoding: "utf-8"
-side_bar_repo_limit: 9
+side_bar_repo_limit: 6
 
 # ---------------- #
 #      Author      #
