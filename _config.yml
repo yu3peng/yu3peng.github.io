@@ -5,7 +5,7 @@ baseurl:
 url: https://yu3peng.github.io
 date_format: "ordinal"
 title: Yu Peng
-subtitle: "行至水穷处，坐看云起时"
+subtitle: "行至水穷处 坐看云起时"
 description: "个人博客"
 keywords: yupeng
 favicon: /favicon.ico
@@ -18,7 +18,7 @@ side_bar_repo_limit: 6
 # ---------------- #
 author: Yu Peng
 organization: Cloud Sea
-organization_url: https://github.com/orgs/Cloud2Se
+organization_url: https://github.com/orgs/Cloud2Sea
 location: Shanghai, China
 email: yu3peng@qq.com
 
