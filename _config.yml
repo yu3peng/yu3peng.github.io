@@ -124,6 +124,7 @@ gitalk:
 # ---------------- #
 google:
     analytics_id: UA-170170785-1
+    site_verification: 5Jsin7JW2Ym6BDPQmgtl0mrUX7xVOEq1C6uZ8Pbdn4s
 
 # ---------------- #
 #      Datas       #
