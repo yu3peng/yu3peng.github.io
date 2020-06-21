@@ -26,10 +26,10 @@ email:
 #    Navigation    #
 # ---------------- #
 navs:
-#  -
-#    href: /
-#    label: 首页
-#
+  -
+    href: /
+    label: 首页
+
   -
     href: /categories/
     label: 分类
