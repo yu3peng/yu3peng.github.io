@@ -1,9 +1,9 @@
 ---
 layout: page
-title: ANDY
+title: Yu Peng
 description: 山水过处
 keywords: 
-comments: true
+comments: false
 menu: 关于
 permalink: /about/
 ---
