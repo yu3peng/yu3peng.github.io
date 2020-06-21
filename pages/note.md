@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Note
+title: 好记性不如个烂笔头
 description: 记录点点滴滴
 keywords: 学习笔记
 comments: false
