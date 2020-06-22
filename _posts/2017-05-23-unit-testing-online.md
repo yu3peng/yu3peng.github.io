@@ -15,16 +15,7 @@ keywords:
   2. [goconvey](https://github.com/smartystreets/goconvey)
 
 ## 步骤
-### 修改代码
-   此处为示例，后面章节依据此示例，具体可根据实际情况修改
-
-   在[docker cmd main](https://github.com/yu3peng/docker/blob/dev/cmd/docker/docker.go#L97)中添加如图所示内容
-   ![docker debug log](/images/posts/docker_debug_log.jpg)
-
-   在[dockerd cmd main](https://github.com/yu3peng/docker/blob/dev/cmd/dockerd/docker.go#L95)中添加如图所示内容
-   ![dockerd debug log](/images/posts/dockerd_debug_log.jpg)
-
-### 创建包含多种工具的docker环境
+### 修改代码并创建包含多种工具的docker环境
    * 选择在线docker环境
    相比在本地搭建docker环境，我更乐意选择在线docker环境[docker playground](http://play-with-docker.com)，一来方便，二来其网络速度要快很多。贴张图大家感受一下：
 ![docker playground speed](/images/posts/docker_playground_speed.jpg)
