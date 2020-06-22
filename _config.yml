@@ -5,13 +5,13 @@ baseurl:
 url: https://yu3peng.github.io
 date_format: "ordinal"
 title: Yu Peng
-subtitle: "行至水穷处 坐看云起时"
+subtitle: "行到水穷处 坐看云起时"
 description: "个人博客"
 keywords: yupeng
 favicon: /favicon.ico
 timezone: Asia/Shanghai
 encoding: "utf-8"
-side_bar_repo_limit: 6
+side_bar_repo_limit: 5
 
 # ---------------- #
 #      Author      #
