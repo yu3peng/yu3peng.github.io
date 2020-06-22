@@ -1,17 +1,12 @@
 ---
-layout: note
-title: serverless
+layout: post
+title: serverless 典型使用场景
 categories: serverless
 description: serverless
 keywords: serverless
 ---
 
 -----
-
-**目录**
-
-* TOC
-{:toc}
 
 # serverless典型使用场景
 
