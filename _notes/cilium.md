@@ -1,5 +1,5 @@
 ---
-layout: wiki
+layout: note
 title: cilium
 categories: cilium
 description: cilium
