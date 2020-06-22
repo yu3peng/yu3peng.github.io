@@ -1,5 +1,5 @@
 ---
-layout: wiki
+layout: note
 title: serverless
 categories: serverless
 description: serverless
