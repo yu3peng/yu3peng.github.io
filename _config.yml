@@ -68,9 +68,6 @@ gems:
     - jemoji
 
 collections:
-    wiki:
-        output: true
-        permalink: /wiki/:path/
     notes:
         output: true
         permalink: /notes/:path/
