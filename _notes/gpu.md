@@ -6,6 +6,3 @@ description: gpu
 keywords: gpu
 ---
 
------
-
-**GPU**
