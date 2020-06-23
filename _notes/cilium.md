@@ -1,7 +1,7 @@
 ---
 layout: note
 title: cilium
-categories: cilium
+categories: Cilium
 description: cilium
 keywords: cilium
 ---
