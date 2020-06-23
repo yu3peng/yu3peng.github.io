@@ -1,7 +1,7 @@
 ---
 layout: note
 title: GPU
-categories: note
+categories: GPU
 description: gpu
 keywords: gpu
 ---
