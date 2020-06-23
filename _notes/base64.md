@@ -1,7 +1,7 @@
 ---
 layout: note
 title: base64
-categories: base64
+categories: Base64
 description: base64
 keywords: base64
 ---
