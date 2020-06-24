@@ -1,12 +1,17 @@
 ---
-layout: post
+layout: note
 title: Kubernetes Dashboard
 categories: Kubernetes
 description:
 keywords:
 ---
 
-Kubernetes Dashboard
+-----
+
+**目录**
+
+* TOC
+{:toc}
 
 ## Kuberctl create -f kubernetes-dashboard.yaml
 
