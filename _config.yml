@@ -72,8 +72,8 @@ navs:
     label: 分类
 
   -
-    href: /wiki/
-    label: 维基
+    href: /note/
+    label: 笔记
 
   -
     href: /about/
@@ -149,3 +149,8 @@ simple_jekyll_search:
 google:
     analytics_id: UA-170170785-1
     site_verification: 5Jsin7JW2Ym6BDPQmgtl0mrUX7xVOEq1C6uZ8Pbdn4s
+
+# ---------------- #
+#      Datas       #
+# ---------------- #
+skill_software_keywords: [/]
