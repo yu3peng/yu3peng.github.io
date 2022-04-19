@@ -1,36 +1,36 @@
 ---
-layout: note
-title: note
+layout: wiki
+title: Wiki
 description: 人越学越觉得自己无知
-keywords: 笔记, note
+keywords: 维基, Wiki
 comments: false
 copyright: false
-menu: 笔记
-permalink: /note/
+menu: 维基
+permalink: /wiki/
 ---
 
 > 记多少命令和快捷键会让脑袋爆炸呢？
 
-{% case site.components.note.view %}
+{% case site.components.wiki.view %}
 
 {% when 'list' %}
 
 <ul class="listing">
-{% for note in site.note %}
-{% if note.title != "note Template" and note.topmost == true %}
-<li class="listing-item"><a href="{{ site.url }}{{ note.url }}"><span class="top-most-flag">[置顶]</span>{{ note.title }}</a></li>
+{% for wiki in site.wiki %}
+{% if wiki.title != "Wiki Template" and wiki.topmost == true %}
+<li class="listing-item"><a href="{{ site.url }}{{ wiki.url }}"><span class="top-most-flag">[置顶]</span>{{ wiki.title }}</a></li>
 {% endif %}
 {% endfor %}
-{% for note in site.note %}
-{% if note.title != "note Template" and note.topmost != true %}
-<li class="listing-item"><a href="{{ site.url }}{{ note.url }}">{{ note.title }}<span style="font-size:12px;color:red;font-style:italic;">{%if note.layout == 'mindmap' %}  mindmap{% endif %}</span></a></li>
+{% for wiki in site.wiki %}
+{% if wiki.title != "Wiki Template" and wiki.topmost != true %}
+<li class="listing-item"><a href="{{ site.url }}{{ wiki.url }}">{{ wiki.title }}<span style="font-size:12px;color:red;font-style:italic;">{%if wiki.layout == 'mindmap' %}  mindmap{% endif %}</span></a></li>
 {% endif %}
 {% endfor %}
 </ul>
 
 {% when 'cate' %}
 
-{% assign item_grouped = site.note | where_exp: 'item', 'item.title != "note Template"' | group_by: 'cate1' | sort: 'name' %}
+{% assign item_grouped = site.wiki | where_exp: 'item', 'item.title != "Wiki Template"' | group_by: 'cate1' | sort: 'name' %}
 {% for group in item_grouped %}
 ###### {{ group.name }}
 {% assign cate_items = group.items | sort: 'title' %}
