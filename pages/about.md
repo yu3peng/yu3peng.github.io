@@ -1,41 +1,66 @@
 ---
 layout: page
 title: About
-description: 打码改变世界
-keywords: Zhuang Ma, 马壮
-comments: true
+description:
+keywords: 
+comments: false
 menu: 关于
 permalink: /about/
 ---
 
-我是马壮，码而生，码而立。
+![](/images/about/0.jpeg)
 
-仰慕「优雅编码的艺术」。
+![](/images/about/England-1.jpg)
 
-坚信熟能生巧，努力改变人生。
+![](/images/about/England-2.jpg)
+
+![](/images/about/England-3.jpg)
+
+![](/images/about/England-4.jpg)
+
+![](/images/about/England-5.jpg)
+
+![](/images/about/England-6.jpg)
+
+![](/images/about/England-7.jpg)
+
+![](/images/about/England-8.jpg)
+
+![](/images/about/England-9.jpg)
+
+![](/images/about/England-10.jpg)
+
+![](/images/about/England-11.jpg)
+
+![](/images/about/England-12.jpg)
+
+![](/images/about/England-13.jpg)
+
+![](/images/about/England-14.jpg)
+
+![](/images/about/England-15.jpg)
+
+![](/images/about/England-16.jpg)
+
+![](/images/about/England-17.jpg)
+
+![](/images/about/England-18.jpg)
+
+![](/images/about/England-19.jpg)
+
+![](/images/about/England-20.jpg)
+
+![](/images/about/England-21.jpg)
 
 ## 联系
 
-<ul>
-{% for website in site.data.social %}
-<li>{{website.sitename }}：<a href="{{ website.url }}" target="_blank">@{{ website.name }}</a></li>
-{% endfor %}
-{% if site.url contains 'mazhuang.org' %}
-<li>
-微信公众号：<br />
-<img style="height:192px;width:192px;border:1px solid lightgrey;" src="{{ assets_base_url }}/assets/images/qrcode.jpg" alt="闷骚的程序员" />
-</li>
-{% endif %}
-</ul>
-
+* GitHub：[@yu3peng](https://github.com/yu3peng)
 
 ## Skill Keywords
 
-{% for skill in site.data.skills %}
-### {{ skill.name }}
 <div class="btn-inline">
-{% for keyword in skill.keywords %}
-<button class="btn btn-outline" type="button">{{ keyword }}</button>
-{% endfor %}
+    {% for keyword in site.skill_software_keywords %}
+    <button class="btn btn-outline" type="button">{{ keyword }}</button>
+    {% endfor %}
 </div>
-{% endfor %}
+
