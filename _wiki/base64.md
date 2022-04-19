@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: wiki
 title: base64
 categories: Base64
 description: base64

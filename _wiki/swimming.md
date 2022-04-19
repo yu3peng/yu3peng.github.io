@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: wiki
 title: Swimming
 categories: Hobbies
 description: 游泳学习资料与要领整理。

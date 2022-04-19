@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: wiki
 title: Kubernetes Dashboard
 categories: Kubernetes
 description:

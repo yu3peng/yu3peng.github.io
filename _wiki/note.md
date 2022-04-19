@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: wiki
 title: 点点和滴滴
 categories: note
 description: note

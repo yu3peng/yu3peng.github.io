@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: wiki
 title: MPV
 categories: Tools
 description: Mac 下最好用的播放器。

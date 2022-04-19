@@ -1,5 +1,5 @@
 ---
-layout: note
+layout: wiki
 title: GPU
 categories: GPU
 description: gpu
