@@ -8,11 +8,19 @@ menu: 关于
 permalink: /about/
 ---
 
-![](/images/about/England-1.jpg)
+## 简历
 
-<iframe src="/images/about/resume.pdf" width="100%" height="100%">
-This browser does not support PDFs. Please download the PDF to view it:
-<a href="/images/about/resume.pdf">Download PDF</a></iframe>
+<div class="btn-inline">
+    <iframe src="/images/about/resume.pdf" width="100%" height="100%">
+    This browser does not support PDFs. Please download the PDF to view it:
+    <a href="/images/about/resume.pdf">Download PDF</a></iframe>
+</div>
+
+## 联系
+
+* GitHub：[@yu3peng](https://github.com/yu3peng)
+
+![](/images/about/England-1.jpg)
 
 ![](/images/about/England-2.jpg)
 
@@ -53,15 +61,3 @@ This browser does not support PDFs. Please download the PDF to view it:
 ![](/images/about/England-20.jpg)
 
 ![](/images/about/England-21.jpg)
-
-## 联系
-
-* GitHub：[@yu3peng](https://github.com/yu3peng)
-
-## Skill Keywords
-
-<div class="btn-inline">
-    {% for keyword in site.skill_software_keywords %}
-    <button class="btn btn-outline" type="button">{{ keyword }}</button>
-    {% endfor %}
-</div>
