@@ -8,7 +8,9 @@ menu: 关于
 permalink: /about/
 ---
 
-![](/images/about/0.jpeg)
+<iframe src="/images/about/resume.pdf" width="100%" height="100%">
+This browser does not support PDFs. Please download the PDF to view it:
+<a href="/images/about/resume.pdf">Download PDF</a></iframe>
 
 ![](/images/about/England-1.jpg)
 
@@ -63,4 +65,3 @@ permalink: /about/
     <button class="btn btn-outline" type="button">{{ keyword }}</button>
     {% endfor %}
 </div>
-
