@@ -16,10 +16,6 @@ permalink: /about/
     <a href="/images/about/resume.pdf">Download PDF</a></iframe>
 </div>
 
-## 联系
-
-* GitHub：[@yu3peng](https://github.com/yu3peng)
-
 ![](/images/about/England-1.jpg)
 
 ![](/images/about/England-2.jpg)
