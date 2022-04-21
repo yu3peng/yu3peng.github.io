@@ -8,7 +8,18 @@ menu: 关于
 permalink: /about/
 ---
 
-<iframe src="/images/about/resume.pdf" width="100%" height="1000%">
+<style>
+    html,body
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    height: 100%;//关键
+}
+</style>
+
+<iframe src="/images/about/resume.pdf" width="100%" height="100%">
 This browser does not support PDFs. Please download the PDF to view it:
 <a href="/images/about/resume.pdf">Download PDF</a></iframe>
 
