@@ -8,7 +8,7 @@ menu: 关于
 permalink: /about/
 ---
 
-## 简历
+## [简历](/images/about/resume.pdf)
 
  <center>
      <h1>余 鹏</h1>
@@ -37,15 +37,15 @@ permalink: /about/
      </div>
  </center>
 
- ## <img src="/images/about/info-circle-solid.svg" width="30px"> 个人信息 
+## <img src="/images/about/info-circle-solid.svg" width="30px"> 个人信息
 
- - **男，1983 年，上海**
+- **男，1983 年，上海**
 
-## <img src="//images/about/graduation-cap-solid.svg" width="30px"> 教育经历
+## <img src="/images/about/graduation-cap-solid.svg" width="30px"> 教育经历
 
 - **本科，中南民族大学，计算机科学与技术专业，2003.07 ~ 2007.06**
 
-## <img src="//images/about/briefcase-solid.svg" width="30px"> **工作经历**
+## <img src="/images/about/briefcase-solid.svg" width="30px"> **工作经历**
 
 - **中兴通讯股份有限公司，软件架构师，2011.07 ~ 今**
   - 设计基于 Kubernetes 的 GPU 共享⽅案，实现 GPU 在容器间的共享和显存限制
@@ -63,7 +63,7 @@ permalink: /about/
 
   - 儿童抚养补助系统数据批处理程序开发
 
-## <img src="/images/about/ip.jpg" width="30px"> 专利
+## <img src="/images/about/ipr.jpg" width="30px"> 专利
 
 - **[一种调整网站负载的方法及装置](http://epub.cnipa.gov.cn/cred/CN109005143B?8kt2YOWWXQBD=1648781983435)**
 
@@ -78,14 +78,6 @@ permalink: /about/
 ## <img src="/images/about/tools-solid.svg" width="30px"> 技能
 
 - Python，C，Go，Shell
-
- <!--
-<div class="btn-inline">
-    <iframe src="/images/about/resume.pdf" width="100%" height="100%">
-    This browser does not support PDFs. Please download the PDF to view it:
-    <a href="/images/about/resume.pdf">Download PDF</a></iframe>
-</div>
--->
 
 ## 风景
 
