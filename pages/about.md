@@ -49,8 +49,11 @@ permalink: /about/
 
 - **中兴通讯股份有限公司，软件架构师，2011.07 ~ 今**
   - 设计基于 Kubernetes 的 GPU 共享⽅案，实现 GPU 在容器间的共享和显存限制
+
   - 设计边缘拉远方案
+
   - 向 ETSI NFV、CCSA 等国内外标准组织输出基于云原生的 PaaS 提案
+
   - 开发边缘网关配置服务网站
 
   - 按照 3GPP 协议开发 4G 核心网 Serving Gateway 网元
