@@ -78,6 +78,7 @@ permalink: /about/
 
 <!--
 ![](/images/about/yupeng.jpeg)
+-->
 
 ![](/images/about/England-1.jpg)
 
@@ -120,4 +121,3 @@ permalink: /about/
 ![](/images/about/England-20.jpg)
 
 ![](/images/about/England-21.jpg)
--->
