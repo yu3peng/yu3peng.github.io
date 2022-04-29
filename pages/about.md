@@ -46,7 +46,7 @@ permalink: /about/
 ## <img src="/images/about/briefcase-solid.svg" width="30px"> **工作经历**
 
 - **中兴通讯股份有限公司，软件架构师，2011.07 ~ 今**
-  - 设计基于 Kubernetes 的 GPU 共享⽅案，实现 GPU 在容器间的共享和显存限制
+  - 设计基于 Kubernetes 的 GPU 共享方案，实现 GPU 在容器间的共享和显存限制
 
   - 设计边缘拉远方案
 
