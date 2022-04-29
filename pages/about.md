@@ -76,9 +76,9 @@ permalink: /about/
 
 - **[检测非法无线接入点的方法及装置](http://epub.cnipa.gov.cn/patent/CN107708118A?8kt2YOWWXQBD=1650544870147)**
 
+<!--
 ![](/images/about/yupeng.jpeg)
 
-<!--
 ![](/images/about/England-1.jpg)
 
 ![](/images/about/England-2.jpg)
