@@ -8,7 +8,7 @@ menu: 关于
 permalink: /about/
 ---
 
-## [简历](/images/about/resume.pdf)
+## <a href="/images/about/resume.pdf">简 历</a>
 
  <center>
      <h1>余 鹏</h1>
