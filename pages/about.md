@@ -8,8 +8,6 @@ menu: 关于
 permalink: /about/
 ---
 
-# 简 历
-
  <center>
      <h1>余 鹏</h1>
      <div>
@@ -81,8 +79,6 @@ permalink: /about/
 ## <img src="/images/about/tools-solid.svg" width="30px"> 技能
 
 - Python，C，Go，Shell
-
-# 风景
 
 ![](/images/about/England-1.jpg)
 
