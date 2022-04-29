@@ -31,7 +31,7 @@
 
 ## <img src="/Users/yupeng/go/src/github.com/yu3peng/简历/Resume/assets/graduation-cap-solid.svg" width="30px"> 教育经历
 
-- **本科，中南民族大学，计算机科学与技术专业，2003.07 ~ 2007.06**
+- **本科，中南民族大学，计算机科学与技术专业，2003.09 ~ 2007.06**
 
 ## <img src="/Users/yupeng/go/src/github.com/yu3peng/简历/Resume/assets/briefcase-solid.svg" width="30px"> **工作经历**
 

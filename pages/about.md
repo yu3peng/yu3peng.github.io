@@ -8,7 +8,7 @@ menu: 关于
 permalink: /about/
 ---
 
-## <a href="/images/about/resume.pdf">简 历</a>
+# 简 历
 
  <center>
      <h1>余 鹏</h1>
@@ -43,7 +43,7 @@ permalink: /about/
 
 ## <img src="/images/about/graduation-cap-solid.svg" width="30px"> 教育经历
 
-- **本科，中南民族大学，计算机科学与技术专业，2003.07 ~ 2007.06**
+- **本科，中南民族大学，计算机科学与技术专业，2003.09 ~ 2007.06**
 
 ## <img src="/images/about/briefcase-solid.svg" width="30px"> **工作经历**
 
@@ -79,7 +79,7 @@ permalink: /about/
 
 - Python，C，Go，Shell
 
-## 风景
+# 风景
 
 ![](/images/about/England-1.jpg)
 
