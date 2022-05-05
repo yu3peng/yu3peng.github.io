@@ -2,7 +2,7 @@
 #   Main Configs   #
 # ---------------- #
 baseurl:
-url: https://yu3peng.github.io
+url: https://y2p.cc
 date_format: "ordinal"
 title: Yu Peng
 subtitle: "行到水穷处 坐看云起时"
@@ -22,7 +22,7 @@ components:
     # 分享
     # weibo,qq,wechat,douban,qzone,linkedin,facebook,twitter
     share:
-        enabled: false
+        enabled: true
         hide-platforms: qq,facebook
     # 不蒜子访问统计
     busuanzi:
@@ -41,8 +41,8 @@ components:
         enabled: false
         image_alt: 闷骚的程序员
     # 维基索引页使用哪种视图，支持 列表（list）/分类（cate）
-    wiki:
-        view: cate
+    note:
+        view: list
 # 压缩页面内容
 compress_html:
   clippings: all
