@@ -1,0 +1,553 @@
+<!DOCTYPE html><html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /><title>COBRA &mdash; Yu Peng</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/vendor/primer-css/css/primer.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/components/collection.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/components/repo-card.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/sections/repo-list.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/components/boxed-group.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/globals/common.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/globals/responsive.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/posts/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/vendor/octicons/octicons/octicons.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/rouge-themes@master/dist/github.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/vendor/share.js/dist/css/share.min.css"><link rel="canonical" href="https://y2p.cc/2017/02/17/cobra/"><link rel="alternate" type="application/atom+xml" title="Yu Peng" href="https://y2p.cc/feed.xml"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/favicon.ico"><meta property="og:title" content="COBRA"><meta name="keywords" content="yupeng"><meta name="og:keywords" content="yupeng"><meta name="description" content="COBRA既是一个用来创建强大的现代CLI命令行的GOLANG库，也是一个生成程序应用和命令行文件的程序"><meta name="og:description" content="COBRA既是一个用来创建强大的现代CLI命令行的GOLANG库，也是一个生成程序应用和命令行文件的程序"><meta property="og:url" content="https://y2p.cc/2017/02/17/cobra/"><meta property="og:site_name" content="Yu Peng"><meta property="og:type" content="article"><meta property="og:locale" content="zh_CN" /><meta property="article:published_time" content="2017-02-17"> <script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/vendor/jquery/dist/jquery.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/js/jquery-ui.js"></script> <script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/js/main.js"></script> <script data-ad-client="ca-pub-7093222719567591" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170170785-1"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-170170785-1'); </script></head><body class="" data-mz=""><header class="site-header"><div class="container"><h1><a href="https://y2p.cc/" title="Yu Peng"><span class="octicon octicon-mark-github"></span> Yu Peng</a></h1><button class="collapsed mobile-visible" type="button" onclick="toggleMenu();"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button><nav class="site-header-nav" role="navigation"> <a href="https://y2p.cc/" class=" site-header-nav-item" target="" title="首页">首页</a> <a href="https://y2p.cc/categories/" class=" site-header-nav-item" target="" title="分类">分类</a> <a href="https://y2p.cc/notes/" class=" site-header-nav-item" target="" title="笔记">笔记</a> <a href="https://y2p.cc/about/" class=" site-header-nav-item" target="" title="关于">关于</a></nav></div></header><section class="collection-head small geopattern" data-pattern-id="COBRA"><div class="container"><div class="columns"><div class="column three-fourths"><div class="collection-title"><h1 class="collection-header">COBRA</h1><div class="collection-info"> <span class="meta-info"> <span class="octicon octicon-calendar"></span> 2017/02/17 </span> <span class="meta-info"> <span class="octicon octicon-file-directory"></span> <a href="https://y2p.cc/categories/#Tool" title="Tool">Tool</a> </span> <span class="meta-info"> <span class="octicon octicon-clock"></span> 共 14499 字，约 42 分钟 </span></div></div></div><div class="column one-fourth mobile-hidden"><div class="collection-title"></div></div></div></div></section><section class="container content"><div class="columns"><div class="column three-fourths" ><article class="article-content markdown-body"><p>COBRA既是一个用来创建强大的现代CLI命令行的GOLANG库，也是一个生成程序应用和命令行文件的程序</p><p><img src="https://cloud.githubusercontent.com/assets/173412/10886352/ad566232-814f-11e5-9cd0-aa101788c117.png" alt="cobra" /></p><h2 id="git-repo">git repo</h2><ul><li>https://github.com/spf13/cobra</li></ul><h2 id="示例">示例</h2><p><img src="https://cloud.githubusercontent.com/assets/173412/10911369/84832a8e-8212-11e5-9f82-cc96660a4794.gif" alt="cobra简介" /></p><h2 id="cobra提供的功能">Cobra提供的功能</h2><ul><li>简易的子命令行模式，如 app server， app fetch等等</li><li>完全兼容posix命令行模式</li><li>嵌套子命令subcommand</li><li>支持全局，局部，串联flags</li><li>使用Cobra很容易的生成应用程序和命令，使用cobra create appname和cobra add cmdname</li><li>如果命令输入错误，将提供智能建议，如 app srver，将提示srver没有，是否是app server</li><li>自动生成commands和flags的帮助信息</li><li>自动生成详细的help信息，如app help</li><li>自动识别-h，–help帮助flag</li><li>自动生成应用程序在bash下命令自动完成功能</li><li>自动生成应用程序的man手册</li><li>命令行别名</li><li>自定义help和usage信息</li><li>可选的紧密集成的viper apps</li></ul><h2 id="如何使用">如何使用</h2><h3 id="安装cobra">安装cobra</h3><p>go get -v github.com/spf13/cobra/cobra</p><p>在安装的过程中，由于GWF（长城防火墙）的原因，golang的资源无法访问</p><ul><li>解决的思路：git clone 源代码，在GOPATH的src目录中建立相关目录，将clone的源码拷贝进去</li><li>注意：目录的名称会有变化</li><li>举例如下：<ol><li>直接找到github上的源码地址，Git clone https://github.com/go-yaml/yaml.git</li><li>在src 目录下 创建 gopkg.in 目录 把yaml 重命名为yaml.v2</li></ol></li></ul><h3 id="little-example">little example</h3><div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">main</span>
+
+<span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+
+    <span class="s">"github.com/spf13/cobra"</span>
+<span class="p">)</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    
+    <span class="k">var</span> <span class="n">name</span> <span class="kt">string</span>
+    <span class="k">var</span> <span class="n">food</span> <span class="kt">string</span>
+    <span class="k">var</span> <span class="n">myFood</span> <span class="kt">string</span>
+
+    <span class="c">// 1. 主命令</span>
+    <span class="k">var</span> <span class="n">rootCmd</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span><span class="p">{</span>
+        <span class="n">Use</span><span class="o">:</span>   <span class="s">"personLikeEat"</span><span class="p">,</span>
+        <span class="n">Short</span><span class="o">:</span> <span class="s">"Input the chinese name and food name"</span><span class="p">,</span>
+        <span class="c">//命令执行的函数</span>
+        <span class="n">Run</span><span class="o">:</span> <span class="k">func</span><span class="p">(</span><span class="n">cmd</span> <span class="o">*</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span><span class="p">,</span> <span class="n">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">==</span> <span class="m">0</span> <span class="p">{</span>
+                <span class="n">cmd</span><span class="o">.</span><span class="n">Help</span><span class="p">()</span>
+                <span class="k">return</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">food</span><span class="p">)</span> <span class="o">==</span> <span class="m">0</span> <span class="p">{</span>
+                <span class="n">cmd</span><span class="o">.</span><span class="n">Help</span><span class="p">()</span>
+                <span class="k">return</span>
+            <span class="p">}</span>
+            <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"%s like eat %s.</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">food</span><span class="p">)</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+    
+    <span class="c">// 2. 子命令</span>
+    <span class="k">var</span> <span class="n">subCmd</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span><span class="p">{</span>
+        <span class="n">Use</span><span class="o">:</span>   <span class="s">"ILikeEat"</span><span class="p">,</span>
+        <span class="n">Short</span><span class="o">:</span> <span class="s">"Input food information"</span><span class="p">,</span>
+        <span class="c">//命令执行的函数</span>
+        <span class="n">Run</span><span class="o">:</span> <span class="k">func</span><span class="p">(</span><span class="n">cmd</span> <span class="o">*</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span><span class="p">,</span> <span class="n">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">myFood</span><span class="p">)</span> <span class="o">==</span> <span class="m">0</span> <span class="p">{</span>
+                <span class="n">cmd</span><span class="o">.</span><span class="n">Help</span><span class="p">()</span>
+                <span class="k">return</span>
+            <span class="p">}</span>
+            <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"I like eat %s.</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">myFood</span><span class="p">)</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+    
+    <span class="c">// 添加子命令</span>
+    <span class="n">rootCmd</span><span class="o">.</span><span class="n">AddCommand</span><span class="p">(</span><span class="n">subCmd</span><span class="p">)</span>
+    
+    <span class="c">// 3.1 主命令添加选项</span>
+    <span class="n">rootCmd</span><span class="o">.</span><span class="n">Flags</span><span class="p">()</span><span class="o">.</span><span class="n">StringVarP</span><span class="p">(</span><span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> <span class="s">"name"</span><span class="p">,</span> <span class="s">"n"</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="s">"person's name"</span><span class="p">)</span>
+    <span class="n">rootCmd</span><span class="o">.</span><span class="n">Flags</span><span class="p">()</span><span class="o">.</span><span class="n">StringVarP</span><span class="p">(</span><span class="o">&amp;</span><span class="n">food</span><span class="p">,</span> <span class="s">"food"</span><span class="p">,</span> <span class="s">"f"</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="s">"food's name"</span><span class="p">)</span>
+    
+    <span class="c">// 3.2 子命令添加选项</span>
+    <span class="n">subCmd</span><span class="o">.</span><span class="n">Flags</span><span class="p">()</span><span class="o">.</span><span class="n">StringVarP</span><span class="p">(</span><span class="o">&amp;</span><span class="n">myFood</span><span class="p">,</span> <span class="s">"food"</span><span class="p">,</span> <span class="s">"f"</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="s">"food's name"</span><span class="p">)</span>
+    
+    <span class="c">// 执行命令</span>
+    <span class="n">rootCmd</span><span class="o">.</span><span class="n">Execute</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div><p>运行结果如下：</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>E:\mygo\src\test\demo\personLikeEat&gt;personLikeEat
+Input the chinese name and food name
+
+Usage:
+  personLikeEat [flags]
+  personLikeEat [command]
+
+Available Commands:
+  ILikeEat    Input food information
+
+Flags:
+  -f, --food string   food's name
+  -n, --name string   person's name
+
+Use "personLikeEat [command] --help" for more information about a command.
+
+E:\mygo\src\test\demo\personLikeEat&gt;personLikeEat -n yp -f apple
+yp like eat apple.
+
+E:\mygo\src\test\demo\personLikeEat&gt;personLikeEat ILikeEat
+Input food information
+
+Usage:
+  personLikeEat ILikeEat [flags]
+
+Flags:
+  -f, --food string   food's name
+
+E:\mygo\src\test\demo\personLikeEat&gt;personLikeEat ILikeEat -f banana
+I like eat banana.
+</code></pre></div></div><h3 id="基本用法就是这四步">基本用法就是这四步：</h3><ol><li>主命令</li><li>子命令</li><li>添加选项</li><li>执行命令</li></ol><h3 id="使用cobra生成应用程序">使用cobra生成应用程序</h3><p>假设现在我们要开发一个基于CLIs的命令程序，名字为cobraDemo。首先打开CMD，切换到GOPATH的src目录下，执行如下指令:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>E:\mygo\src&gt;..\bin\cobra.exe init cobraDemo
+Your Cobra application is ready at
+E:\mygo\src\cobraDemo
+Give it a try by going there and running `go run main.go`
+Add commands to it by running `cobra add [cmdname]`
+</code></pre></div></div><p>在src目录下会生成一个cobraDemo的文件夹，如下：</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cobraDemo
+│  LICENSE
+│  main.go
+│  
+└─cmd
+        root.go
+</code></pre></div></div><p>如果你的cobraDemo程序没有subcommands，那么cobra生成应用程序的操作就结束了。</p><h3 id="如何实现没有子命令的clis程序">如何实现没有子命令的CLIs程序</h3><p>接下来就是可以继续cobraDemo的功能设计了。例如我在demo下面新建一个包，名称为imp。如下：</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cobraDemo
+│  LICENSE
+│  main.go
+│  
+├─cmd
+│      root.go
+│      
+└─imp
+        imp.go
+</code></pre></div></div><p>imp.go文件的代码如下：</p><div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">imp</span>
+
+<span class="k">import</span><span class="p">(</span>
+    <span class="s">"fmt"</span>
+<span class="p">)</span>
+
+<span class="k">func</span> <span class="n">Show</span><span class="p">(</span><span class="n">name</span> <span class="kt">string</span><span class="p">,</span> <span class="n">age</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"My Name is %s, My age is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div><p>cobraDemo程序成命令行接收两个参数name和age，然后打印出来。打开cobra自动生成的main.go文件查看：</p><div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// Copyright © 2017 NAME HERE &lt;EMAIL ADDRESS&gt;</span>
+<span class="c">//</span>
+<span class="c">// Licensed under the Apache License, Version 2.0 (the "License");</span>
+<span class="c">// you may not use this file except in compliance with the License.</span>
+<span class="c">// You may obtain a copy of the License at</span>
+<span class="c">//</span>
+<span class="c">//     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c">//</span>
+<span class="c">// Unless required by applicable law or agreed to in writing, software</span>
+<span class="c">// distributed under the License is distributed on an "AS IS" BASIS,</span>
+<span class="c">// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c">// See the License for the specific language governing permissions and</span>
+<span class="c">// limitations under the License.</span>
+
+<span class="k">package</span> <span class="n">main</span>
+
+<span class="k">import</span> <span class="s">"cobraDemo/cmd"</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">cmd</span><span class="o">.</span><span class="n">Execute</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div><p>可以看出main函数执行cmd包，所以我们只需要在cmd包内调用imp包就能实现demo程序的需求。接着打开root.go文件查看：</p><div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// Copyright © 2017 NAME HERE &lt;EMAIL ADDRESS&gt;</span>
+<span class="c">//</span>
+<span class="c">// Licensed under the Apache License, Version 2.0 (the "License");</span>
+<span class="c">// you may not use this file except in compliance with the License.</span>
+<span class="c">// You may obtain a copy of the License at</span>
+<span class="c">//</span>
+<span class="c">//     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c">//</span>
+<span class="c">// Unless required by applicable law or agreed to in writing, software</span>
+<span class="c">// distributed under the License is distributed on an "AS IS" BASIS,</span>
+<span class="c">// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c">// See the License for the specific language governing permissions and</span>
+<span class="c">// limitations under the License.</span>
+
+<span class="k">package</span> <span class="n">cmd</span>
+
+<span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+    <span class="s">"os"</span>
+
+    <span class="s">"github.com/spf13/cobra"</span>
+    <span class="s">"github.com/spf13/viper"</span>
+<span class="p">)</span>
+
+<span class="k">var</span> <span class="n">cfgFile</span> <span class="kt">string</span>
+
+<span class="c">// RootCmd represents the base command when called without any subcommands</span>
+<span class="k">var</span> <span class="n">RootCmd</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span><span class="p">{</span>
+    <span class="n">Use</span><span class="o">:</span>   <span class="s">"cobraDemo"</span><span class="p">,</span>
+    <span class="n">Short</span><span class="o">:</span> <span class="s">"A brief description of your application"</span><span class="p">,</span>
+    <span class="n">Long</span><span class="o">:</span> <span class="s">`A longer description that spans multiple lines and likely contains
+examples and usage of using your application. For example:
+
+Cobra is a CLI library for Go that empowers applications.
+This application is a tool to generate the needed files
+to quickly create a Cobra application.`</span><span class="p">,</span>
+<span class="c">// Uncomment the following line if your bare application</span>
+<span class="c">// has an action associated with it:</span>
+<span class="c">//  Run: func(cmd *cobra.Command, args []string) { },</span>
+<span class="p">}</span>
+
+<span class="c">// Execute adds all child commands to the root command sets flags appropriately.</span>
+<span class="c">// This is called by main.main(). It only needs to happen once to the rootCmd.</span>
+<span class="k">func</span> <span class="n">Execute</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">RootCmd</span><span class="o">.</span><span class="n">Execute</span><span class="p">();</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="o">-</span><span class="m">1</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="n">init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">cobra</span><span class="o">.</span><span class="n">OnInitialize</span><span class="p">(</span><span class="n">initConfig</span><span class="p">)</span>
+
+    <span class="c">// Here you will define your flags and configuration settings.</span>
+    <span class="c">// Cobra supports Persistent Flags, which, if defined here,</span>
+    <span class="c">// will be global for your application.</span>
+
+    <span class="n">RootCmd</span><span class="o">.</span><span class="n">PersistentFlags</span><span class="p">()</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cfgFile</span><span class="p">,</span> <span class="s">"config"</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="s">"config file (default is $HOME/.cobraDemo.yaml)"</span><span class="p">)</span>
+    <span class="c">// Cobra also supports local flags, which will only run</span>
+    <span class="c">// when this action is called directly.</span>
+    <span class="n">RootCmd</span><span class="o">.</span><span class="n">Flags</span><span class="p">()</span><span class="o">.</span><span class="n">BoolP</span><span class="p">(</span><span class="s">"toggle"</span><span class="p">,</span> <span class="s">"t"</span><span class="p">,</span> <span class="no">false</span><span class="p">,</span> <span class="s">"Help message for toggle"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">// initConfig reads in config file and ENV variables if set.</span>
+<span class="k">func</span> <span class="n">initConfig</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">cfgFile</span> <span class="o">!=</span> <span class="s">""</span> <span class="p">{</span> <span class="c">// enable ability to specify config file via flag</span>
+        <span class="n">viper</span><span class="o">.</span><span class="n">SetConfigFile</span><span class="p">(</span><span class="n">cfgFile</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="n">viper</span><span class="o">.</span><span class="n">SetConfigName</span><span class="p">(</span><span class="s">".cobraDemo"</span><span class="p">)</span> <span class="c">// name of config file (without extension)</span>
+    <span class="n">viper</span><span class="o">.</span><span class="n">AddConfigPath</span><span class="p">(</span><span class="s">"$HOME"</span><span class="p">)</span>  <span class="c">// adding home directory as first search path</span>
+    <span class="n">viper</span><span class="o">.</span><span class="n">AutomaticEnv</span><span class="p">()</span>          <span class="c">// read in environment variables that match</span>
+
+    <span class="c">// If a config file is found, read it in.</span>
+    <span class="k">if</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">viper</span><span class="o">.</span><span class="n">ReadInConfig</span><span class="p">();</span> <span class="n">err</span> <span class="o">==</span> <span class="no">nil</span> <span class="p">{</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Using config file:"</span><span class="p">,</span> <span class="n">viper</span><span class="o">.</span><span class="n">ConfigFileUsed</span><span class="p">())</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div><p>从源代码来看cmd包进行了一些初始化操作并提供了Execute接口。十分简单，其中viper是cobra集成的配置文件读取的库，这里不需要使用，我们可以注释掉（不注释可能生成的应用程序很大约10M，这里没用到最好是注释掉）。cobra的所有命令都是通过cobra.Command这个结构体实现的。为了实现demo功能，显然我们需要修改RootCmd。修改后的代码如下：</p><div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// Copyright © 2017 NAME HERE &lt;EMAIL ADDRESS&gt;</span>
+<span class="c">//</span>
+<span class="c">// Licensed under the Apache License, Version 2.0 (the "License");</span>
+<span class="c">// you may not use this file except in compliance with the License.</span>
+<span class="c">// You may obtain a copy of the License at</span>
+<span class="c">//</span>
+<span class="c">//     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c">//</span>
+<span class="c">// Unless required by applicable law or agreed to in writing, software</span>
+<span class="c">// distributed under the License is distributed on an "AS IS" BASIS,</span>
+<span class="c">// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c">// See the License for the specific language governing permissions and</span>
+<span class="c">// limitations under the License.</span>
+
+<span class="k">package</span> <span class="n">cmd</span>
+
+<span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+    <span class="s">"os"</span>
+
+    <span class="s">"github.com/spf13/cobra"</span>
+    <span class="c">// "github.com/spf13/viper"</span>
+    <span class="s">"cobraDemo/imp"</span>
+<span class="p">)</span>
+
+<span class="c">// var cfgFile string</span>
+<span class="k">var</span> <span class="n">name</span> <span class="kt">string</span>
+<span class="k">var</span> <span class="n">age</span> <span class="kt">int</span>
+
+<span class="c">// RootCmd represents the base command when called without any subcommands</span>
+<span class="k">var</span> <span class="n">RootCmd</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span><span class="p">{</span>
+    <span class="n">Use</span><span class="o">:</span>   <span class="s">"cobraDemo"</span><span class="p">,</span>
+    <span class="n">Short</span><span class="o">:</span> <span class="s">"A test demo"</span><span class="p">,</span>
+    <span class="n">Long</span><span class="o">:</span> <span class="s">`Demo is a test appcation for print things`</span><span class="p">,</span>
+    <span class="c">// Uncomment the following line if your bare application</span>
+    <span class="c">// has an action associated with it:</span>
+    <span class="n">Run</span><span class="o">:</span> <span class="k">func</span><span class="p">(</span><span class="n">cmd</span> <span class="o">*</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span><span class="p">,</span> <span class="n">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">==</span> <span class="m">0</span> <span class="p">{</span>
+            <span class="n">cmd</span><span class="o">.</span><span class="n">Help</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="p">}</span>
+        <span class="n">imp</span><span class="o">.</span><span class="n">Show</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+
+<span class="c">// Execute adds all child commands to the root command sets flags appropriately.</span>
+<span class="c">// This is called by main.main(). It only needs to happen once to the rootCmd.</span>
+<span class="k">func</span> <span class="n">Execute</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">RootCmd</span><span class="o">.</span><span class="n">Execute</span><span class="p">();</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="o">-</span><span class="m">1</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="n">init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c">// cobra.OnInitialize(initConfig)</span>
+
+    <span class="c">// Here you will define your flags and configuration settings.</span>
+    <span class="c">// Cobra supports Persistent Flags, which, if defined here,</span>
+    <span class="c">// will be global for your application.</span>
+
+    <span class="c">// RootCmd.PersistentFlags().StringVar(&amp;cfgFile, "config", "", "config file (default is $HOME/.cobraDemo.yaml)")</span>
+    <span class="c">// Cobra also supports local flags, which will only run</span>
+    <span class="c">// when this action is called directly.</span>
+    <span class="c">// RootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")</span>
+    <span class="n">RootCmd</span><span class="o">.</span><span class="n">Flags</span><span class="p">()</span><span class="o">.</span><span class="n">StringVarP</span><span class="p">(</span><span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> <span class="s">"name"</span><span class="p">,</span> <span class="s">"n"</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="s">"person's name"</span><span class="p">)</span>
+    <span class="n">RootCmd</span><span class="o">.</span><span class="n">Flags</span><span class="p">()</span><span class="o">.</span><span class="n">IntVarP</span><span class="p">(</span><span class="o">&amp;</span><span class="n">age</span><span class="p">,</span> <span class="s">"age"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="s">"person's age"</span><span class="p">)</span>    
+<span class="p">}</span>
+
+<span class="c">// initConfig reads in config file and ENV variables if set.</span>
+<span class="c">// func initConfig() {</span>
+<span class="c">//  if cfgFile != "" { // enable ability to specify config file via flag</span>
+<span class="c">//      viper.SetConfigFile(cfgFile)</span>
+<span class="c">//  }</span>
+
+<span class="c">//  viper.SetConfigName(".cobraDemo") // name of config file (without extension)</span>
+<span class="c">//  viper.AddConfigPath("$HOME")  // adding home directory as first search path</span>
+<span class="c">//  viper.AutomaticEnv()          // read in environment variables that match</span>
+
+<span class="c">//  // If a config file is found, read it in.</span>
+<span class="c">//  if err := viper.ReadInConfig(); err == nil {</span>
+<span class="c">//      fmt.Println("Using config file:", viper.ConfigFileUsed())</span>
+<span class="c">//  }</span>
+<span class="c">//}</span>
+</code></pre></div></div><p>到此demo的功能已经实现了，我们编译运行一下看看实际效果：</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>E:\mygo\src\cobraDemo&gt;go build
+
+E:\mygo\src\cobraDemo&gt;cobraDemo.exe
+Demo is a test appcation for print things
+
+Usage:
+  cobraDemo [flags]
+
+Flags:
+  -a, --age int       person's age
+  -n, --name string   person's name
+
+E:\mygo\src\cobraDemo&gt;cobraDemo.exe -n yp -a 26
+My Name is yp, My age is 26
+</code></pre></div></div><h3 id="如何实现带有子命令的clis程序">如何实现带有子命令的CLIs程序</h3><p>在执行cobra.exe init demo之后，继续使用cobra为demo添加子命令test：</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>E:\mygo\src\cobraDemo&gt;..\..\bin\cobra add test
+test created at E:\mygo\src\cobraDemo\cmd\test.go
+</code></pre></div></div><p>在src目录下demo的文件夹下生成了一个cmd\test.go文件，如下：</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cobraDemo
+│  cobraDemo.exe
+│  LICENSE
+│  main.go
+│  
+├─cmd
+│      root.go
+│      test.go
+│      
+└─imp
+        imp.go
+</code></pre></div></div><p>接下来的操作就和上面修改root.go文件一样去配置test子命令。效果如下：</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>E:\mygo\src\cobraDemo&gt;go build
+
+E:\mygo\src\cobraDemo&gt;cobraDemo.exe
+Demo is a test appcation for print things
+
+Usage:
+  cobraDemo [flags]
+  cobraDemo [command]
+
+Available Commands:
+  test        A brief description of your command
+
+Flags:
+  -a, --age int       person's age
+  -n, --name string   person's name
+
+Use "cobraDemo [command] --help" for more information about a command.        
+</code></pre></div></div><p>可以看出demo既支持直接使用标记flag，又能使用子命令</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>E:\mygo\src\cobraDemo&gt;cobraDemo.exe test -h
+A longer description that spans multiple lines and likely contains examples
+and usage of using your command. For example:
+
+Cobra is a CLI library for Go that empowers applications.
+This application is a tool to generate the needed files
+to quickly create a Cobra application.
+
+Usage:
+  cobraDemo test [flags]
+</code></pre></div></div><p>调用test命令输出信息，这里没有对默认信息进行修改。</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>E:\mygo\src\cobraDemo&gt;cobraDemo.exe tet
+Error: unknown command "tet" for "cobraDemo"
+
+Did you mean this?
+        test
+
+Run 'cobraDemo --help' for usage.
+unknown command "tet" for "cobraDemo"
+
+Did you mean this?
+        test
+</code></pre></div></div><p>这是错误命令提示功能</p><h2 id="函数解析">函数解析</h2><h3 id="函数说明">函数说明</h3><p><a href="https://godoc.org/github.com/spf13/cobra">cobra doc</a></p><h3 id="关于代码执行顺序">关于代码执行顺序</h3><div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// The *Run functions are executed in the following order:</span>
+<span class="c">//   * PersistentPreRun()</span>
+<span class="c">//   * PreRun()</span>
+<span class="c">//   * Run()</span>
+<span class="c">//   * PostRun()</span>
+<span class="c">//   * PersistentPostRun()</span>
+</code></pre></div></div><p>修改root.go文件如下：</p><div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// Copyright © 2017 NAME HERE &lt;EMAIL ADDRESS&gt;</span>
+<span class="c">//</span>
+<span class="c">// Licensed under the Apache License, Version 2.0 (the "License");</span>
+<span class="c">// you may not use this file except in compliance with the License.</span>
+<span class="c">// You may obtain a copy of the License at</span>
+<span class="c">//</span>
+<span class="c">//     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c">//</span>
+<span class="c">// Unless required by applicable law or agreed to in writing, software</span>
+<span class="c">// distributed under the License is distributed on an "AS IS" BASIS,</span>
+<span class="c">// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c">// See the License for the specific language governing permissions and</span>
+<span class="c">// limitations under the License.</span>
+
+<span class="k">package</span> <span class="n">cmd</span>
+
+<span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+    <span class="s">"os"</span>
+
+    <span class="s">"github.com/spf13/cobra"</span>
+    <span class="c">// "github.com/spf13/viper"</span>
+    <span class="s">"cobraDemo/imp"</span>
+<span class="p">)</span>
+
+<span class="c">// var cfgFile string</span>
+<span class="k">var</span> <span class="n">name</span> <span class="kt">string</span>
+<span class="k">var</span> <span class="n">age</span> <span class="kt">int</span>
+
+<span class="c">// RootCmd represents the base command when called without any subcommands</span>
+<span class="k">var</span> <span class="n">RootCmd</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span><span class="p">{</span>
+    <span class="n">Use</span><span class="o">:</span>   <span class="s">"cobraDemo"</span><span class="p">,</span>
+    <span class="n">Short</span><span class="o">:</span> <span class="s">"A test demo"</span><span class="p">,</span>
+    <span class="n">Long</span><span class="o">:</span> <span class="s">`Demo is a test appcation for print things`</span><span class="p">,</span>
+    <span class="c">// Uncomment the following line if your bare application</span>
+    <span class="c">// has an action associated with it:</span>
+    
+    <span class="c">// The *Run functions are executed in the following order:</span>
+    <span class="c">//   * PersistentPreRun()</span>
+    <span class="c">//   * PreRun()</span>
+    <span class="c">//   * Run()</span>
+    <span class="c">//   * PostRun()</span>
+    <span class="c">//   * PersistentPostRun()  </span>
+    <span class="n">PersistentPreRun</span><span class="o">:</span> <span class="k">func</span><span class="p">(</span><span class="n">cmd</span> <span class="o">*</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span><span class="p">,</span> <span class="n">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Inside rootCmd PersistentPreRun with args: %v</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">},</span>
+    <span class="n">PreRun</span><span class="o">:</span> <span class="k">func</span><span class="p">(</span><span class="n">cmd</span> <span class="o">*</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span><span class="p">,</span> <span class="n">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Inside rootCmd PreRun with args: %v</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">},</span>      
+    <span class="n">Run</span><span class="o">:</span> <span class="k">func</span><span class="p">(</span><span class="n">cmd</span> <span class="o">*</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span><span class="p">,</span> <span class="n">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">==</span> <span class="m">0</span> <span class="p">{</span>
+            <span class="n">cmd</span><span class="o">.</span><span class="n">Help</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="p">}</span>
+        <span class="n">imp</span><span class="o">.</span><span class="n">Show</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span>
+    <span class="p">},</span>  
+    <span class="n">PostRun</span><span class="o">:</span> <span class="k">func</span><span class="p">(</span><span class="n">cmd</span> <span class="o">*</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span><span class="p">,</span> <span class="n">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Inside rootCmd PostRun with args: %v</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">},</span>
+    <span class="n">PersistentPostRun</span><span class="o">:</span> <span class="k">func</span><span class="p">(</span><span class="n">cmd</span> <span class="o">*</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span><span class="p">,</span> <span class="n">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Inside rootCmd PersistentPostRun with args: %v</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">},</span>  
+<span class="p">}</span>
+
+<span class="c">// Execute adds all child commands to the root command sets flags appropriately.</span>
+<span class="c">// This is called by main.main(). It only needs to happen once to the rootCmd.</span>
+<span class="k">func</span> <span class="n">Execute</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">RootCmd</span><span class="o">.</span><span class="n">Execute</span><span class="p">();</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="o">-</span><span class="m">1</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="n">init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c">// cobra.OnInitialize(initConfig)</span>
+
+    <span class="c">// Here you will define your flags and configuration settings.</span>
+    <span class="c">// Cobra supports Persistent Flags, which, if defined here,</span>
+    <span class="c">// will be global for your application.</span>
+
+    <span class="c">// RootCmd.PersistentFlags().StringVar(&amp;cfgFile, "config", "", "config file (default is $HOME/.cobraDemo.yaml)")</span>
+    <span class="c">// Cobra also supports local flags, which will only run</span>
+    <span class="c">// when this action is called directly.</span>
+    <span class="c">// RootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")</span>
+    <span class="n">RootCmd</span><span class="o">.</span><span class="n">Flags</span><span class="p">()</span><span class="o">.</span><span class="n">StringVarP</span><span class="p">(</span><span class="o">&amp;</span><span class="n">name</span><span class="p">,</span> <span class="s">"name"</span><span class="p">,</span> <span class="s">"n"</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="s">"person's name"</span><span class="p">)</span>
+    <span class="n">RootCmd</span><span class="o">.</span><span class="n">Flags</span><span class="p">()</span><span class="o">.</span><span class="n">IntVarP</span><span class="p">(</span><span class="o">&amp;</span><span class="n">age</span><span class="p">,</span> <span class="s">"age"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="s">"person's age"</span><span class="p">)</span>    
+<span class="p">}</span>
+</code></pre></div></div><p>测试结果如下：</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>E:\mygo\src\cobraDemo&gt;go build
+
+E:\mygo\src\cobraDemo&gt;cobraDemo.exe
+Inside rootCmd PersistentPreRun with args: []
+Inside rootCmd PreRun with args: []
+Demo is a test appcation for print things
+
+Usage:
+  cobraDemo [flags]
+  cobraDemo [command]
+
+Available Commands:
+  test        A brief description of your command
+
+Flags:
+  -a, --age int       person's age
+  -n, --name string   person's name
+
+Use "cobraDemo [command] --help" for more information about a command.
+Inside rootCmd PostRun with args: []
+Inside rootCmd PersistentPostRun with args: []
+
+E:\mygo\src\cobraDemo&gt;cobraDemo.exe -n yp -a 26
+Inside rootCmd PersistentPreRun with args: []
+Inside rootCmd PreRun with args: []
+My Name is yp, My age is 26
+Inside rootCmd PostRun with args: []
+Inside rootCmd PersistentPostRun with args: []
+
+E:\mygo\src\cobraDemo&gt;cobraDemo.exe test
+Inside rootCmd PersistentPreRun with args: []
+test called
+Inside rootCmd PersistentPostRun with args: []
+</code></pre></div></div><p><strong>当使用–help命令的时候，PersistentPreRun、PreRun、PostRun、PersistentPostRun不会被调用</strong> 示例如下：</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>E:\mygo\src\cobraDemo&gt;cobraDemo.exe --help
+Demo is a test appcation for print things
+
+Usage:
+  cobraDemo [flags]
+  cobraDemo [command]
+
+Available Commands:
+  test        A brief description of your command
+
+Flags:
+  -a, --age int       person's age
+  -n, --name string   person's name
+
+Use "cobraDemo [command] --help" for more information about a command.
+</code></pre></div></div><h3 id="数据类型--p">“数据类型” + “P”</h3><p>此种类型支持短标记</p><div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// BoolP is like Bool, but accepts a shorthand letter that can be used after a single dash.</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">f</span> <span class="o">*</span><span class="n">FlagSet</span><span class="p">)</span> <span class="n">BoolP</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">shorthand</span> <span class="kt">string</span><span class="p">,</span> <span class="n">value</span> <span class="kt">bool</span><span class="p">,</span> <span class="n">usage</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="kt">bool</span> <span class="p">{</span>
+    <span class="n">p</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">BoolVarP</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">shorthand</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">usage</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">p</span>
+<span class="p">}</span>
+</code></pre></div></div><h3 id="数据类型--var">“数据类型” + “Var”</h3><p>此种类型表示变量</p><div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// BoolVar defines a bool flag with specified name, default value, and usage string.</span>
+<span class="c">// The argument p points to a bool variable in which to store the value of the flag.</span>
+<span class="k">func</span> <span class="n">BoolVar</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span><span class="kt">bool</span><span class="p">,</span> <span class="n">name</span> <span class="kt">string</span><span class="p">,</span> <span class="n">value</span> <span class="kt">bool</span><span class="p">,</span> <span class="n">usage</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">BoolVarP</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">usage</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div><h3 id="全局短标记过时">全局短标记过时</h3><div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">RootCmd</span><span class="o">.</span><span class="n">PersistentFlags</span><span class="p">()</span><span class="o">.</span><span class="n">BoolP</span><span class="p">(</span><span class="s">"help"</span><span class="p">,</span> <span class="s">"h"</span><span class="p">,</span> <span class="no">false</span><span class="p">,</span> <span class="s">"Print usage"</span><span class="p">)</span>
+    <span class="n">RootCmd</span><span class="o">.</span><span class="n">PersistentFlags</span><span class="p">()</span><span class="o">.</span><span class="n">MarkShorthandDeprecated</span><span class="p">(</span><span class="s">"help"</span><span class="p">,</span> <span class="s">"please use --help"</span><span class="p">)</span>
+</code></pre></div></div><p>示例如下：</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>E:\mygo\src\cobraDemo&gt;cobraDemo.exe -h
+Flag shorthand -h has been deprecated, please use --help
+Demo is a test appcation for print things
+
+Usage:
+  cobraDemo [flags]
+  cobraDemo [command]
+
+Available Commands:
+  test        A brief description of your command
+
+Flags:
+  -a, --age int       person's age
+      --help          Print usage
+  -n, --name string   person's name
+
+Use "cobraDemo [command] --help" for more information about a command.
+
+E:\mygo\src\cobraDemo&gt;cobraDemo.exe test -h
+Flag shorthand -h has been deprecated, please use --help
+A longer description that spans multiple lines and likely contains examples
+and usage of using your command. For example:
+
+Cobra is a CLI library for Go that empowers applications.
+This application is a tool to generate the needed files
+to quickly create a Cobra application.
+
+Usage:
+  cobraDemo test [flags]
+
+Global Flags:
+      --help   Print usage
+</code></pre></div></div><div style="margin-top:2em;padding:0 1.5em;border:1px solid #d3d3d3;background-color:#deebf7"><h3>文档信息</h3><ul><li>本文作者：<a href="https://y2p.cc" target="_blank">Yu Peng</a></li><li>本文链接：<a href="https://y2p.cc/2017/02/17/cobra/" target="_blank">https://y2p.cc/2017/02/17/cobra/</a></li><li>版权声明：自由转载-非商用-非衍生-保持署名（<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank">创意共享3.0许可证</a>）</li></ul></div></article><div class="share"><div class="share-component" data-disabled='qq,facebook'></div></div><div class="comment"><div id="gitalk-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/vendor/gitalk/gitalk.css"> <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script> <script> var gitalk = new Gitalk({ id: '/2017/02/17/cobra/', clientID: 'b2ad054f2e4daf7ad564', clientSecret: 'c742e4086336e58b70e0e88dc791e5bce6e37330', repo: 'blog-comments', owner: 'yu3peng', admin: ['yu3peng'], labels: ['gitment'], perPage: 50, }); gitalk.render('gitalk-container'); </script></div></div><div class="column one-fourth"><h3>Search</h3><div id="site_search"> <input style="width:96%" type="text" id="search_box" placeholder="Search"></div><ul id="search_results" style="font-size:14px;list-style-type:none;padding-top:10px;padding-left:10px;"></ul><script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/js/simple-jekyll-search.min.js"></script> <script type="text/javascript"> SimpleJekyllSearch({ searchInput: document.getElementById('search_box'), resultsContainer: document.getElementById('search_results'), json: 'https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@built/assets/search_data.json?v=1651813977', searchResultTemplate: '<li><a href="{url}" title="{title}">{title}</a></li>', noResultsText: 'No results found', limit: 10, fuzzy: false, exclude: ['Welcome'] }) </script><h3 class="post-directory-title mobile-hidden">Table of Contents</h3><div id="post-directory-module" class="mobile-hidden"><section class="post-directory"><dl></dl></section></div><script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/js/jquery.toc.js"></script></div></div></section><footer class="container"><div class="site-footer" role="contentinfo"><div class="copyright left mobile-block"> © 2022 <span title="Yu Peng">Yu Peng</span> <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a></div><ul class="site-footer-links right mobile-hidden"><li> <a href="javascript:window.scrollTo(0,0)" >TOP</a></li></ul><a href="https://github.com/yu3peng/yu3peng.github.io" target="_blank" aria-label="view source code"> <span class="mega-octicon octicon-mark-github" title="GitHub"></span> </a><ul class="site-footer-links mobile-hidden"><li> <a href="https://y2p.cc/" title="首页" target="">首页</a></li><li> <a href="https://y2p.cc/categories/" title="分类" target="">分类</a></li><li> <a href="https://y2p.cc/notes/" title="笔记" target="">笔记</a></li><li> <a href="https://y2p.cc/about/" title="关于" target="">关于</a></li><li><a href="https://y2p.cc/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li></ul></div></footer><div class="tools-wrapper"> <a class="gotop" href="#" title="回到顶部"><span class="octicon octicon-arrow-up"></span></a></div><script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/vendor/share.js/dist/js/share.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/js/geopattern.js"></script> <script> jQuery(document).ready(function($) { $('.geopattern').each(function(){ $(this).geopattern($(this).data('pattern-id')); }); /* hljs.initHighlightingOnLoad(); */ }); </script></body></html>

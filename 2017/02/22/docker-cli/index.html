@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /><title>DOCKER CLI 代码解析 &mdash; Yu Peng</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/vendor/primer-css/css/primer.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/components/collection.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/components/repo-card.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/sections/repo-list.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/components/boxed-group.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/globals/common.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/globals/responsive.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/posts/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/vendor/octicons/octicons/octicons.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/rouge-themes@master/dist/github.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/vendor/share.js/dist/css/share.min.css"><link rel="canonical" href="https://y2p.cc/2017/02/22/docker-cli/"><link rel="alternate" type="application/atom+xml" title="Yu Peng" href="https://y2p.cc/feed.xml"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/favicon.ico"><meta property="og:title" content="DOCKER CLI 代码解析"><meta name="keywords" content="yupeng"><meta name="og:keywords" content="yupeng"><meta name="description" content="DOCKER CLI 代码解析"><meta name="og:description" content="DOCKER CLI 代码解析"><meta property="og:url" content="https://y2p.cc/2017/02/22/docker-cli/"><meta property="og:site_name" content="Yu Peng"><meta property="og:type" content="article"><meta property="og:locale" content="zh_CN" /><meta property="article:published_time" content="2017-02-22"> <script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/vendor/jquery/dist/jquery.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/js/jquery-ui.js"></script> <script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/js/main.js"></script> <script data-ad-client="ca-pub-7093222719567591" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170170785-1"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-170170785-1'); </script></head><body class="" data-mz=""><header class="site-header"><div class="container"><h1><a href="https://y2p.cc/" title="Yu Peng"><span class="octicon octicon-mark-github"></span> Yu Peng</a></h1><button class="collapsed mobile-visible" type="button" onclick="toggleMenu();"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button><nav class="site-header-nav" role="navigation"> <a href="https://y2p.cc/" class=" site-header-nav-item" target="" title="首页">首页</a> <a href="https://y2p.cc/categories/" class=" site-header-nav-item" target="" title="分类">分类</a> <a href="https://y2p.cc/notes/" class=" site-header-nav-item" target="" title="笔记">笔记</a> <a href="https://y2p.cc/about/" class=" site-header-nav-item" target="" title="关于">关于</a></nav></div></header><section class="collection-head small geopattern" data-pattern-id="DOCKER CLI 代码解析"><div class="container"><div class="columns"><div class="column three-fourths"><div class="collection-title"><h1 class="collection-header">DOCKER CLI 代码解析</h1><div class="collection-info"> <span class="meta-info"> <span class="octicon octicon-calendar"></span> 2017/02/22 </span> <span class="meta-info"> <span class="octicon octicon-file-directory"></span> <a href="https://y2p.cc/categories/#Docker" title="Docker">Docker</a> </span> <span class="meta-info"> <span class="octicon octicon-clock"></span> 共 6552 字，约 19 分钟 </span></div></div></div><div class="column one-fourth mobile-hidden"><div class="collection-title"></div></div></div></div></section><section class="container content"><div class="columns"><div class="column three-fourths" ><article class="article-content markdown-body"><p>DOCKER CLI 代码解析</p><h2 id="cobra示例">cobra示例</h2><p>docker将客户端程序和服务器程序分为docker和dockerd，两者的命令行解析都采用第三方库：<a href="https://github.com/spf13/cobra">cobra</a></p><p>首先用个<a href="../../../../2017/02/17/cobra/#little-example">小程序</a>介绍一下cobra的简单用法：</p><h2 id="基本用法是这四步">基本用法是这四步：</h2><ol><li>主命令</li><li>子命令</li><li>添加选项</li><li>执行命令</li></ol><h2 id="docker职责">docker职责</h2><p>接受并解析客户端的操作指令。</p><h2 id="docker-cli-代码解析">docker cli 代码解析</h2><h3 id="从main函数开始">从main函数开始</h3><p>dcokerd的入口函数在文件docker/cmd/docker/docker.go中</p><div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c">// 日志采用第三方库logrus</span>
+    <span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">:=</span> <span class="n">term</span><span class="o">.</span><span class="n">StdStreams</span><span class="p">()</span>
+    <span class="n">logrus</span><span class="o">.</span><span class="n">SetOutput</span><span class="p">(</span><span class="n">stderr</span><span class="p">)</span>
+
+    <span class="n">dockerCli</span> <span class="o">:=</span> <span class="n">command</span><span class="o">.</span><span class="n">NewDockerCli</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span><span class="p">)</span>
+
+    <span class="c">// 主命令、子命令、添加选项都在此函数中</span>
+    <span class="n">cmd</span> <span class="o">:=</span> <span class="n">newDockerCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)</span>
+
+    <span class="c">// 执行命令</span>
+    <span class="k">if</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">Execute</span><span class="p">();</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="n">sterr</span><span class="p">,</span> <span class="n">ok</span> <span class="o">:=</span> <span class="n">err</span><span class="o">.</span><span class="p">(</span><span class="n">cli</span><span class="o">.</span><span class="n">StatusError</span><span class="p">);</span> <span class="n">ok</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="n">sterr</span><span class="o">.</span><span class="n">Status</span> <span class="o">!=</span> <span class="s">""</span> <span class="p">{</span>
+                <span class="n">fmt</span><span class="o">.</span><span class="n">Fprintln</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="n">sterr</span><span class="o">.</span><span class="n">Status</span><span class="p">)</span>
+            <span class="p">}</span>
+            <span class="c">// StatusError should only be used for errors, and all errors should</span>
+            <span class="c">// have a non-zero exit status, so never exit with 0</span>
+            <span class="k">if</span> <span class="n">sterr</span><span class="o">.</span><span class="n">StatusCode</span> <span class="o">==</span> <span class="m">0</span> <span class="p">{</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+            <span class="p">}</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="n">sterr</span><span class="o">.</span><span class="n">StatusCode</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Fprintln</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div><h3 id="newdockercommand继续解析">newDockerCommand继续解析</h3><div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">newDockerCommand</span><span class="p">(</span><span class="n">dockerCli</span> <span class="o">*</span><span class="n">command</span><span class="o">.</span><span class="n">DockerCli</span><span class="p">)</span> <span class="o">*</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span> <span class="p">{</span>
+    <span class="c">// 选项结构对象，通过传入的选项选项参数进行填充</span>
+    <span class="n">opts</span> <span class="o">:=</span> <span class="n">cliflags</span><span class="o">.</span><span class="n">NewClientOptions</span><span class="p">()</span>
+
+    <span class="c">// 选项集合</span>
+    <span class="k">var</span> <span class="n">flags</span> <span class="o">*</span><span class="n">pflag</span><span class="o">.</span><span class="n">FlagSet</span>
+
+    <span class="c">// 主命令</span>
+    <span class="n">cmd</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span><span class="p">{</span>
+        <span class="n">Use</span><span class="o">:</span>              <span class="s">"docker [OPTIONS] COMMAND [ARG...]"</span><span class="p">,</span>
+        <span class="n">Short</span><span class="o">:</span>            <span class="s">"A self-sufficient runtime for containers"</span><span class="p">,</span>
+        <span class="n">SilenceUsage</span><span class="o">:</span>     <span class="no">true</span><span class="p">,</span>
+        <span class="n">SilenceErrors</span><span class="o">:</span>    <span class="no">true</span><span class="p">,</span>
+        <span class="n">TraverseChildren</span><span class="o">:</span> <span class="no">true</span><span class="p">,</span>
+        <span class="n">Args</span><span class="o">:</span>             <span class="n">noArgs</span><span class="p">,</span>
+        <span class="n">RunE</span><span class="o">:</span> <span class="k">func</span><span class="p">(</span><span class="n">cmd</span> <span class="o">*</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span><span class="p">,</span> <span class="n">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="n">opts</span><span class="o">.</span><span class="n">Version</span> <span class="p">{</span>
+                <span class="n">showVersion</span><span class="p">()</span>
+                <span class="k">return</span> <span class="no">nil</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">dockerCli</span><span class="o">.</span><span class="n">ShowHelp</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">},</span>
+        <span class="n">PersistentPreRunE</span><span class="o">:</span> <span class="k">func</span><span class="p">(</span><span class="n">cmd</span> <span class="o">*</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span><span class="p">,</span> <span class="n">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+            <span class="c">// daemon command is special, we redirect directly to another binary</span>
+            <span class="k">if</span> <span class="n">cmd</span><span class="o">.</span><span class="n">Name</span><span class="p">()</span> <span class="o">==</span> <span class="s">"daemon"</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="no">nil</span>
+            <span class="p">}</span>
+            <span class="c">// flags must be the top-level command flags, not cmd.Flags()</span>
+            <span class="n">opts</span><span class="o">.</span><span class="n">Common</span><span class="o">.</span><span class="n">SetDefaultOptions</span><span class="p">(</span><span class="n">flags</span><span class="p">)</span>
+            <span class="n">dockerPreRun</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">dockerCli</span><span class="o">.</span><span class="n">Initialize</span><span class="p">(</span><span class="n">opts</span><span class="p">);</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="n">err</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">isSupported</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">dockerCli</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span><span class="o">.</span><span class="n">ClientVersion</span><span class="p">(),</span> <span class="n">dockerCli</span><span class="o">.</span><span class="n">HasExperimental</span><span class="p">())</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+
+    <span class="c">// 设置默认的处理方式</span>
+    <span class="n">cli</span><span class="o">.</span><span class="n">SetupRootCommand</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+    <span class="c">// 主命令添加选项</span>
+    <span class="n">flags</span> <span class="o">=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">Flags</span><span class="p">()</span>
+    <span class="n">flags</span><span class="o">.</span><span class="n">BoolVarP</span><span class="p">(</span><span class="o">&amp;</span><span class="n">opts</span><span class="o">.</span><span class="n">Version</span><span class="p">,</span> <span class="s">"version"</span><span class="p">,</span> <span class="s">"v"</span><span class="p">,</span> <span class="no">false</span><span class="p">,</span> <span class="s">"Print version information and quit"</span><span class="p">)</span>
+    <span class="n">flags</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="o">&amp;</span><span class="n">opts</span><span class="o">.</span><span class="n">ConfigDir</span><span class="p">,</span> <span class="s">"config"</span><span class="p">,</span> <span class="n">cliconfig</span><span class="o">.</span><span class="n">Dir</span><span class="p">(),</span> <span class="s">"Location of client config files"</span><span class="p">)</span>
+
+    <span class="c">// 添加公共选项</span>
+    <span class="n">opts</span><span class="o">.</span><span class="n">Common</span><span class="o">.</span><span class="n">InstallFlags</span><span class="p">(</span><span class="n">flags</span><span class="p">)</span>
+
+    <span class="n">setFlagErrorFunc</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+
+    <span class="n">setHelpFunc</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+
+    <span class="c">// 设置命令的输出</span>
+    <span class="n">cmd</span><span class="o">.</span><span class="n">SetOutput</span><span class="p">(</span><span class="n">dockerCli</span><span class="o">.</span><span class="n">Out</span><span class="p">())</span>
+
+    <span class="c">// 添加daemon选项，服务器功能在docker命令中已经作废，这里只是提示“请使用dockerd”</span>
+    <span class="n">cmd</span><span class="o">.</span><span class="n">AddCommand</span><span class="p">(</span><span class="n">newDaemonCommand</span><span class="p">())</span>
+
+    <span class="c">// 子命令</span>
+    <span class="n">commands</span><span class="o">.</span><span class="n">AddCommands</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">dockerCli</span><span class="p">)</span>
+
+    <span class="c">// 参数合法性验证</span>
+    <span class="n">setValidateArgs</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">cmd</span>
+<span class="p">}</span>
+</code></pre></div></div><p>这里主要是主命令的解析，子命令还需要继续看这个函数</p><div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c">// 子命令</span>
+    <span class="n">commands</span><span class="o">.</span><span class="n">AddCommands</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">dockerCli</span><span class="p">)</span>
+</code></pre></div></div><h3 id="addcommands添加子命令">AddCommands添加子命令</h3><div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// AddCommands adds all the commands from cli/command to the root command</span>
+<span class="k">func</span> <span class="n">AddCommands</span><span class="p">(</span><span class="n">cmd</span> <span class="o">*</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span><span class="p">,</span> <span class="n">dockerCli</span> <span class="o">*</span><span class="n">command</span><span class="o">.</span><span class="n">DockerCli</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cmd</span><span class="o">.</span><span class="n">AddCommand</span><span class="p">(</span>
+        <span class="c">// checkpoint</span>
+        <span class="n">checkpoint</span><span class="o">.</span><span class="n">NewCheckpointCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">),</span>
+
+        <span class="c">// container</span>
+        <span class="n">container</span><span class="o">.</span><span class="n">NewContainerCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">),</span>
+        <span class="n">container</span><span class="o">.</span><span class="n">NewRunCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">),</span>
+
+        <span class="c">// image</span>
+        <span class="n">image</span><span class="o">.</span><span class="n">NewImageCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">),</span>
+        <span class="n">image</span><span class="o">.</span><span class="n">NewBuildCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">),</span>
+
+        <span class="c">// node</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">NewNodeCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">),</span>
+
+        <span class="c">// network</span>
+        <span class="n">network</span><span class="o">.</span><span class="n">NewNetworkCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">),</span>
+
+        <span class="c">// plugin</span>
+        <span class="n">plugin</span><span class="o">.</span><span class="n">NewPluginCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">),</span>
+
+        <span class="c">// registry</span>
+        <span class="n">registry</span><span class="o">.</span><span class="n">NewLoginCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">),</span>
+        <span class="n">registry</span><span class="o">.</span><span class="n">NewLogoutCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">),</span>
+        <span class="n">registry</span><span class="o">.</span><span class="n">NewSearchCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">),</span>
+
+        <span class="c">// secret</span>
+        <span class="n">secret</span><span class="o">.</span><span class="n">NewSecretCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">),</span>
+
+        <span class="c">// service</span>
+        <span class="n">service</span><span class="o">.</span><span class="n">NewServiceCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">),</span>
+
+        <span class="c">// system</span>
+        <span class="n">system</span><span class="o">.</span><span class="n">NewSystemCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">),</span>
+        <span class="n">system</span><span class="o">.</span><span class="n">NewVersionCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">),</span>
+
+        <span class="c">// stack</span>
+        <span class="n">stack</span><span class="o">.</span><span class="n">NewStackCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">),</span>
+        <span class="n">stack</span><span class="o">.</span><span class="n">NewTopLevelDeployCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">),</span>
+
+        <span class="c">// swarm</span>
+        <span class="n">swarm</span><span class="o">.</span><span class="n">NewSwarmCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">),</span>
+
+        <span class="c">// volume</span>
+        <span class="n">volume</span><span class="o">.</span><span class="n">NewVolumeCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">),</span>
+
+        <span class="c">// legacy commands may be hidden</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">system</span><span class="o">.</span><span class="n">NewEventsCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">system</span><span class="o">.</span><span class="n">NewInfoCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">system</span><span class="o">.</span><span class="n">NewInspectCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewAttachCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewCommitCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewCopyCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewCreateCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewDiffCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewExecCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewExportCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewKillCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewLogsCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewPauseCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewPortCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewPsCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewRenameCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewRestartCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewRmCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewStartCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewStatsCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewStopCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewTopCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewUnpauseCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewUpdateCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">NewWaitCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">NewHistoryCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">NewImagesCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">NewImportCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">NewLoadCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">NewPullCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">NewPushCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">NewRemoveCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">NewSaveCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+        <span class="n">hide</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">NewTagCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+    <span class="p">)</span>
+
+<span class="p">}</span>
+</code></pre></div></div><p>这里添加了很多子命令，这些命令都是一级子命令，后面还可跟二级子命令。 有些是被hide函数包裹的，表示这些函数是之前的版本使用的，在新的版本中不推荐使用， 在实际环境中可以通过设置DOCKER_HIDE_LEGACY_COMMANDS环境变量来实现，具体见<a href="../../../../2017/02/24/docker-env/#docker_hide_legacy_commands">HIDE LEGACY COMMANDS</a>。</p><p>我们拿一条命令来继续解析</p><div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">hide</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">NewHistoryCommand</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">)),</span>
+</code></pre></div></div><h3 id="newhistorycommand函数">NewHistoryCommand函数</h3><div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">NewHistoryCommand</span><span class="p">(</span><span class="n">dockerCli</span> <span class="o">*</span><span class="n">command</span><span class="o">.</span><span class="n">DockerCli</span><span class="p">)</span> <span class="o">*</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="n">opts</span> <span class="n">historyOptions</span>
+
+    <span class="n">cmd</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span><span class="p">{</span>
+        <span class="n">Use</span><span class="o">:</span>   <span class="s">"history [OPTIONS] IMAGE"</span><span class="p">,</span>
+        <span class="n">Short</span><span class="o">:</span> <span class="s">"Show the history of an image"</span><span class="p">,</span>
+        <span class="n">Args</span><span class="o">:</span>  <span class="n">cli</span><span class="o">.</span><span class="n">ExactArgs</span><span class="p">(</span><span class="m">1</span><span class="p">),</span>
+
+        <span class="c">// 命令执行函数，错误类型的变量作为返回值</span>
+        <span class="n">RunE</span><span class="o">:</span> <span class="k">func</span><span class="p">(</span><span class="n">cmd</span> <span class="o">*</span><span class="n">cobra</span><span class="o">.</span><span class="n">Command</span><span class="p">,</span> <span class="n">args</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+            <span class="n">opts</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="m">0</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">runHistory</span><span class="p">(</span><span class="n">dockerCli</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+
+    <span class="c">// 添加选项</span>
+    <span class="n">flags</span> <span class="o">:=</span> <span class="n">cmd</span><span class="o">.</span><span class="n">Flags</span><span class="p">()</span>
+
+    <span class="n">flags</span><span class="o">.</span><span class="n">BoolVarP</span><span class="p">(</span><span class="o">&amp;</span><span class="n">opts</span><span class="o">.</span><span class="n">human</span><span class="p">,</span> <span class="s">"human"</span><span class="p">,</span> <span class="s">"H"</span><span class="p">,</span> <span class="no">true</span><span class="p">,</span> <span class="s">"Print sizes and dates in human readable format"</span><span class="p">)</span>
+    <span class="n">flags</span><span class="o">.</span><span class="n">BoolVarP</span><span class="p">(</span><span class="o">&amp;</span><span class="n">opts</span><span class="o">.</span><span class="n">quiet</span><span class="p">,</span> <span class="s">"quiet"</span><span class="p">,</span> <span class="s">"q"</span><span class="p">,</span> <span class="no">false</span><span class="p">,</span> <span class="s">"Only show numeric IDs"</span><span class="p">)</span>
+    <span class="n">flags</span><span class="o">.</span><span class="n">BoolVar</span><span class="p">(</span><span class="o">&amp;</span><span class="n">opts</span><span class="o">.</span><span class="n">noTrunc</span><span class="p">,</span> <span class="s">"no-trunc"</span><span class="p">,</span> <span class="no">false</span><span class="p">,</span> <span class="s">"Don't truncate output"</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">cmd</span>
+<span class="p">}</span>
+</code></pre></div></div><p>当我们执行docker history时，就会执行命令中定义的函数，进而执行runHistory(),该函数根据选项执行不同的操作。</p><h3 id="runhistory函数">runHistory函数</h3><div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">runHistory</span><span class="p">(</span><span class="n">dockerCli</span> <span class="o">*</span><span class="n">command</span><span class="o">.</span><span class="n">DockerCli</span><span class="p">,</span> <span class="n">opts</span> <span class="n">historyOptions</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="n">ctx</span> <span class="o">:=</span> <span class="n">context</span><span class="o">.</span><span class="n">Background</span><span class="p">()</span>
+
+    <span class="n">history</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">dockerCli</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span><span class="o">.</span><span class="n">ImageHistory</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">opts</span><span class="o">.</span><span class="n">image</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">err</span>
+    <span class="p">}</span>
+
+    <span class="n">w</span> <span class="o">:=</span> <span class="n">tabwriter</span><span class="o">.</span><span class="n">NewWriter</span><span class="p">(</span><span class="n">dockerCli</span><span class="o">.</span><span class="n">Out</span><span class="p">(),</span> <span class="m">20</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="sc">' '</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">opts</span><span class="o">.</span><span class="n">quiet</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">entry</span> <span class="o">:=</span> <span class="k">range</span> <span class="n">history</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="n">opts</span><span class="o">.</span><span class="n">noTrunc</span> <span class="p">{</span>
+                <span class="n">fmt</span><span class="o">.</span><span class="n">Fprintf</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">entry</span><span class="o">.</span><span class="n">ID</span><span class="p">)</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">fmt</span><span class="o">.</span><span class="n">Fprintf</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">stringid</span><span class="o">.</span><span class="n">TruncateID</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">ID</span><span class="p">))</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">w</span><span class="o">.</span><span class="n">Flush</span><span class="p">()</span>
+        <span class="k">return</span> <span class="no">nil</span>
+    <span class="p">}</span>
+
+    <span class="k">var</span> <span class="n">imageID</span> <span class="kt">string</span>
+    <span class="k">var</span> <span class="n">createdBy</span> <span class="kt">string</span>
+    <span class="k">var</span> <span class="n">created</span> <span class="kt">string</span>
+    <span class="k">var</span> <span class="n">size</span> <span class="kt">string</span>
+
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Fprintln</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="s">"IMAGE</span><span class="se">\t</span><span class="s">CREATED</span><span class="se">\t</span><span class="s">CREATED BY</span><span class="se">\t</span><span class="s">SIZE</span><span class="se">\t</span><span class="s">COMMENT"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">entry</span> <span class="o">:=</span> <span class="k">range</span> <span class="n">history</span> <span class="p">{</span>
+        <span class="n">imageID</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">ID</span>
+        <span class="n">createdBy</span> <span class="o">=</span> <span class="n">strings</span><span class="o">.</span><span class="n">Replace</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">CreatedBy</span><span class="p">,</span> <span class="s">"</span><span class="se">\t</span><span class="s">"</span><span class="p">,</span> <span class="s">" "</span><span class="p">,</span> <span class="o">-</span><span class="m">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="o">!</span><span class="n">opts</span><span class="o">.</span><span class="n">noTrunc</span> <span class="p">{</span>
+            <span class="n">createdBy</span> <span class="o">=</span> <span class="n">stringutils</span><span class="o">.</span><span class="n">Ellipsis</span><span class="p">(</span><span class="n">createdBy</span><span class="p">,</span> <span class="m">45</span><span class="p">)</span>
+            <span class="n">imageID</span> <span class="o">=</span> <span class="n">stringid</span><span class="o">.</span><span class="n">TruncateID</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">ID</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">opts</span><span class="o">.</span><span class="n">human</span> <span class="p">{</span>
+            <span class="n">created</span> <span class="o">=</span> <span class="n">units</span><span class="o">.</span><span class="n">HumanDuration</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Now</span><span class="p">()</span><span class="o">.</span><span class="n">UTC</span><span class="p">()</span><span class="o">.</span><span class="n">Sub</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Unix</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">Created</span><span class="p">,</span> <span class="m">0</span><span class="p">)))</span> <span class="o">+</span> <span class="s">" ago"</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="n">units</span><span class="o">.</span><span class="n">HumanSizeWithPrecision</span><span class="p">(</span><span class="kt">float64</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">Size</span><span class="p">),</span> <span class="m">3</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">created</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">Unix</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">Created</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span><span class="o">.</span><span class="n">Format</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">RFC3339</span><span class="p">)</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="n">strconv</span><span class="o">.</span><span class="n">FormatInt</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">Size</span><span class="p">,</span> <span class="m">10</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Fprintf</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="s">"%s</span><span class="se">\t</span><span class="s">%s</span><span class="se">\t</span><span class="s">%s</span><span class="se">\t</span><span class="s">%s</span><span class="se">\t</span><span class="s">%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">imageID</span><span class="p">,</span> <span class="n">created</span><span class="p">,</span> <span class="n">createdBy</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">entry</span><span class="o">.</span><span class="n">Comment</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">w</span><span class="o">.</span><span class="n">Flush</span><span class="p">()</span>
+    <span class="k">return</span> <span class="no">nil</span>
+<span class="p">}</span>
+</code></pre></div></div><div style="margin-top:2em;padding:0 1.5em;border:1px solid #d3d3d3;background-color:#deebf7"><h3>文档信息</h3><ul><li>本文作者：<a href="https://y2p.cc" target="_blank">Yu Peng</a></li><li>本文链接：<a href="https://y2p.cc/2017/02/22/docker-cli/" target="_blank">https://y2p.cc/2017/02/22/docker-cli/</a></li><li>版权声明：自由转载-非商用-非衍生-保持署名（<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank">创意共享3.0许可证</a>）</li></ul></div></article><div class="share"><div class="share-component" data-disabled='qq,facebook'></div></div><div class="comment"><div id="gitalk-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/vendor/gitalk/gitalk.css"> <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script> <script> var gitalk = new Gitalk({ id: '/2017/02/22/docker-cli/', clientID: 'b2ad054f2e4daf7ad564', clientSecret: 'c742e4086336e58b70e0e88dc791e5bce6e37330', repo: 'blog-comments', owner: 'yu3peng', admin: ['yu3peng'], labels: ['gitment'], perPage: 50, }); gitalk.render('gitalk-container'); </script></div></div><div class="column one-fourth"><h3>Search</h3><div id="site_search"> <input style="width:96%" type="text" id="search_box" placeholder="Search"></div><ul id="search_results" style="font-size:14px;list-style-type:none;padding-top:10px;padding-left:10px;"></ul><script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/js/simple-jekyll-search.min.js"></script> <script type="text/javascript"> SimpleJekyllSearch({ searchInput: document.getElementById('search_box'), resultsContainer: document.getElementById('search_results'), json: 'https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@built/assets/search_data.json?v=1651813977', searchResultTemplate: '<li><a href="{url}" title="{title}">{title}</a></li>', noResultsText: 'No results found', limit: 10, fuzzy: false, exclude: ['Welcome'] }) </script><h3 class="post-directory-title mobile-hidden">Table of Contents</h3><div id="post-directory-module" class="mobile-hidden"><section class="post-directory"><dl></dl></section></div><script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/js/jquery.toc.js"></script></div></div></section><footer class="container"><div class="site-footer" role="contentinfo"><div class="copyright left mobile-block"> © 2022 <span title="Yu Peng">Yu Peng</span> <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a></div><ul class="site-footer-links right mobile-hidden"><li> <a href="javascript:window.scrollTo(0,0)" >TOP</a></li></ul><a href="https://github.com/yu3peng/yu3peng.github.io" target="_blank" aria-label="view source code"> <span class="mega-octicon octicon-mark-github" title="GitHub"></span> </a><ul class="site-footer-links mobile-hidden"><li> <a href="https://y2p.cc/" title="首页" target="">首页</a></li><li> <a href="https://y2p.cc/categories/" title="分类" target="">分类</a></li><li> <a href="https://y2p.cc/notes/" title="笔记" target="">笔记</a></li><li> <a href="https://y2p.cc/about/" title="关于" target="">关于</a></li><li><a href="https://y2p.cc/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li></ul></div></footer><div class="tools-wrapper"> <a class="gotop" href="#" title="回到顶部"><span class="octicon octicon-arrow-up"></span></a></div><script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/vendor/share.js/dist/js/share.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/js/geopattern.js"></script> <script> jQuery(document).ready(function($) { $('.geopattern').each(function(){ $(this).geopattern($(this).data('pattern-id')); }); /* hljs.initHighlightingOnLoad(); */ }); </script></body></html>

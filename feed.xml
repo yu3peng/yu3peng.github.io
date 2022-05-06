@@ -1,0 +1,3205 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://y2p.cc/feed.xml" rel="self" type="application/atom+xml" /><link href="https://y2p.cc/" rel="alternate" type="text/html" /><updated>2022-05-06T13:12:57+08:00</updated><id>https://y2p.cc/feed.xml</id><title type="html">Yu Peng</title><subtitle>个人博客</subtitle><author><name>Yu Peng</name></author><entry><title type="html">MEC</title><link href="https://y2p.cc/2020/02/02/mec/" rel="alternate" type="text/html" title="MEC" /><published>2020-02-02T00:00:00+08:00</published><updated>2020-02-02T00:00:00+08:00</updated><id>https://y2p.cc/2020/02/02/mec</id><content type="html" xml:base="https://y2p.cc/2020/02/02/mec/">&lt;h2 id=&quot;五个边缘计算开源框架功能对比&quot;&gt;五个边缘计算开源框架功能对比&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;EdgeX Foundry&lt;/th&gt;
+      &lt;th&gt;K3S&lt;/th&gt;
+      &lt;th&gt;KubeEdge&lt;/th&gt;
+      &lt;th&gt;StarlingX&lt;/th&gt;
+      &lt;th&gt;Baetyl&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;云边协同&lt;/td&gt;
+      &lt;td&gt;不支持&lt;/td&gt;
+      &lt;td&gt;不支持&lt;/td&gt;
+      &lt;td&gt;支持&lt;/td&gt;
+      &lt;td&gt;支持&lt;/td&gt;
+      &lt;td&gt;支持&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;原生支持K8S&lt;/td&gt;
+      &lt;td&gt;不支持&lt;/td&gt;
+      &lt;td&gt;支持&lt;/td&gt;
+      &lt;td&gt;支持&lt;/td&gt;
+      &lt;td&gt;不支持&lt;/td&gt;
+      &lt;td&gt;不支持&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;边缘组件资源占用&lt;/td&gt;
+      &lt;td&gt;中&lt;/td&gt;
+      &lt;td&gt;小&lt;/td&gt;
+      &lt;td&gt;最小（内存256M）&lt;/td&gt;
+      &lt;td&gt;较大&lt;/td&gt;
+      &lt;td&gt;较大&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;部署复杂度&lt;/td&gt;
+      &lt;td&gt;复杂&lt;/td&gt;
+      &lt;td&gt;简单&lt;/td&gt;
+      &lt;td&gt;简单&lt;/td&gt;
+      &lt;td&gt;复杂&lt;/td&gt;
+      &lt;td&gt;复杂&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;是否去中心化&lt;/td&gt;
+      &lt;td&gt;否&lt;/td&gt;
+      &lt;td&gt;否&lt;/td&gt;
+      &lt;td&gt;是&lt;/td&gt;
+      &lt;td&gt;否&lt;/td&gt;
+      &lt;td&gt;否&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;是否支持MQTT&lt;/td&gt;
+      &lt;td&gt;支持&lt;/td&gt;
+      &lt;td&gt;支持&lt;/td&gt;
+      &lt;td&gt;支持&lt;/td&gt;
+      &lt;td&gt;支持&lt;/td&gt;
+      &lt;td&gt;支持&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;容器化编排&lt;/td&gt;
+      &lt;td&gt;不支持&lt;/td&gt;
+      &lt;td&gt;支持&lt;/td&gt;
+      &lt;td&gt;支持&lt;/td&gt;
+      &lt;td&gt;支持&lt;/td&gt;
+      &lt;td&gt;不支持&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;五个边缘计算开源框架的简介&quot;&gt;五个边缘计算开源框架的简介：&lt;/h2&gt;
+
+&lt;h3 id=&quot;edgex-foundry&quot;&gt;EdgeX Foundry&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.edgexfoundry.org/&quot;&gt;Linux基金组织的开源项目&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/edgexfoundry&quot;&gt;github 开源地址&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;偏重于端侧设备的管理，定位是通用工业IOT边缘计算通用框架，提供了一些设备接入、边缘数据传输等场景的实现，但不具备云上对边缘端的应用和设备的管控、云边协同等智能边缘系统的能力，架构组件之间依赖复杂。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.edgexfoundry.org/wp-content/uploads/sites/25/2018/09/EdgeX_PlatformArchitectureDiagram-1024x651.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;k3s&quot;&gt;K3s&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://k3s.io/&quot;&gt;Rancher Labs的开源产品&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/rancher/k3s&quot;&gt;github 开源地址&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;K3s是在边缘运行整个K8s集群的方案，不具备云边协同的能力；其次K3s虽然对K8s做了轻量化，但整体资源要求仍然较高，无法运行在IOT Hub、工业网关等小型设备中。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://k3s.io/images/how-it-works-k3s.svg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;K3S是CNCF官方认证的Kubernetes发行版，开源时间较KubeEdge稍晚。K3S专为在资源有限的环境中运行Kubernetes的研发和运维人员设计，目的是为了在x86、ARM64和ARMv7D架构的边缘节点上运行小型的Kubernetes集群。&lt;/p&gt;
+
+&lt;p&gt;事实上，K3S就是基于一个特定版本Kubernetes（例如：1.13）直接做了代码修改。K3S分Server和Agent，Server就是Kubernetes管理面组件 + SQLite和Tunnel Proxy，Agent即Kubernetes的数据面 + Tunnel Proxy。&lt;/p&gt;
+
+&lt;p&gt;为了减少运行Kubernetes所需的资源，K3S对原生Kubernetes代码做了以下几个方面的修改：&lt;/p&gt;
+
+&lt;p&gt;删除旧的、非必须的代码。K3S不包括任何非默认的、Alpha或者过时的Kubernetes功能。除此之外，K3S还删除了所有非默认的Admission Controller，in-tree的cloud provider和存储插件；&lt;/p&gt;
+
+&lt;p&gt;整合打包进程。为了节省内存，K3S将原本以多进程方式运行的Kubernetes管理面和数据面的多个进程分别合并成一个来运行；&lt;/p&gt;
+
+&lt;p&gt;使用containderd替换Docker，显著减少运行时占用空间；&lt;/p&gt;
+
+&lt;p&gt;引入SQLite代替etcd作为管理面数据存储，并用SQLite实现了list/watch接口，即Tunnel Proxy；&lt;/p&gt;
+
+&lt;p&gt;加了一个简单的安装程序。&lt;/p&gt;
+
+&lt;p&gt;K3S的所有组件（包括Server和Agent）都运行在边缘，因此不涉及云边协同。如果K3S要落到生产，在K3S之上应该还有一个集群管理方案负责跨集群的应用管理、监控、告警、日志、安全和策略等，遗憾的是Rancher尚未开源这部分能力。&lt;/p&gt;
+
+&lt;h3 id=&quot;kubeedge&quot;&gt;KubeEdge&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://kubeedge.io/zh/&quot;&gt;华为开源产品&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/kubeedge/kubeedge&quot;&gt;github 开源地址&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;打通了云、边、端的整体流程：
+        · 用户能够在云上统一管理边缘节点上的应用、设备
+       · 提供了云边协同的能力，能够同步云边的应用、设备的数据
+       · 针对复杂多样的边缘设备，KubeEdge定义了一套通用的设备管理API（K8s CRD）以及设备协议解耦层，用户可以方便地使用KubeEdge在云上管理各种边缘设备
+       · 针对云边网络不稳定的情况，提供了云边数据协同的可靠性传输、边缘元数据持久化
+       · 针对边缘资源不足的情况，轻量化裁剪了Kubelet，支持在256MB的小型设备上运行&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://kubeedge.io/img/kubeedge_arch.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;1.关于部署：&lt;/p&gt;
+
+&lt;p&gt;kubeEdge 包括 cloud 和 edge 部分，在 kubernetes 构建，在 cloud 与  edge 端提供核心的基础支持，比如网络，应用，部署以及元数据的同步等。
+安装kubeEdge 需要安装 kubernetes 集群，cloud 与 edge 部分
+cloud side： docker, kubernetes cluster and cloudcore.
+edge side：docker, mqtt and edgecore.&lt;/p&gt;
+
+&lt;p&gt;2.kubeedge 组件：&lt;/p&gt;
+
+&lt;p&gt;KubeEdge的边缘进程包含以下5个组件：&lt;/p&gt;
+
+&lt;p&gt;edged是个重新开发的轻量化Kubelet，实现Pod，Volume，Node等Kubernetes资源对象的生命周期管理；&lt;/p&gt;
+
+&lt;p&gt;metamanager负责本地元数据的持久化，是边缘节点自治能力的关键；&lt;/p&gt;
+
+&lt;p&gt;edgehub是多路复用的消息通道，提供可靠和高效的云边信息同步；&lt;/p&gt;
+
+&lt;p&gt;devicetwin用于抽象物理设备并在云端生成一个设备状态的映射；&lt;/p&gt;
+
+&lt;p&gt;eventbus订阅来自于MQTT Broker的设备数据。&lt;/p&gt;
+
+&lt;p&gt;KubeEdge的云端进程包含以下2个组件：&lt;/p&gt;
+
+&lt;p&gt;cloudhub部署在云端，接收edgehub同步到云端的信息；&lt;/p&gt;
+
+&lt;p&gt;edgecontroller部署在云端，用于控制Kubernetes API Server与边缘的节点、应用和配置的状态同步。&lt;/p&gt;
+
+&lt;p&gt;3.支持的特性：&lt;/p&gt;
+
+&lt;p&gt;• Replace data exchange format between cloud and edge from json to protobuf.&lt;/p&gt;
+
+&lt;p&gt;• Support reliable message delivery from cloud to edge.
+• Evaluate gRPC for cloud to edge communication.
+• Support CSI for persistent storage (using PV/PVC/StorageClass) at edge.&lt;/p&gt;
+
+&lt;p&gt;• Support ingress at edge.
+• Add admission-webhook based validation for device CRDs.
+• Enhance performance and reliability of KubeEdge infrastructure.
+• Upgrade Kubernetes dependencies in vendor to v1.15.
+• Migrate to Go module for dependency management.
+• Improve contributor experience by defining project governance policies, release process, membership rules etc.&lt;/p&gt;
+
+&lt;p&gt;• Improve the performance and e2e tests with more metrics and scenarios.&lt;/p&gt;
+
+&lt;p&gt;4.未来版本将支持的特性：&lt;/p&gt;
+
+&lt;p&gt;• Support edge-cloud communication using edgemesh.&lt;/p&gt;
+
+&lt;p&gt;• Add Layer 4 proxy support in edgemesh.&lt;/p&gt;
+
+&lt;p&gt;• Istio-based service mesh across Edge and Cloud where micro-services can communicate freely in the mesh.&lt;/p&gt;
+
+&lt;p&gt;• Enable function as a service at the Edge.
+• Support more types of device protocols such as OPC-UA, Zigbee.
+• Evaluate and enable much larger scale Edge clusters with thousands of Edge nodes and millions of devices.&lt;/p&gt;
+
+&lt;p&gt;• Enable intelligent scheduling of applications to large scale Edge clusters.&lt;/p&gt;
+
+&lt;p&gt;• Data management with support for ingestion of telemetry data and analytics at the edge.&lt;/p&gt;
+
+&lt;p&gt;• Security at the edge.
+• Support for monitoring at the edge.&lt;/p&gt;
+
+&lt;p&gt;5.功能原理介绍：&lt;/p&gt;
+
+&lt;p&gt;1）KubeEdge的云边协同通信测试过包括Grpc、WebSocket、Quic，最后发现WebSocket是性能最好的，所以默认采用了WebSocket。Quic作为备选项，在网络频繁断开等很不稳定场景有优势。KubeEdge云边消息传递是通过EdgeHub跟CloudHub间的Websocket或Quic协议的长连接传递的。&lt;/p&gt;
+
+&lt;p&gt;2）KubeEdge会将边缘收到的应用、设备元数据都进行本地持久化。相比Kubelet在内存中缓存对象的方式，可以有效保证节点离线、故障恢复时的业务自治和快速自愈。&lt;/p&gt;
+
+&lt;p&gt;3）edgemesh组件实现边缘节点之间的pod通信和边缘pod到云端pod的通信，但是目前还不支持云端pod到边缘侧pod的通信。&lt;/p&gt;
+
+&lt;h3 id=&quot;starlingx&quot;&gt;StarlingX&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.starlingx.io/&quot;&gt;Intel和WindRiver开源的边缘计算项目&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/starlingx&quot;&gt;github 开源地址&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;StarlingX是一个软件栈，他包含了打包，编译，安装配置，openstack本身，WindRiver的MTCE平台，以及WindRiver针对电信云开发的VIM等等。基于OpenStack的大规模边缘计算方案，集成了OpenStack的核心服务用于实现计算，网络，存储等能力。目标是实现边缘端的无人值守，虚拟机级别的管理。边缘端组成边缘云互相协同，以及和中心云实现协同。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://01.org/sites/default/files/resize/users/u71223/starlingx-1-arch-750x400.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;baetyl&quot;&gt;Baetyl&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://baetyl.io/about-zh/&quot;&gt;百度开源的面向端的工业互联网智能边缘计算方案&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/baetyl/baetyl&quot;&gt;github 开源地址&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;它需要和百度的云端管理套件BIE结合实现云边协同&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.lfedge.org/wp-content/uploads/2019/09/Screen-Shot-2019-09-18-at-3.57.01-PM.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;kubeedge与k3s全方位对比&quot;&gt;KubeEdge与K3S全方位对比&lt;/h2&gt;
+
+&lt;h3 id=&quot;部署模型&quot;&gt;部署模型&lt;/h3&gt;
+
+&lt;p&gt;KubeEdge遵循的是以下部署模型:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.uml.org.cn/yunjisuan/images/2020050724.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;KubeEdge是一种完全去中心化的部署模式，管理面部署在云端，边缘节点无需太多资源就能运行Kubernetes的agent，云边通过消息协同。从Kubernetes的角度看，边缘节点 + 云端才是一个完整的Kubernetes集群。这种部署模型能够同时满足“设备边缘”和“基础设施边缘”场景的部署要求。&lt;/p&gt;
+
+&lt;p&gt;K3S的部署模型如下所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.uml.org.cn/yunjisuan/images/2020050727.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.uml.org.cn/yunjisuan/images/20200507212.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;K3S会在边缘运行完整的Kubernetes集群，这意味着K3S并不是一个去中心化的部署模型，每个边缘都需要额外部署Kubernetes管理面。这种部署模型带来的问题有：&lt;/p&gt;
+
+&lt;p&gt;在边缘安装Kubernetes管理面将消耗较多资源，因此该部署模型只适合资源充足的“基础设施边缘”场景，并不适用于资源较少的“设备边缘”的场景；&lt;/p&gt;
+
+&lt;p&gt;集群之间网络需要打通；&lt;/p&gt;
+
+&lt;p&gt;为了管理边缘Kubernetes集群还需要在上面叠加一层多集群管理组件（遗憾的是该组件未开源）。&lt;/p&gt;
+
+&lt;h3 id=&quot;云边协同&quot;&gt;云边协同&lt;/h3&gt;
+
+&lt;p&gt;云边协同是KubeEdge的一大亮点。KubeEdge通过Kubernetes标准API在云端管理边缘节点、设备和工作负载的增删改查。边缘节点的系统升级和应用程序更新都可以直接从云端下发，提升边缘的运维效率。另外，KubeEdge底层优化的多路复用消息通道相对于Kubernetes基于HTTP长连接的list/watch机制扩展性更好，允许海量边缘节点和设备的接入。KubeEdge云端组件完全开源，用户可以在任何公有云/私有云上部署KubeEdge而不用担心厂商锁定，并且自由集成公有云的其他服务。&lt;/p&gt;
+
+&lt;p&gt;K3S并不提供云边协同的能力。&lt;/p&gt;
+
+&lt;p&gt;边缘节点离线自治&lt;/p&gt;
+
+&lt;p&gt;与Kubernetes集群的节点不同，边缘节点需要在完全断开连接的模式下自主工作，并不会定期进行状态同步，只有在重连时才会与控制面通信。此模式与Kubernetes管理面和工作节点通过心跳和list/watch保持状态更新的原始设计非常不同。&lt;/p&gt;
+
+&lt;p&gt;KubeEdge通过消息总线和元数据本地存储实现了节点的离线自治。用户期望的控制面配置和设备实时状态更新都通过消息同步到本地存储，这样节点在离线情况下即使重启也不会丢失管理元数据，并保持对本节点设备和应用的管理能力。&lt;/p&gt;
+
+&lt;p&gt;K3S也不涉及这方面能力。&lt;/p&gt;
+
+&lt;h3 id=&quot;设备管理&quot;&gt;设备管理&lt;/h3&gt;
+
+&lt;p&gt;KubeEdge提供了可插拔式的设备统一管理框架，允许用户在此框架上根据不同的协议或实际需求开发设备接入驱动。当前已经支持和计划支持的协议有：MQTT，BlueTooth，OPC UA，Modbus等，随着越来越多社区合作伙伴的加入，KubeEdge未来会支持更多的设备通信协议。KubeEdge通过device twins/digital twins实现设备状态的更新和同步，并在云端提供Kubernetes的扩展API抽象设备对象，用户可以在云端使用kubectl操作Kubernetes资源对象的方式管理边缘设备。&lt;/p&gt;
+
+&lt;p&gt;K3S并不涉及这方面能力。&lt;/p&gt;
+
+&lt;h3 id=&quot;轻量化&quot;&gt;轻量化&lt;/h3&gt;
+
+&lt;p&gt;为了将Kubernetes部署在边缘，KubeEdge和K3S都进行了轻量化的改造。区别在于K3S的方向是基于社区版Kubernetes不断做减法（包括管理面和控制面），而KubeEdge则是保留了Kubernetes管理面，重新开发了节点agent。&lt;/p&gt;
+
+&lt;p&gt;需要注意的是，K3S在裁剪Kubernetes的过程中导致部分管理面能力的缺失，例如：一些Admission Controller。而KubeEdge则完整地保留了Kubernetes管理面，没有修改过一行代码。&lt;/p&gt;
+
+&lt;p&gt;下面我们将从二进制大小、内存和CPU三个维度对比KubeEdge和K3S的资源消耗情况。由于KubeEdge的管理面部署在云端，用户不太关心云端资源的消耗，而K3S的server和agent均运行在边缘，因此下面将对比KubeEdge agent，K3S agent和K3S server这三个不同的进程的CPU和内存的资源消耗。&lt;/p&gt;
+
+&lt;p&gt;测试机规格为4 vCPU，8GB RAM。&lt;/p&gt;
+
+&lt;h4 id=&quot;内存消耗对比&quot;&gt;内存消耗对比&lt;/h4&gt;
+
+&lt;p&gt;分别用KubeEdge和K3S部署0~100个应用，分别观测两者的内存消耗，对比如下所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.uml.org.cn/yunjisuan/images/2020050728.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;从上图可以看出，内存消耗：KubeEdge agent \u0026lt; K3S agent \u0026lt; K3S Server。有意思的是，K3S agent即使不运行应用也消耗100+MB的内存，而K3S server在空跑的情况下内存消耗也在300MB左右。&lt;/p&gt;
+
+&lt;h4 id=&quot;cpu使用对比&quot;&gt;CPU使用对比&lt;/h4&gt;
+
+&lt;p&gt;分别用KubeEdge和K3S部署0~100个应用，分别观测两者的CPU使用情况，对比如下所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.uml.org.cn/yunjisuan/images/2020050729.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;从上图可以看出，KubeEdge agent CPU消耗要比K3S agent和server都要少。&lt;/p&gt;
+
+&lt;h4 id=&quot;二进制大小&quot;&gt;二进制大小&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.uml.org.cn/yunjisuan/images/20200507210.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;KubeEdge agent二进制大小为62MB，K3S二进制大小为36MB。&lt;/p&gt;
+
+&lt;p&gt;大规模&lt;/p&gt;
+
+&lt;p&gt;Kubernetes原生的可扩展性受制于list/watch的长连接消耗，生产环境能够稳定支持的节点规模是1000左右。KubeEdge作为华为云智能边缘服务IEF的内核，通过多路复用的消息通道优化了云边的通信的性能，压测发现可以轻松支持5000+节点。&lt;/p&gt;
+
+&lt;p&gt;而K3S的集群管理技术尚未开源，因为无法得知K3S管理大规模集群的能力。&lt;/p&gt;
+
+&lt;h3 id=&quot;小结&quot;&gt;小结&lt;/h3&gt;
+
+&lt;p&gt;K3S最让人印象深刻的创新在于其对Kubernetes小型化做的尝试，通过剪裁了Kubernetes一些不常用功能并且合并多个组件到一个进程运行的方式，使得一些资源较充足的边缘节点上能够运行Kubernetes，让边缘场景下的用户也能获得一致的Kubernetes体验。然而通过上面的性能对比数据发现，K3S的资源消耗还是比KubeEdge要高出好几倍，而且动辄几百MB的内存也不是大多数设备边缘节点所能提供的。最重要的是，Kubernetes最初是为云数据中心而设计的，很多边缘计算场景特殊的问题原生Kubernetes无法很好地解决， K3S直接修改Kubernetes的代码甚至基础实现机制（例如，使用SQLite替换etcd）的做法仍值得商榷。关于什么能改，什么不能改以及怎么改？每个用户根据自己的实际需求有各自的观点，而且也很难达成一致。另外， K3S这种侵入式的修改能否持续跟进Kubernetes上游的发展也是一个未知数。&lt;/p&gt;
+
+&lt;p&gt;KubeEdge和K3S走的是另一条道路，KubeEdge是一个从云到边缘再到设备的完整边缘云平台，它与Kubernetes的耦合仅仅是100%兼容Kubernetes原生API。KubeEdge提供了K3S所不具备的云边协同能力，开发了更轻量的边缘容器管理agent，解决了原生Kubernetes在边缘场景下的离线自治问题，并且支持海量异构边缘设备的接入等。KubeEdge最近捐献给CNCF，成为CNCF边缘计算领域的第一个正式项目，就是为了和社区合作伙伴一起制定云和边缘计算协同的标准，结束边缘计算没有统一标准和参考架构的混沌状态，共同推动边缘计算的产业发展。&lt;/p&gt;
+
+&lt;h2 id=&quot;参考资料&quot;&gt;参考资料&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.cnblogs.com/wsjhk/p/12103998.html&quot;&gt;边缘计算开源方案对比&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.uml.org.cn/yunjisuan/202005072.asp?artid=23245&quot;&gt;KubeEdge向左，K3S向右&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Yu Peng</name></author><category term="MEC" /><summary type="html">五个边缘计算开源框架功能对比</summary></entry><entry><title type="html">UPF</title><link href="https://y2p.cc/2019/11/11/upf/" rel="alternate" type="text/html" title="UPF" /><published>2019-11-11T00:00:00+08:00</published><updated>2019-11-11T00:00:00+08:00</updated><id>https://y2p.cc/2019/11/11/upf</id><content type="html" xml:base="https://y2p.cc/2019/11/11/upf/">&lt;p&gt;User Plane Function&lt;/p&gt;
+
+&lt;h2 id=&quot;upf-在-5g-中的位置&quot;&gt;UPF 在 5G 中的位置&lt;/h2&gt;
+
+&lt;p&gt;UPF（User Plane Function，用户面功能），是 3GPP 定义的 5G Core（核心网）基础设施系统架构的基本组成部分。&lt;/p&gt;
+
+&lt;p&gt;UPF 从 4G EPC CUPS 演进而来，4G EPC CUPS 将 PGW 分离为 PGW-C 和 PGW-U。使 PGW-U 在更接近网络边缘的地方执行数据包处理以及流量聚合，即提高带宽效率，同时减少网络阻塞。&lt;/p&gt;
+
+&lt;p&gt;而处理信令业务的 PGW-C 则依旧位于 MME 的北向。CUPS 的主要目标是支持 5G 实现新的无线接入（NR）实现，满足物联网应用和更高的数据传输速率需求。&lt;/p&gt;
+
+&lt;p&gt;然而要彻底实现 CP 和 UP 的分离是一项复杂的工程，所以 5G Core 利用 UPF 的优势来实现了网络切片（Network Slicing）的设计。&lt;/p&gt;
+
+&lt;p&gt;3GPP 23.501 是这样定义 UPF 的：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;作为移动基础设施（Mobile Infrastructure，例如：RAN）和 DN（Data Network）之间的互连点，完成 UP 上 GTP-U（GRPS 隧道协议）协议的封装和解封装。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;用于 RAT（Radio Access Technologies，无线接入技术）内部、或 RAT 之间移动性的 PDU（Protocol Data Unit，协议数据单元）会话锚点（Session Anchor Point），包括向 gNB（NG-RAN 节点）发送一个或多个 End 标记包（End Marker Packets）。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;分组路由和转发：当 UPF 在多个 PSA（PDU session anchor）之间时，即 UPF 作为 I-UPF（Intermediate UPF，中间 UPF）时，会充当上行链路分类器（Uplink Classifier，UL-CL）和分支点的角色以支持多宿主 PDU 会话。作为前者时，会基于 traffic matching filters 将数据流导向到特定 DN。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;数据包检查：使用 SDF（Service Data Flow，服务数据流）的 traffic filter templates 或者接收从 SMF 发出的 3-tuple（协议、以及服务端的 IP 地址和端口）PDF（Packet Flow Description）来对应用流程进行检测。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;用户平面部分策略规则实施，例如门控，重定向，流量转向。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;提供 UP 的 Pre-Flow QoS 功能，对包括上行链路（UL）和下行链路（DL）的传输层数据段实施速率限制（Rate Limiting）以及分组标记，以及在 DL 上处理反射 QoS（DSCP）标记，在 UL 上处理流量验证（SDF 到 QoS 流量映射）。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;为计费（Billing）以及合法拦截（LI，Lawful Intercept）提供 UP 流量收集接口以及流量使用报告。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.metaswitch.com/hs-fs/hubfs/Blogs/multi-ran.png?width=1357&amp;amp;name=multi-ran.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NOTE： 并非所有上述的 UPF 功能清单都需要在网络切片的 UPF 的实例中得到支持。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;与 UPF 相关的由 4 个标准参考点：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;N3：RAN（gNB）和 Intermediate UPF 之间的接口&lt;/li&gt;
+  &lt;li&gt;N9：两个 UPF 之间的接口，例如：I-UPF 和 UPF of PDU Session Anchor（简称：锚 UPF）之间&lt;/li&gt;
+  &lt;li&gt;N6：DN 和 UPF 之间的接口，即连接外部 PDU 和 DN&lt;/li&gt;
+  &lt;li&gt;N4：SMF 和 UPF 之间的接口
+    &lt;blockquote&gt;
+      &lt;p&gt;在 3GPP R16 系统架构方面增加了 I-SMF，解决了用户移动出当前 SMF 服务区的时候，如何保证业务连续性。
+流程方面增加了 I-SMF 插入、修改和删除过程，以及 I-SMF 如何建立用户面的分流路径。
+该功能对于国内运营商来说比较重要，能够保证用户在跨省移动的时候保证业务连续性。在该功能中也增强了 UPF 分配用户 IP 地址。&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;其中，N3 和 N9 参考点上采用的协议是带 5G 扩展协议头的 GTP 协议、分段路由协议（SRV6 或 NSH）以及 ICN（Information Centric Networking）协议。
+此外，还有 GTP 协议之上（Over）的 LISP-DP（Locator/ID Separation data plane protocol，位置/身份分离数据平面协议）和 ILA（Identifier Locator Addressing，标识符定位寻址）。
+由 I-UPF 来完成中继，并在锚 UPF 之上终止这些协议。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.metaswitch.com/hs-fs/hubfs/Blogs/5g-gtp-what-is-upf-blog.png?width=922&amp;amp;name=5g-gtp-what-is-upf-blog.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;UPF 通过 N4 参考点从 SMF 接收 user plane traffic flow，并最终根据 rules 实现数据分流。
+N4 采用了 PFCP（Packet Forwarding Control Protocol，分组交换控制协议），该协议类似于 OpenFlow，也可以用于 CUPS SX 参考点。
+外部可以使用 UPF 建立的 PFCP Session 来识别（PDRs，Packet Detection Rules，数据包发现规则）、转发（FARs，Forwarding Action Rules）、处理（BARs，Buffering Action Rules）、标记（QERs，QoS Enforcement Rules）、报告（URRs，Usage Reporting Rules）数据包。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://www.metaswitch.com/hs-fs/hubfs/Blogs/pfcp-pdr-what-is-upf.png?width=1205&amp;amp;name=pfcp-pdr-what-is-upf.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;为了满足 5G 实例化以及上/下缩放的基本要求，UPF 必须使用现代微服务方法实现为纯云原生网络功能，并且可以在无服务器框架内部署。
+为了通过复杂的流水线和低延迟实现高数据包吞吐量，从历史上看，使用专用硬件和定制芯片就已经实现。
+在共享资源上交付云原生 UPF 需要解决复杂的实时数据处理问题，并在管道中提供高度的灵活性，以支持新兴的流量隧道，移动性和基础架构覆盖。
+UPF实例化还必须高度自动化和精心安排。这意味着开发或增强用户空间数据平面加速，运行时可编程性技术，并与众多云编排系统（例如Kubernetes）紧密集成。&lt;/p&gt;
+
+&lt;p&gt;用户平面功能是支持新一代基于服务的体系结构的重要新组件。但是，在这一领域的创新速度也应使大多数有远见的 CUPS 采用者能够在过渡 PGW / SGW-U 解决方案上采用UPF，从而平滑了从4G到5G的迁移。&lt;/p&gt;
+
+&lt;h2 id=&quot;open-upf&quot;&gt;Open UPF&lt;/h2&gt;
+&lt;p&gt;为了不断拓展 5G 垂直行业新兴市场，促进 UPF 朝着更加开放、灵活的方向发展，共同推动 N4 接口解耦，中国移动启动 OpenUPF ——面向行业的 5G UPF 及 N4 接口开放合作伙伴计划，致力于打造可靠、可管、灵活、开放的UPF，构建开放产业生态，助力5G赋能垂直行业。
+产业界积极响应，华为、中兴、爱立信、诺基亚和英特尔等25个行业伙伴共同参与该计划。&lt;/p&gt;
+
+&lt;p&gt;在合作伙伴的支持下，中国移动按照既定目标发布《面向垂直行业的 N4 解耦 UPF 设备规范》和《面向垂直行业的 N4 接口规范》两项规范，同时发布《5G OpenUPF 白皮书》,向开放行业 UPF、助力 5G 赋能垂直行业迈出重要一步。&lt;/p&gt;
+
+&lt;p&gt;统一架构 有序推进 N4 解耦&lt;/p&gt;
+
+&lt;p&gt;N4 解耦是 Open UPF 计划的第一步，主要面向垂直行业边缘侧部署的 UPF 设备。&lt;/p&gt;
+
+&lt;p&gt;此次发布的《面向垂直行业的 N4 解耦 UPF 设备规范》，制定功能分级分类，要求 UPF 必须支持的最小功能集（14类），保证 UPF 基本业务正常进行，推荐支持 ULCL 分流等 12 类功能，满足不同垂直行业的定制化需求，后续根据需求不断迭代增加。设备需集软硬件于一体，具备虚拟化能力，分档分级，同时满足核心网设备可管可靠可控的要求。&lt;/p&gt;
+
+&lt;p&gt;《面向垂直行业的 N4 接口规范》基于功能的明晰和分级分类，消除理解差异，统一接口流程和接口信源。以 3GPP R15 版本为基础，同时引入 3GPP R16 个别重要信元，要求开发时以设备规范为标准，按需支持推荐功能对应 IE。将接口 IE 细分为 118 项标准 IE 和 7 项定制 IE，尽量重用并保留扩展性。定制 IE 兼容现有流程和标准 IE，标准 IE 以扩展取值为主，并尽量减少对控制面（SMF）的影响。&lt;/p&gt;
+
+&lt;p&gt;面向行业应用场景，需要轻量化、低成本、灵活部署的 UPF。&lt;/p&gt;
+
+&lt;p&gt;当前，UPF 与 SMF 的接口（N4）尚未完全开放，服务化能力尚未完全实现，一定程度上影响了 5G 响应行业客户需求的能力。运营商网络核心侧的 UPF 需要承载面向全网的业务、用户数为百万级以上，业务功能要求全、容量和性能要求高。&lt;/p&gt;
+
+&lt;p&gt;作为核心网的关键设备，系统级的 UPF 部署和维护成本相对较高。 N4 接口的非标准化，造成 UPF 与 SMF 同厂商的绑定，无法满足边缘用户侧 UPF 轻量化、低成本和灵活的部署需求。&lt;/p&gt;
+
+&lt;p&gt;中国移动提出的 OpenUPF 合作伙伴计划从开放接口、开放设备、开放服务和开放智能四个方面定义可靠、可管、可信、简洁、灵活的UPF。
+计划通过构建完整的技术体系推动产业成熟、增强网络能力、助力 5G 服务垂直行业用户。&lt;/p&gt;
+
+&lt;p&gt;垂直赋能 加速 5G 融入百业&lt;/p&gt;
+
+&lt;p&gt;UPF 是连接运营商和垂直行业的桥梁，担负着数据流量处理、路由等核心功能。随着 5G 边缘计算的拓展，UPF 已逐渐从运营商的核心层走向行业客户的接入层，成为运营商服务垂直行业的第一窗口。&lt;/p&gt;
+
+&lt;p&gt;据了解，0penUPF 计划的一个重要目标是以“全集” UP F为基础、定义简单高效的“最简” UPF，通过最简 UPF 的功能满足高效灵活的部署，降低 5G 进入千行百业的门槛。&lt;/p&gt;
+
+&lt;p&gt;OpenUPF计划的第二个重要目标是满足行业差异化需求、探索功能定制的“增量” UPF，通过增量提升产业价值，同时避免碎片化的定制需求带来研发和维护成本的上升。
+从不同场景的差异化需求可以看出，仅仅满足基础功能的 UPF 是不够的，UPF 还需进一步增强定制化能力，这一方面有赖于标准的演进，另一方面有赖于新的开放服务模式。&lt;/p&gt;
+
+&lt;h2 id=&quot;参考资料&quot;&gt;参考资料&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.zj5glm.com/Public/headphotob/2020-03-12/5e69d12eeafa5.pdf&quot;&gt;SMF/UPF拓扑增强&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.metaswitch.com/knowledge-center/reference/what-is-the-5g-user-plane-function-upf&quot;&gt;What is the 5G User Plane Function (UPF)?&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.hotbak.net/key/08440a46a7497bcf543cf774e48df854_34.html&quot;&gt;推进N4解耦,完善UPF规范:中国移动加速5G垂直行业落地&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://m.c114.com.cn/w117-1128384.html&quot;&gt;推进N4接口开放：中国电信在下一盘什么大棋?&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.shangyexinzhi.com/article/573138.html&quot;&gt;中国移动研究院：5G OpenUPF 白皮书 （第一版）&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/85db2f66be1eaf180b36d982463b1f54.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/20344fd5c9d03af4ecb3608f0d92229e.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/e51664dd4f971ad196c1c90f42e1abf7.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/6155526576af11747cdd7360c568c460.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/baa729770ac079f6ae0583cd4e6e1469.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/19255ddbe4b942c6664bdf4bca1c829e.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/139ff21b2ff59860badc0a596ab28ebb.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/5a7185510a37c782b51e35804231d948.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/82b5699594e8722320e53c475711918d.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/0cebcf79f011793b5f37ea3bee85cdea.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/487700c62870660c637003eb6c430bbb.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/931653ac1fd6be74ce572fe636d745c7.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/05ac5766b393a720ad47357a5e30962e.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/e2343304e631743de11ffedd3dcd6989.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/73861e8fdbd7ae9b2401f8dace51f830.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/430fd079189b13c7982e4c33ce770375.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/83be95e0f7207b052844e3d519b0debb.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/027b24b981d7a762fe47968787a5ecec.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/bb0cbb7d538b07583265e602a8d19a6c.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/18c5a9af66d0c5e4263e35c05862862a.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/42605ee5ea65104fe8e202cb747f711f.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shangyexinzhi.com/xztest-image/article/0c5b9c90df0c6b5593a6bfc5af33dcb2.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;</content><author><name>Yu Peng</name></author><category term="UPF" /><summary type="html">User Plane Function</summary></entry><entry><title type="html">Serverless 典型使用场景</title><link href="https://y2p.cc/2019/03/06/serverless-usage/" rel="alternate" type="text/html" title="Serverless 典型使用场景" /><published>2019-03-06T00:00:00+08:00</published><updated>2019-03-06T00:00:00+08:00</updated><id>https://y2p.cc/2019/03/06/serverless-usage</id><content type="html" xml:base="https://y2p.cc/2019/03/06/serverless-usage/">&lt;hr /&gt;
+
+&lt;h1 id=&quot;serverless典型使用场景&quot;&gt;serverless典型使用场景&lt;/h1&gt;
+
+&lt;h2 id=&quot;后端&quot;&gt;后端&lt;/h2&gt;
+
+&lt;p&gt;AWS Lambda：您可以使用 AWS Lambda 构建&lt;a href=&quot;https://aws.amazon.com/cn/serverless/&quot;&gt;无服务器&lt;/a&gt;后端，以处理 Web、移动、物联网 (IoT) 和第 3 方 API 请求。&lt;/p&gt;
+
+&lt;h3 id=&quot;web-应用程序后端&quot;&gt;Web 应用程序后端&lt;/h3&gt;
+
+&lt;h4 id=&quot;azure的描述&quot;&gt;Azure的描述&lt;/h4&gt;
+
+&lt;p&gt;从队列中获取在线订单，并进行处理，生成的数据保存在数据库中。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/skyao/learning-serverless/blob/master/content/introduction/images/azure-web-app_scenario.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;分析:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;需要通过 Service Bus ，处理结果存储到Azure自家的 Cosmos DB。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;aws-lambda的描述&quot;&gt;Aws Lambda的描述&lt;/h4&gt;
+
+&lt;p&gt;通过将 AWS Lambda 与其他 AWS 服务相结合，开发人员可以构建功能强大的 Web 应用程序，从而可自动扩展和收缩，并跨多个数据中心在高可用配置中运行，而无需在可扩展性、备份或多数据中心冗余方面执行任何管理工作。&lt;/p&gt;
+
+&lt;p&gt;实际案例：Bustle 使用 AWS Lambda 和 Amazon API Gateway 为其 Bustle iOS 应用程序和网站运行了一个无服务器后端。借助无服务器架构，Bustle 无需管理基础设施，因此每位工程师都能够集中精力构建新功能并进行创新。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/skyao/learning-serverless/blob/master/content/introduction/images/Lambda-WebApplications.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;场景分析：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;web请求通过REST走API Gateway进来，触发Lambda&lt;/li&gt;
+  &lt;li&gt;Lambda返回数据给请求&lt;/li&gt;
+  &lt;li&gt;标准的对BaaS后端的请求&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;移动应用程序后端&quot;&gt;移动应用程序后端&lt;/h3&gt;
+
+&lt;h4 id=&quot;azure的描述-1&quot;&gt;Azure的描述&lt;/h4&gt;
+
+&lt;p&gt;同事之间通过使用手机银行支付午餐费用：垫付午餐费用的人通过移动应用请求付款，这将在其他同事的手机上触发通知。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/skyao/learning-serverless/blob/master/content/introduction/images/azure-mobile-app_scenario.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;分析：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;跳过了Service Bus，应该只是图上忽略了吧？&lt;/li&gt;
+  &lt;li&gt;同样处理结果进Cosmos DB&lt;/li&gt;
+  &lt;li&gt;存Cosmos DB时再次出发其他function&lt;/li&gt;
+  &lt;li&gt;继续通过使用 Notifications Hub 发送通知&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;aws-lambda的描述-1&quot;&gt;Aws Lambda的描述&lt;/h4&gt;
+
+&lt;p&gt;您可以使用 AWS Lambda 和 Amazon API Gateway 构建后端，以验证和处理 API 请求。Lambda 能够轻松创造丰富、个性化的应用程序体验。&lt;/p&gt;
+
+&lt;p&gt;实际案例：Bustle 使用 AWS Lambda 和 Amazon API Gateway 为其 Bustle iOS 应用程序和网站运行了一个无服务器后端。借助无服务器架构，Bustle 无需管理基础设施，因此每位工程师都能够集中精力构建新功能并进行创新。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/skyao/learning-serverless/blob/master/content/introduction/images/Lambda-MobileBackends.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;场景分析：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;移动应用程序更新状态，通过REST请求走API Gateway进来，触发Lambda&lt;/li&gt;
+  &lt;li&gt;Lambda处理并发起状态更新通知，push给Amazon SNS&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;iot-后端&quot;&gt;IOT 后端&lt;/h3&gt;
+
+&lt;h4 id=&quot;aws-lambda的描述-2&quot;&gt;Aws Lambda的描述&lt;/h4&gt;
+
+&lt;p&gt;您可以使用 AWS Lambda 构建无服务器后端，以处理 Web、移动、物联网 (IoT) 和第 3 方 API 请求。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/skyao/learning-serverless/blob/master/content/introduction/images/Lambda-IoTBackends.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;场景分析：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;传感器发送数据给Kinesis流数据处理平台&lt;/li&gt;
+  &lt;li&gt;Kinesis捕获传感器数据并流式传输传感器数据，触发Lambda&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;数据处理&quot;&gt;数据处理&lt;/h2&gt;
+
+&lt;p&gt;Aws lambda：您可以使用 AWS Lambda 执行代码以响应数据更改、系统状态变化或用户操作等触发器。Lambda 可以由 S3、DynamoDB、Kinesis、SNS 和 CloudWatch 等 AWS 产品直接触发，也可以通过 &lt;a href=&quot;https://aws.amazon.com/cn/step-functions/&quot;&gt;AWS Step Functions&lt;/a&gt; 编排到工作流程中。您可借此构建各种实时的&lt;a href=&quot;https://aws.amazon.com/cn/serverless/&quot;&gt;无服务器&lt;/a&gt;数据处理系统。&lt;/p&gt;
+
+&lt;h3 id=&quot;数据库更改或更改数据捕获cdc&quot;&gt;数据库更改或更改数据捕获（CDC）&lt;/h3&gt;
+
+&lt;p&gt;CNCF白皮书：在此场景中，当从数据库插入，修改或删除数据时调用function。在这种情况下，它的功能类似于传统的SQL触发器，几乎就像是与主同步流并行的副作用或动作。其结果是执行一个异步逻辑，可以修改同一个数据库中的某些内容（例如记录到审计表），或者依次调用外部服务（例如发送电子邮件）或更新其他数据库，例如 DB CDC（更改数据捕获）用例的情况。 由于业务需要和处理变更的服务分布的原因，这些用例的频率以及对原子性和一致性的需要可能不同。&lt;/p&gt;
+
+&lt;p&gt;例子包括：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;审核对数据库的更改，或确保它们满足特定质量或分析标准以进行可接受的更改。&lt;/li&gt;
+  &lt;li&gt;在输入数据时或之后不久自动将数据翻译为其他语言。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;实时文件处理&quot;&gt;实时文件处理&lt;/h3&gt;
+
+&lt;h4 id=&quot;azure的描述-2&quot;&gt;Azure的描述&lt;/h4&gt;
+
+&lt;p&gt;病历以 PDF 文件形式安全上传。然后使用 OCR 检测分解和处理该数据，并将其添加到数据库以便查询。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/skyao/learning-serverless/blob/master/content/introduction/images/azure-file-processing_scenario.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;分析：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;触发来自Blob Storage&lt;/li&gt;
+  &lt;li&gt;function进行处理，转交给OCR处理的服务&lt;/li&gt;
+  &lt;li&gt;再将结构化信息存储在数据库中&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;aws-lambda的描述-3&quot;&gt;Aws Lambda的描述&lt;/h4&gt;
+
+&lt;p&gt;您可以使用 Amazon S3 触发 AWS Lambda，以便在上传数据后立即对它们进行处理。例如，您可以使用 Lambda 实时创建缩略图、转换视频代码、建立文件索引、处理日志、验证内容以及聚合和筛选数据。&lt;/p&gt;
+
+&lt;p&gt;实际案例：西雅图时报利用 AWS Lambda 来调整图像大小，以便于在不同的设备（如台式机、平板电脑和智能手机）上查看。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/skyao/learning-serverless/blob/master/content/introduction/images/Lambda-RealTimeFileProcessing.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;场景分析：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;相机拍照，图片上传，触发Lambda （同样是Blob Storage触发）&lt;/li&gt;
+  &lt;li&gt;对图片进行处理如修改大小&lt;/li&gt;
+  &lt;li&gt;但这里没有说处理之后的图片如何存储，应该也是类似的存储在s3中&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;实时流式处理&quot;&gt;实时流式处理&lt;/h3&gt;
+
+&lt;h4 id=&quot;azure的描述-3&quot;&gt;Azure的描述&lt;/h4&gt;
+
+&lt;p&gt;从大量云应用收集到大量遥测数据。近乎实时地处理该数据，并将其存储到 DB 中，供分析仪表板使用。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/skyao/learning-serverless/blob/master/content/introduction/images/azure-stream-processing_scenario.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;分析：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;应用或者设备产生数据，作为遥测信息收集&lt;/li&gt;
+  &lt;li&gt;function处理遥测数据，将结果发送给 Cosmos DB&lt;/li&gt;
+  &lt;li&gt;按照实际经验，这里的function应该会是多次流处理，不会简单的一个function&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;aws-lambda的描述-4&quot;&gt;Aws Lambda的描述&lt;/h4&gt;
+
+&lt;p&gt;您可以使用 AWS Lambda 和 Amazon Kinesis 处理实时流数据，从而跟踪应用程序活动、处理事务处理顺序、分析单击数据流、整理数据、生成指标、筛选日志、建立索引、分析社交媒体以及遥测和计量 IoT 设备数据。&lt;/p&gt;
+
+&lt;p&gt;实际案例：Localytics 可实时处理数十亿个数据点，并使用 Lambda 来处理存储在 S3 中或从 Kinesis 进行流式处理的历史和活动数据。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/skyao/learning-serverless/blob/master/content/introduction/images/Lambda-RealTimeStreamProcessing.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;场景分析：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;社交媒体数据实时上载，触发Lambda&lt;/li&gt;
+  &lt;li&gt;Lambda生成趋势数据，存储到 DynamoDb&lt;/li&gt;
+  &lt;li&gt;趋势数据可以被立即查看&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;提取转换加载&quot;&gt;提取、转换、加载&lt;/h3&gt;
+
+&lt;h4 id=&quot;aws-lambda的描述-5&quot;&gt;Aws Lambda的描述&lt;/h4&gt;
+
+&lt;p&gt;您可以使用 AWS Lambda 针对 DynamoDB 表中的每个数据更改执行数据验证、筛选、排序或其他转换，并将转换后的数据加载到其他数据存储。&lt;/p&gt;
+
+&lt;p&gt;实际案例：Zillow 使用 Lambda 和 Kinesis 实时跟踪移动指标子集。凭借 Kinesis 和 Lambda，我们得以在两周内开发和部署一套成本高效的解决方案。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/skyao/learning-serverless/blob/master/content/introduction/images/Lambda-ExtractTransformLoad.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;场景分析：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;订单操作更新数据库，触发Lambda&lt;/li&gt;
+  &lt;li&gt;Lambda进行转换，将数据存储到数据仓库&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;计划任务的自动化&quot;&gt;计划任务的自动化&lt;/h3&gt;
+
+&lt;h4 id=&quot;azure的描述-4&quot;&gt;Azure的描述&lt;/h4&gt;
+
+&lt;p&gt;每 15 分钟对客户数据库执行一次分析，检查是否有重复条目，避免将多个通信发送给同一个客户。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/skyao/learning-serverless/blob/master/content/introduction/images/azure-automation_scenario.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;分析：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;function定时调度，定期清理数据&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;cncf白皮书的描述&quot;&gt;CNCF白皮书的描述&lt;/h4&gt;
+
+&lt;p&gt;批处理作业或计划任务: 每天只需几分钟就能以异步方式进行强大的并行计算，IO或网络访问的作业非常适合serverless。作业可以在以弹性方式运行时有效地消费他们所需的资源，并且在不被使用的当天剩余时间内不会产生资源成本。&lt;/p&gt;
+
+&lt;p&gt;例子包括：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;计划任务可以是每晚运行的备份作业。&lt;/li&gt;
+  &lt;li&gt;并行发送许多电子邮件的作业会扩展function实例。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;扩展-saas-应用程序&quot;&gt;扩展 SaaS 应用程序&lt;/h3&gt;
+
+&lt;h4 id=&quot;azure的描述-5&quot;&gt;Azure的描述&lt;/h4&gt;
+
+&lt;p&gt;SaaS 解决方案通过 webhook（可通过 Functions 实现）提供扩展性，以自动执行某些工作流。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/skyao/learning-serverless/blob/master/content/introduction/images/azure-saas_scenario.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;分析：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;外部活动，通过web hook触发function&lt;/li&gt;
+  &lt;li&gt;function进行处理，或者通过事件继续触发其他function&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;持续集成管道&quot;&gt;持续集成管道&lt;/h3&gt;
+
+&lt;p&gt;CNCF白皮书：传统的CI管道包括一个构建从属主机池，它们处于空闲等待以便分派作业。Serverless是一种很好的模式，可以消除对预配置主机的需求并降低成本。构建作业由新代码提交或PR合并触发。 调用function来运行构建和测试用例，仅在所需的时间内执行，并且在未使用时不会产生成本。这降低了成本，并可通过自动扩展来减少瓶颈以满足需求。&lt;/p&gt;
+
+&lt;h3 id=&quot;业务逻辑&quot;&gt;业务逻辑&lt;/h3&gt;
+
+&lt;p&gt;CNCF白皮书：当与管理和协调function一起部署时，在业务流程中执行一系列步骤的微服务工作负载的编排是serverless计算的另一个好用例。执行特定业务逻辑的function（例如订单请求和批准，股票交易处理等）可以与有状态管理器一起安排和协调。来自客户端门户的事件请求可以由这样的协调function提供服务，并传递给适当的serverless function。&lt;/p&gt;
+
+&lt;p&gt;例子包括：&lt;/p&gt;
+
+&lt;p&gt;交易台，处理股票市场交易并处理客户的交易订单和确认。协调器使用状态图管理交易。初始状态接受来自客户端门户的交易请求，并将请求传递给微服务function以解析请求并验证客户端。随后的状态根据买入或卖出交易指导工作流，验证基金余额，股票代码等，并向客户发送确认。在从客户端接收到确认请求事件时，后续状态调用管理交易执行的function，更新账户，并通知客户完成交易。&lt;/p&gt;
+
+&lt;h3 id=&quot;聊天机器人&quot;&gt;聊天机器人&lt;/h3&gt;
+
+&lt;p&gt;CNCF白皮书：与人类交互不一定需要毫秒级别的响应时间，并且在许多方面，稍微延迟让回复人类的机器人对话感觉更自然。因此，等待从冷启动加载function的初始等待时间可能是可接受的。当添加到Facebook，WhatsApp或Slack等流行的社交网络时，机器人可能还需要具有极高的可扩展性，因此在PaaS或IaaS模型中预先设置一个永远在线的守护程序，以预测突然或高峰需求，可能不会有作为serverless方法的高效或成本效益。&lt;/p&gt;
+
+&lt;p&gt;例子包括：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;支持和销售机器人插入到大型社交媒体服务，如Facebook或其他高流量网站。&lt;/li&gt;
+  &lt;li&gt;消息应用程序Wuu使用Google Cloud Functions使用户能够创建和共享在数小时或数秒内消失的内容。&lt;/li&gt;
+  &lt;li&gt;另请参阅下面的HTTP REST API和Web应用程序。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;参考资料&quot;&gt;参考资料&lt;/h1&gt;
+
+&lt;p&gt;[1] &lt;a href=&quot;https://martinfowler.com/articles/serverless.html&quot;&gt;Serverless Architectures&lt;/a&gt;: 非常经典，中文翻译版本见 &lt;a href=&quot;http://dockone.io/article/1460&quot;&gt;Serverless架构综述&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[2] &lt;a href=&quot;https://www.thoughtworks.com/radar/techniques/serverless-architecture&quot;&gt;Serverless architecture@technology radar&lt;/a&gt;: ThoughtWorks在技术雷达中对serverless的定义&lt;/p&gt;
+
+&lt;p&gt;[3] &lt;a href=&quot;https://emacoo.cn/arch/serverless-overview/&quot;&gt;所谓Serverless，你理解对了吗？&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[4] &lt;a href=&quot;http://www.infoq.com/cn/articles/practical-serverless-computing?utm_campaign=infoq_content&amp;amp;utm_source=infoq&amp;amp;utm_medium=feed&amp;amp;utm_term=%E6%9E%B6%E6%9E%84%20&amp;amp;%20%E8%AE%BE%E8%AE%A1-articles&quot;&gt;InfoQ虚拟研讨会：无服务器计算的实践方法&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[5] &lt;a href=&quot;http://www.infoq.com/cn/news/2017/06/tengxun-cloud-serverless?utm_campaign=infoq_content&amp;amp;utm_source=infoq&amp;amp;utm_medium=feed&amp;amp;utm_term=DevOps&quot;&gt;姗姗来迟的Serverless如何助力微服务和DevOps&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[6] &lt;a href=&quot;https://mp.weixin.qq.com/s?__biz=MzA5OTAyNzQ2OA%3D%3D&amp;amp;chksm=88931c6cbfe4957a702e66221e1bf997c4ba5a66de279294b08cccadd3ff5d6cabf103657484&amp;amp;idx=1&amp;amp;mid=2649694991&amp;amp;mpshare=1&amp;amp;scene=23&amp;amp;sn=818dea0cb058a08ac6b66ee865204630&amp;amp;srcid=0907dIsFi2ho3ez9orBMGatf&quot;&gt;Serverless云函数架构精解&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[7] &lt;a href=&quot;https://developer.ibm.com/opentech/2016/09/06/what-makes-serverless-attractive/&quot;&gt;What makes serverless architectures so attractive?&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[8] &lt;a href=&quot;http://blog.nsfocus.net/kubeless/&quot;&gt;基于Kubernetes的原生 Serverless 框架 Kubeless实践&lt;/a&gt;&lt;/p&gt;</content><author><name>Yu Peng</name></author><category term="Serverless" /><summary type="html"></summary></entry><entry><title type="html">Serverless CNCF Whitepaper</title><link href="https://y2p.cc/2019/03/05/serverless-cncf-whitepaper/" rel="alternate" type="text/html" title="Serverless CNCF Whitepaper" /><published>2019-03-05T00:00:00+08:00</published><updated>2019-03-05T00:00:00+08:00</updated><id>https://y2p.cc/2019/03/05/serverless-cncf-whitepaper</id><content type="html" xml:base="https://y2p.cc/2019/03/05/serverless-cncf-whitepaper/">&lt;p&gt;Serverless CNCF 白皮书&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/Serverless-cncf-whitepaper.jpg&quot; alt=&quot;5G-Future&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;什么是serverless计算&quot;&gt;什么是serverless计算?&lt;/h2&gt;
+
+&lt;p&gt;Serverless计算是指构建和运行不需要服务器管理的应用程序的概念。它描述了一种更细粒度的部署模型，应用程序捆绑一个或多个function，上载到平台，然后执行，缩放和计费，以响应当前所需的确切需求。&lt;/p&gt;
+
+&lt;p&gt;Serverless计算并不意味着我们不再使用服务器来托管和运行代码;这也不意味着不再需要运维工程师。相反，它指的是serverless计算的消费者不再需要花费时间和资源来进行服务器配置，维护，更新，扩展和容量规划。相反，所有这些任务和功能都由serverless平台处理，并完全从开发人员和IT/运维团队中抽象出来。因此，开发人员专注于编写应用程序的业务逻辑。运维工程师能够将重点更多的放到关键业务任务上。&lt;/p&gt;
+
+&lt;p&gt;Serverless有两个主要角色：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Developer/开发人员&lt;/strong&gt;：为serverless平台编写代码并从中获益，serverless平台提供了这样的视角：没有服务器，而代码始终在运行。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Provider/供应商&lt;/strong&gt;：为外部或内部客户部署serverless平台。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;运行serverless平台仍然需要服务器。供应商需要管理服务器（或虚拟机和容器）。即使在空闲时，供应商也会有一些运行平台的成本。自托管系统仍然可以被视为serverless：通常一个团队充当&lt;strong&gt;供应商&lt;/strong&gt;，另一个团队充当&lt;strong&gt;开发人员&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;Serverless计算平台可以提供以下中的一个或两个：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Functions-as-a-Service (FaaS)，通常提供事件驱动计算。开发人员使用由事件或HTTP请求触发的function来运行和管理应用程序代码。 开发人员将代码的小型单元部署到FaaS，这些代码根据需要作为离散动作执行，无需管理服务器或任何其他底层基础设施即可进行扩展。&lt;/li&gt;
+  &lt;li&gt;Backend-as-a-Service (BaaS)，它是基于API的第三方服务，可替代应用程序中的核心功能子集。因为这些API是作为可以自动扩展和透明操作的服务而提供的，所以对于开发人员表现为是serverless。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Serverless产品或平台为开发人员带来以下好处：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;零服务器运维&lt;/strong&gt;：serverless通过消除维护服务器资源所涉及的开销，显着改变了运行软件应用程序的成本模型。&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;strong&gt;无需配置，更新和管理服务器基础设施&lt;/strong&gt;。管理服务器，虚拟机和容器对于公司而言是一项重大费用，其中包括人员，工具，培训和时间。Serverless大大减少了这种费用。&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;strong&gt;灵活的可扩展性&lt;/strong&gt;：serverless的FaaS或BaaS产品可以即时而精确地扩展，以处理每个单独的传入请求。对于开发人员来说，serverless平台没有“预先计划容量”的概念，也不需要配置“自动缩放”的触发器或规则。缩放可以在没有开发人员干预的情况下自动进行。完成请求处理后，serverless FaaS会自动收缩计算资源，因此不会有空闲容量。&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;闲置时无计算成本&lt;/strong&gt;：从消费者的角度来看，serverless产品的最大好处之一是空闲容量不会产生任何成本。例如，serverless计算服务不对空闲虚拟机或容器收费; 换句话说，当代码没有运行或者没有进行有意义的工作时，不收费。 对于数据库，数据库引擎容量空闲等待请求时无需收费。当然，这不包括其他成本，例如有状态存储成本或添加的功能/功能/特性集。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;serverless技术简史&quot;&gt;Serverless技术简史&lt;/h2&gt;
+
+&lt;p&gt;虽然按需或“花多少用多少”模式的概念可追溯到2006年和一个名为Zimki的平台，但serverless一词的第一次使用是2012年来自Iron.io的IronWorker产品 ，一个基于容器的分布式按需工作平台。&lt;/p&gt;
+
+&lt;p&gt;从那以后，公共云和私有云都出现了更多serverless实现。首先是BaaS产品，例如2011年的Parse和2012年的Firebase（分别由Facebook和谷歌收购）。2014年11月，&lt;a href=&quot;https://aws.amazon.com/lambda/&quot;&gt;AWS Lambda&lt;/a&gt;推出，2016年初在Bluemix上宣布了&lt;a href=&quot;https://www.ibm.com/cloud-computing/bluemix/openwhisk&quot;&gt;IBM OpenWhisk on Bluemix&lt;/a&gt;（现在是IBM Cloud Functions，其核心开源项目成为&lt;a href=&quot;http://openwhisk.incubator.apache.org/&quot;&gt;Apache OpenWhisk&lt;/a&gt;），&lt;a href=&quot;https://cloud.google.com/functions/&quot;&gt;Google Cloud Functions&lt;/a&gt;和&lt;a href=&quot;https://azure.microsoft.com/services/functions/&quot;&gt;Microsoft Azure Functions&lt;/a&gt;。&lt;a href=&quot;http://www.huaweicloud.com/product/functionstage.html&quot;&gt;华为Function Stage&lt;/a&gt;于2017年推出。还有许多开源serverless框架。每个框架（公共和私有）都具有独特的语言运行时和服务集，用于处理事件和数据。&lt;/p&gt;
+
+&lt;p&gt;这只是几个例子; 有关更完整和最新的列表，请参阅 &lt;a href=&quot;https://docs.google.com/spreadsheets/d/10rSQ8rMhYDgf_ib3n6kfzwEuoE88qr0amUPRxKbwVCk/edit#gid=0&quot;&gt;Serverless Landscape&lt;/a&gt; 文档。&lt;a href=&quot;https://github.com/cncf/wg-serverless/tree/master/whitepaper#heading=h.vli9umq7mfhe&quot;&gt;Detail View: Serverless Processing Model&lt;/a&gt; 部分包含有关整个FaaS模型的更多详细信息。&lt;/p&gt;
+
+&lt;h2 id=&quot;serverless用例&quot;&gt;Serverless用例&lt;/h2&gt;
+
+&lt;p&gt;虽然serverless计算广泛使用，但它仍然相对较新。通常，当工作负载为以下情况时，应将serverless方法视为首选：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;异步，并发，易于并行化为独立的工作单元&lt;/li&gt;
+  &lt;li&gt;不经常或有零星的需求，在扩展要求方面存在巨大的，不可预测的差异&lt;/li&gt;
+  &lt;li&gt;无状态，短暂的，对瞬间冷启动时间没有重大需求&lt;/li&gt;
+  &lt;li&gt;在业务需求变更方面具有高度动态性，需要加快开发人员的速度&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;例如，对于常见的基于HTTP的应用程序，在自动扩展和更细粒度的成本模型方面有明显的优势。也就是说，使用serverless平台可能会有一些权衡。 例如，如果function的实例数下降到零，则在一段不活动时间后function启动可能会导致性能下降。因此，选择是否采用serverless架构需要仔细查看计算模型的功能性和非功能性方面。&lt;/p&gt;
+
+&lt;p&gt;不适合IaaS，PaaS或CaaS解决方案的非HTTP中心和非弹性规模工作负载现在可以利用serverless架构的按需性质和高效成本模型。其中一些工作负载包括：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;执行逻辑以响应数据库更改（insert, update, trigger, delete）&lt;/li&gt;
+  &lt;li&gt;对IoT传感器输入消息（例如MQTT消息）执行分析&lt;/li&gt;
+  &lt;li&gt;流处理（分析或修改动态数据）&lt;/li&gt;
+  &lt;li&gt;管理单次提取，转换和加载的作业，这些作业需要在短时间内进行大量处理（ETL）&lt;/li&gt;
+  &lt;li&gt;通过聊天机器人界面提供认知计算（异步，但有关联）&lt;/li&gt;
+  &lt;li&gt;调度执行时间很短的任务，例如cron或批处理样式调用&lt;/li&gt;
+  &lt;li&gt;服务于机器学习和AI模型（检索一个或多个数据元素，如表格，NLP或图像，并与预先学习的数据模型匹配，以识别文本，面孔，异常等）&lt;/li&gt;
+  &lt;li&gt;持续集成pipeline，按需为构建作业提供资源，而不是保留构建从属主机池等待作业分派&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;本节介绍serverless架构优秀的现有和新兴工作负载和用例。它还包括从早期成功案例中提取的早期结果，模式和最佳实践的详细信息。&lt;/p&gt;
+
+&lt;p&gt;这些场景中的每一个都显示了serverless架构如何解决技术问题，即Iaas，PaaS或CaaS效率低下或无法实现。这些例子是：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;在没有按需模型的情况下，有效解决了一个全新的问题&lt;/li&gt;
+  &lt;li&gt;更有效地解决了传统的云问题（性能，成本）&lt;/li&gt;
+  &lt;li&gt;显示“大”的维度，无论是处理的数据大小还是处理的请求&lt;/li&gt;
+  &lt;li&gt;通过低错误率的自动缩放（向上和向下）来显示弹性&lt;/li&gt;
+  &lt;li&gt;以前所未有的速度（从天到小时）为市场带来了解决方案&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;多媒体处理&quot;&gt;多媒体处理&lt;/h3&gt;
+
+&lt;p&gt;一个常见的用例，也是最早具体化的用例之一，是响应新文件上传执行一些转换过程的函数。 例如，如果将图像上载到诸如Amazon S3的对象存储服务，则该事件触发函数，用于创建图像的缩略图版本并将其存储回另一个对象存储桶或Database-as-a-Service。 这是一个相当原子化，可并行化的计算任务示例，该计算任务不经常运行并根据需求进行伸缩。&lt;/p&gt;
+
+&lt;p&gt;例子包括：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.google.com/url?q=https://www.slideshare.net/DanielKrook/optimize-existing-banking-applications-and-build-new-ones-faster-with-ibm-cloud-functions&amp;amp;sa=D&amp;amp;ust=1515189586080000&amp;amp;usg=AFQjCNHFOCjEEqR4s6ZzkCO3Wy0t79wfOw&quot;&gt;Santander&lt;/a&gt; 使用serverless function构建了一个概念验证，使用光学字符识别来处理移动支票存款。 这种类型的工作量变化很大，发薪日的处理需求 - 每两周一次 - 可能比支付期的大部分空闲时间大几倍。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;通过将 &lt;a href=&quot;https://github.com/IBM-Bluemix/openwhisk-darkvisionapp&quot;&gt;每个视频帧通过图像识别服务&lt;/a&gt; 来自动分类电影，以提取演员，情感和对象; 或处理灾区的无人机镜头以估计损坏的程度。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;数据库更改或更改数据捕获cdc&quot;&gt;数据库更改或更改数据捕获（CDC）&lt;/h3&gt;
+
+&lt;p&gt;在此场景中，当从数据库插入，修改或删除数据时调用function。在这种情况下，它的功能类似于传统的SQL触发器，几乎就像是与主同步流并行的副作用或动作。其结果是执行一个异步逻辑，可以修改同一个数据库中的某些内容（例如记录到审计表），或者依次调用外部服务（例如发送电子邮件）或更新其他数据库，例如 DB CDC（更改数据捕获）用例的情况。 由于业务需要和处理变更的服务分布的原因，这些用例的频率以及对原子性和一致性的需要可能不同。&lt;/p&gt;
+
+&lt;p&gt;例子包括：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;审核对数据库的更改，或确保它们满足特定质量或分析标准以进行可接受的更改。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在输入数据时或之后不久自动将数据翻译为其他语言。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;iot物联网传感器输入消息&quot;&gt;IoT/物联网传感器输入消息&lt;/h3&gt;
+
+&lt;p&gt;随着连接到网络的自主设备的爆炸式增加，额外的流量体积庞大，并且使用比HTTP更轻量级的协议。 高效的云服务必须能够快速响应消息并扩展以响应其扩散或突然涌入的消息。Serverless功能可以有效地管理和过滤来自IoT设备的MQTT消息。 它们既可以弹性扩展，也可以屏蔽负载下游的其他服务。&lt;/p&gt;
+
+&lt;p&gt;例子包括：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;GreenQ的卫生用例（垃圾互联网），根据垃圾箱的相对饱满度来优化卡车取件路线。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在物联网设备（如AWS Greengrass）上使用serverless来收集本地传感器数据，对其进行规范化，与触发器进行比较，并将事件推送到聚合单元/云。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;大规模流处理&quot;&gt;大规模流处理&lt;/h3&gt;
+
+&lt;p&gt;另一种非事务性，非请求/响应类型的工作负载是在可能无限的消息流中处理数据。 函数可以连接到消息源，而消息必须从事件流中读取和处理。 鉴于高性能，高弹性和计算密集型处理工作负载，这对于serverless而言非常重要。 在许多情况下，流处理需要将数据与一组上下文对象（在NoSQL或in-mem DB中）进行比较，或者将数据从流聚合并存储到对象或数据库系统中。&lt;/p&gt;
+
+&lt;p&gt;例子包括：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Mike Roberts有一个很好的 &lt;a href=&quot;https://martinfowler.com/articles/serverless.html&quot;&gt;Java/AWS Kinesis 示例&lt;/a&gt; ，可以有效地处理数十亿条消息。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;SnapChat &lt;a href=&quot;https://www.recode.net/2017/3/1/14661126/snap-snapchat-ipo-spending-2-billion-google-cloud&quot;&gt;在Google AppEngine上使用serverless&lt;/a&gt; 处理邮件。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;聊天机器人&quot;&gt;聊天机器人&lt;/h3&gt;
+
+&lt;p&gt;与人类交互不一定需要毫秒级别的响应时间，并且在许多方面，稍微延迟让回复人类的机器人对话感觉更自然。因此，等待从冷启动加载function的初始等待时间可能是可接受的。当添加到Facebook，WhatsApp或Slack等流行的社交网络时，机器人可能还需要具有极高的可扩展性，因此在PaaS或IaaS模型中预先设置一个永远在线的守护程序，以预测突然或高峰需求，可能不会有作为serverless方法的高效或成本效益。&lt;/p&gt;
+
+&lt;p&gt;例子包括：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;支持和销售机器人插入到大型社交媒体服务，如Facebook或其他高流量网站。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;消息应用程序Wuu使用Google Cloud Functions使用户能够创建和共享在数小时或数秒内消失的内容。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;另请参阅下面的HTTP REST API和Web应用程序。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;批处理作业或计划任务&quot;&gt;批处理作业或计划任务&lt;/h3&gt;
+
+&lt;p&gt;每天只需几分钟就能以异步方式进行强大的并行计算，IO或网络访问的作业非常适合serverless。作业可以在以弹性方式运行时有效地消费他们所需的资源，并且在不被使用的当天剩余时间内不会产生资源成本。&lt;/p&gt;
+
+&lt;p&gt;例子包括：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;计划任务可以是每晚运行的备份作业。&lt;/li&gt;
+  &lt;li&gt;并行发送许多电子邮件的作业会扩展function实例。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;http-rest-api和web应用程序&quot;&gt;HTTP REST API和Web应用程序&lt;/h3&gt;
+
+&lt;p&gt;传统的请求/响应工作负载仍然非常适合serverless，无论工作负载是静态网站还是使用JavaScript或Python等编程语言按需生成响应。即使它们可能会为第一个用户带来启动成本，但在其他计算模型中存在这种延迟的先例，例如将JavaServer Page初始编译为servlet，或者启动新的JVM来处理额外的负载。好处是单个REST调用（例如，微服务中的GET，POST，UPDATE和DELETE 4端点中的每一个）可以独立扩展并单独计费，即使它们共享公共数据后端。&lt;/p&gt;
+
+&lt;p&gt;例子包括：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/serverless-stories/challenge-accepted-building-a-better-australian-census-site-with-serverless-architecture-c5d3ad836bfa&quot;&gt;移植到serverless架构的澳大利亚人口普查显示了开发速度，成本改进和自动扩展。&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.freecodecamp.org/how-i-cut-my-aws-bill-by-90-35c937596f0c&quot;&gt;“如何通过无服务器将我的AWS账单削减90％。”&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;AutoDesk示例：“&lt;a href=&quot;](https://www.infoq.com/news/2016/08/serverless-autodesk)&quot;&gt;成本只占传统云方法的一小部分（约1％）。&lt;/a&gt;”&lt;/li&gt;
+  &lt;li&gt;在线编码/教育（考试，测试等）在事件驱动的环境中运行训练代码，并基于与该训练的结果和预期结果的比较向用户提供反馈。Serverless平台根据需要运行应答检查并根据需要进行扩展，仅在代码运行的时间内需要付费。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;移动后端&quot;&gt;移动后端&lt;/h3&gt;
+
+&lt;p&gt;使用serverless进行移动后端任务也很有吸引力。它允许开发人员在BaaS API之上构建REST API后端工作负载，因此他们可以花时间优化移动应用程序，而不是扩展后端。 例子包括：优化视频游戏的图形，而不是在游戏成为病毒式打击时投资服务器; 或者对于需要快速迭代以发现产品/市场适合性，或者上市时间至关重要的消费者业务应用程序。另一个示例是批量通知用户或程序其他异步任务以获得离线优先体验。&lt;/p&gt;
+
+&lt;p&gt;例子包括：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;需要少量服务器端逻辑的移动应用程序; 开发人员可以将精力集中在原生代码开发上。&lt;/li&gt;
+  &lt;li&gt;使用已配置的安全策略（例如Firebase身份验证/规则或Amazon Cognito）通过事件触发的serverless计算使用直接从移动设备访问BaaS的移动应用程序。&lt;/li&gt;
+  &lt;li&gt;“Throwaway”或短期使用的移动应用程序，例如大型会议的调度应用程序，在会议前后的周末几乎没有需求，但需要极大的扩展和收缩; 在周一和周二早上的活动过程中根据时间表查看要求，然后在午夜时分回到主题演讲。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;业务逻辑&quot;&gt;业务逻辑&lt;/h3&gt;
+
+&lt;p&gt;当与管理和协调function一起部署时，在业务流程中执行一系列步骤的微服务工作负载的编排是serverless计算的另一个好用例。执行特定业务逻辑的function（例如订单请求和批准，股票交易处理等）可以与有状态管理器一起安排和协调。来自客户端门户的事件请求可以由这样的协调function提供服务，并传递给适当的serverless function。&lt;/p&gt;
+
+&lt;p&gt;例子包括：&lt;/p&gt;
+
+&lt;p&gt;交易台，处理股票市场交易并处理客户的交易订单和确认。协调器使用状态图管理交易。初始状态接受来自客户端门户的交易请求，并将请求传递给微服务function以解析请求并验证客户端。随后的状态根据买入或卖出交易指导工作流，验证基金余额，股票代码等，并向客户发送确认。在从客户端接收到确认请求事件时，后续状态调用管理交易执行的function，更新账户，并通知客户完成交易。&lt;/p&gt;
+
+&lt;h3 id=&quot;持续集成管道&quot;&gt;持续集成管道&lt;/h3&gt;
+
+&lt;p&gt;传统的CI管道包括一个构建从属主机池，它们处于空闲等待以便分派作业。Serverless是一种很好的模式，可以消除对预配置主机的需求并降低成本。构建作业由新代码提交或PR合并触发。 调用function来运行构建和测试用例，仅在所需的时间内执行，并且在未使用时不会产生成本。这降低了成本，并可通过自动扩展来减少瓶颈以满足需求。&lt;/p&gt;
+
+&lt;p&gt;例子包括：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://blog.hyper.sh/serverless-ci-hyper-docker-integration-for-buildbot.html&quot;&gt;Serverless CI - Hyper.sh 的 Buildbot 集成&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;serverless-vs-其他云原生技术&quot;&gt;Serverless vs. 其他云原生技术&lt;/h2&gt;
+
+&lt;p&gt;大多数应用程序开发人员在寻找托管其云原生应用程序的平台时可能会考虑三种主要的开发和部署模型。每个模型都有自己的一组不同的实现（无论是开源项目，托管平台还是本地产品）。这三种型号通常建立在容器技术的基础上，为了密度，性能，隔离和包装特性，但容器化并不是要求。&lt;/p&gt;
+
+&lt;p&gt;为了增加抽象，远离运行其代码的实际基础设施，并且更加关注开发的业务逻辑，它们是Container Orchestration（或Containers-as-a-Service），Platform-as-a-Service和Serverless（Functions-as-a-Service）。所有这些方法都提供了部署云原生应用程序的方法，但它们根据其预期的开发人员和工作负载类型确定了不同功能和非功能方面的优先级。以下部分列出了每个模型的一些关键特征。&lt;/p&gt;
+
+&lt;p&gt;请记住，没有任何银弹可以满足所有云原生开发和部署挑战。将特定工作负载的需求与每种常见的云原生开发技术的优缺点相匹配非常重要。同样重要的是要考虑应用程序的子组件可能更适合于一种方法而不是另一种方法，因此可以采用混合方式。&lt;/p&gt;
+
+&lt;h2 id=&quot;container-orchestration容器编排&quot;&gt;Container Orchestration/容器编排&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Containers-as-a-Service&lt;/strong&gt;（CaaS） - 保持对基础设施的完全控制并获得最大的可移植性。 示例：Kubernetes，Docker Swarm，Apache Mesos。&lt;/p&gt;
+
+&lt;p&gt;像Kubernetes，Swarm和Mesos这样的容器编排平台允许团队构建和部署可移植应用程序，具有灵活性和对配置的控制，可以在任何地方运行，而无需为不同的环境重新配置和部署。&lt;/p&gt;
+
+&lt;p&gt;优势包括最大限度的控制，灵活性，可重用性以及将现有的容器化应用程序引入云中的便利性，所有这些都是可能的，因为不太自由的应用程序部署模型提供了自由度。&lt;/p&gt;
+
+&lt;p&gt;CaaS的缺点包括显著地增加开发人员对操作系统（包括安全补丁），负载平衡，容量管理，扩展，日志记录和监控的责任。&lt;/p&gt;
+
+&lt;h3 id=&quot;目标受众&quot;&gt;目标受众&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;希望控制其应用程序及其所有依赖项的打包和版本控制的开发人员和运维团队，确保跨部署平台的可移植性和重用。&lt;/li&gt;
+  &lt;li&gt;在一组相互依赖，独立扩展的微服务中寻求高性能的开发人员。&lt;/li&gt;
+  &lt;li&gt;将容器移至云端，或跨私有/公共云部署，以及具有端到端群集部署经验的组织。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;开发运维人员经验&quot;&gt;开发/运维人员经验&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;创建Kubernetes集群，Docker Swarm堆栈或Mesos资源池（完成一次）。&lt;/li&gt;
+  &lt;li&gt;在本地迭代和构建容器镜像。&lt;/li&gt;
+  &lt;li&gt;将打好标记的应用程序镜像推送到注册表。&lt;/li&gt;
+  &lt;li&gt;将基于容器镜像的容器部署到集群。&lt;/li&gt;
+  &lt;li&gt;测试并观察生产中的应用。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;优点&quot;&gt;优点&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;对于正在部署的内容，开发人员拥有最大程度的控制权和责任。使用容器编排器，可以定义要部署的确切镜像版本，配置，以及管理其运行时的策略。&lt;/li&gt;
+  &lt;li&gt;控制运行时环境（例如，运行时，版本，最小OS，网络配置）。&lt;/li&gt;
+  &lt;li&gt;在系统外，容器镜像具有更高的可重用性和可移植性。&lt;/li&gt;
+  &lt;li&gt;非常适合将容器化应用程序和系统引入云端。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;缺点&quot;&gt;缺点&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;对文件系统映像和执行环境负有更多责任，包括安全补丁和分发优化。&lt;/li&gt;
+  &lt;li&gt;管理负载平衡和扩展行为的更多责任。&lt;/li&gt;
+  &lt;li&gt;通常更多的责任是容量管理。&lt;/li&gt;
+  &lt;li&gt;通常更长的启动时间，今天。&lt;/li&gt;
+  &lt;li&gt;通常对应用程序结构的看法较少，因此指导意见较少。&lt;/li&gt;
+  &lt;li&gt;通常对构建和部署机制负有更多责任。&lt;/li&gt;
+  &lt;li&gt;通常，对监视，日志记录和其他常见服务的集成负有更多责任。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;platform-as-a-service&quot;&gt;Platform-as-a-Service&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Platform-as-a-Service (PaaS)&lt;/strong&gt;  - 专注于应用程序，让平台处理其余的事务。&lt;/p&gt;
+
+&lt;p&gt;示例：Cloud Foundry，OpenShift，Deis，Heroku&lt;/p&gt;
+
+&lt;p&gt;Platform-as-a-Service实现使团队能够部署和扩展应用程序，通过将配置信息注入到这些应用程序，可以使用大量运行时，绑定到数据目录，AI，IoT和安全服务，而无需手动配置和管理容器和操作系统。它非常适合具有稳定编程模型的现有Web应用程序。&lt;/p&gt;
+
+&lt;p&gt;优点包括更轻松地管理和部署应用程序，自动扩展和预配置服务，以满足最通用的应用程序需求。&lt;/p&gt;
+
+&lt;p&gt;缺点包括缺乏操作系统控制、粒度容器可移植性、负载平衡、应用程序优化，还有潜在的供应商锁定，以及需要在大多数PaaS平台上构建和管理监视和日志记录功能。&lt;/p&gt;
+
+&lt;h3 id=&quot;目标受众-1&quot;&gt;目标受众&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;需要部署平台的开发人员，使他们能够专注于应用程序源代码和文件（不打包它们），而不必担心操作系统。&lt;/li&gt;
+  &lt;li&gt;默认情况下，使用可路由主机名创建更传统的基于HTTP的服务（应用程序和API）的开发人员。 但是，一些PaaS平台现在也支持通用TCP路由。&lt;/li&gt;
+  &lt;li&gt;对更为成熟的云计算模型（与serverless相比）感到满意的组织，这些模型有综合文档和许多实例的支持。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;开发运维人员经验-1&quot;&gt;开发/运维人员经验&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;迭代应用程序，在本地Web开发环境中构建和测试。&lt;/li&gt;
+  &lt;li&gt;将应用程序推送到PaaS，在其中构建和运行。&lt;/li&gt;
+  &lt;li&gt;测试并观察生产中的应用。&lt;/li&gt;
+  &lt;li&gt;更新配置以确保高可用性和扩展以匹配需求。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;优点-1&quot;&gt;优点&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;开发人员的参考框架在应用程序代码和它连接的数据服务上。对实际运行时的控制较少，但开发人员避免了构建步骤，也可以选择扩展和部署选项。&lt;/li&gt;
+  &lt;li&gt;无需管理底层操作系统。&lt;/li&gt;
+  &lt;li&gt;构建包提供对运行时的影响，根据需要提供尽可能多的控制（合理的默认值）。&lt;/li&gt;
+  &lt;li&gt;非常适合具有稳定编程模型的许多现有Web应用程序。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;缺点-1&quot;&gt;缺点&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;失去对操作系统的控制，可能受到构建包版本的支配。&lt;/li&gt;
+  &lt;li&gt;关于应用程序结构的更多见解，倾向于 &lt;a href=&quot;https://12factor.net/&quot;&gt;12因素&lt;/a&gt; 微服务最佳实践，以及架构灵活性的潜在成本。&lt;/li&gt;
+  &lt;li&gt;潜在的平台锁定。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;serverless&quot;&gt;Serverless&lt;/h2&gt;
+
+&lt;h3 id=&quot;functions-as-a-service-faas&quot;&gt;Functions-as-a-Service (FaaS)&lt;/h3&gt;
+
+&lt;p&gt;将逻辑编写为响应各种事件的小块代码。&lt;/p&gt;
+
+&lt;p&gt;示例：AWS Lambda，Azure Functions，基于Apache OpenWhisk的IBM Cloud Functions，Google Cloud Functions，华为Function Stage 和 Function Graph，Kubeless，iron.io，funktion，fission，nuclio&lt;/p&gt;
+
+&lt;p&gt;Serverless使开发人员能够专注于由事件驱动的函数组成的应用程序，这些函数响应各种触发器并让平台负责其余的事情 - 例如触发器到函数逻辑，从一个函数传递到另一个函数的信息，自动设置容器和运行时间（时间，地点和内容），自动扩展，身份管理等。&lt;/p&gt;
+
+&lt;p&gt;其优势包括对任何云原生范例的基础设施管理的最低要求。无需考虑操作系统或文件系统，运行时甚至容器管理。Serverless享受自动扩展，弹性负载平衡和最细粒度的“即用即付”计算模型。&lt;/p&gt;
+
+&lt;p&gt;缺点包括不够全面和稳定的文档，示例，工具和最佳实践; 有挑战的调试; 响应时间可能较慢; 缺乏标准化和生态系统成熟度以及平台锁定的可能性。&lt;/p&gt;
+
+&lt;h4 id=&quot;目标受众-2&quot;&gt;目标受众&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;希望在单个函数中更多地关注业务逻辑的开发人员，这些函数可根据需求自动扩展并将交易与成本紧密联系起来。&lt;/li&gt;
+  &lt;li&gt;希望更快地构建应用程序并且更少关注运维方面的开发人员。&lt;/li&gt;
+  &lt;li&gt;创建事件驱动应用程序的开发人员和团队，例如响应数据库更改，物联网读数，人工输入等。&lt;/li&gt;
+  &lt;li&gt;在标准和最佳实践尚未完全建立的领域，能够轻松采用尖端技术的组织。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;开发运维人员经验-2&quot;&gt;开发/运维人员经验&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;迭代函数，在本地Web开发环境中构建和测试。&lt;/li&gt;
+  &lt;li&gt;将单个函数上载到serverless平台。&lt;/li&gt;
+  &lt;li&gt;声明事件触发器，函数及其运行时，以及事件到函数的关系。&lt;/li&gt;
+  &lt;li&gt;测试并观察生产中的应用。&lt;/li&gt;
+  &lt;li&gt;无需更新配置以确保高可用性和扩展以匹配需求。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;优点-2&quot;&gt;优点&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;开发人员的观点已经远离运维问题，如管理高可用性函数的部署，更多地转向函数逻辑本身。&lt;/li&gt;
+  &lt;li&gt;开发人员可根据需求/工作量自动扩展。&lt;/li&gt;
+  &lt;li&gt;利用新的“即用即付”成本模型，仅对代码实际运行的时间收费。&lt;/li&gt;
+  &lt;li&gt;操作系统，运行时甚至容器生命周期都是完全抽象的（serverless）。&lt;/li&gt;
+  &lt;li&gt;更适合涉及物联网，数据和消息的新兴事件驱动和不可预测的工作负载。&lt;/li&gt;
+  &lt;li&gt;通常是无状态，不可变和短暂的部署。每个函数都以指定的角色和明确定义/有限的资源访问权限运行。&lt;/li&gt;
+  &lt;li&gt;中间件层将得到调整/优化，将随着时间的推移提高应用程序性能。&lt;/li&gt;
+  &lt;li&gt;强烈推广微服务模型，因为大多数serverless运行时强制限制每个单独函数的大小或执行时间。&lt;/li&gt;
+  &lt;li&gt;易于将第三方API集成为定制的serverless API，既可以扩展使用，又可以灵活地从客户端或服务器调用。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;缺点-2&quot;&gt;缺点&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;一种新兴的计算模型，快速创新，缺乏全面和稳定的文档，示例，工具和最佳实践。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;由于运行时更具动态性，与IaaS和PaaS相比，调试可能更具挑战性。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;由于按需结构，如果运行时在空闲时删除函数的所有实例，则某些serverless运行时的“冷启动”方面可能有性能问题。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在更复杂的情况下（例如，触发其他函数的函数），对于相同数量的逻辑，可以存在更多的运维表面区域。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;缺乏标准化和生态系统成熟度。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;由于平台的编程模型，事件/消息接口和BaaS产品，有平台锁定的可能性。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;应该使用哪种云原生部署模型&quot;&gt;应该使用哪种云原生部署模型？&lt;/h2&gt;
+
+&lt;p&gt;为了确定哪种模型最适合您的特定需求，应对每种方法（以及若干模型实施）进行全面评估。本节将提供一些考虑因素的建议，因为没有一个放之四海而皆准的解决方案。&lt;/p&gt;
+
+&lt;h3 id=&quot;评估特性和能力&quot;&gt;评估特性和能力&lt;/h3&gt;
+
+&lt;p&gt;体验每种方法。 从功能和开发体验的角度找到最适合您需求的方法。你正试图找到问题的答案，例如：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;基于前面部分中描述的工作负载，这是serverless证明其价值的地方，我的应用程序是否适合？ 与替代方案相比，我是否预期从serverless获得重大收益而值得改变？&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在运行时及其运行环境中，我真正需要多少控制？ 小的运行时版本更改会影响我吗？ 我可以覆盖默认值吗？&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;我可以使用我选择的语言提供的全套功能和库吗？ 如果需要，我可以安装其他模块吗？ 我是否必须自己打补丁或升级？&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;我需要多少运维控制？ 我是否愿意放弃容器或执行环境的生命周期？&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;如果我需要更改服务代码怎么办？ 我可以多快部署它？&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;我如何保护我的服务？ 我必须管理吗？ 或者我可以卸载到可以做得更好的服务吗？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;评估和衡量运维方面&quot;&gt;评估和衡量运维方面&lt;/h3&gt;
+
+&lt;p&gt;使用PaaS和Container Orchestrator收集性能数据，例如恢复时间，以及使用Serverless平台进行冷启动。探索并量化应用程序的其他重要非功能特性对每个平台的影响，例如：&lt;/p&gt;
+
+&lt;p&gt;弹性：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;如何使我的应用程序适应数据中心故障？&lt;/li&gt;
+  &lt;li&gt;在部署更新时如何确保服务的连续性？&lt;/li&gt;
+  &lt;li&gt;如果我的服务失败怎么办？ 平台会自动恢复吗？ 它对最终用户是不可见的吗？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;可扩展性：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;如果有突然的变化，平台是否支持自动扩展？&lt;/li&gt;
+  &lt;li&gt;我的应用程序是否设计为有效地利用无状态扩展？&lt;/li&gt;
+  &lt;li&gt;我的serverless平台是否会压倒任何其他组件，例如数据库？ 我可以管理或限制背压吗？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;性能：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;每个实例或每个HTTP客户端每秒有多少个函数调用？&lt;/li&gt;
+  &lt;li&gt;给定工作负载需要多少台服务器或实例？&lt;/li&gt;
+  &lt;li&gt;从调用到响应的延迟是多少（在冷启动和热启动中）？&lt;/li&gt;
+  &lt;li&gt;微服务之间的延迟，与单个部署中的共存功能相比，是问题吗？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;CNCF Serverless工作组的潜在成果之一可能是何时选择特定模型的决策框架，以及如何在给定一组推荐工具的情况下进行测试。 有关详细信息，请参阅结论部分。&lt;/p&gt;
+
+&lt;h3 id=&quot;评估并考虑潜在成本的全部范围&quot;&gt;评估并考虑潜在成本的全部范围&lt;/h3&gt;
+
+&lt;p&gt;这包括开发成本和运行时资源成本。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;不是每个人都可以从头开始开展他们的开发活动。 因此，需要仔细考虑将现有应用程序迁移到其中一个云原生模型的成本。虽然对容器的升降式模型看起来最便宜，但从长远来看，它可能不是最具成本效益的。 同样，从成本角度来看，serverless的按需模型非常具有吸引力，但将单体应用程序拆分为函数所需的开发工作可能令人生畏。&lt;/li&gt;
+  &lt;li&gt;与依赖服务集成的成本是多少？ Serverless计算最初可能看起来最经济，但它可能需要更昂贵的第三方服务成本，或者非常快速地自动缩放，这可能导致更高的使用费。&lt;/li&gt;
+  &lt;li&gt;平台免费提供哪些功能/服务？ 我是否愿意以可移植性的潜在成本购买供应商的生态系统？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;基于多平台运行应用程序&quot;&gt;基于多平台运行应用程序&lt;/h2&gt;
+
+&lt;p&gt;在查看当前可用的各种云托管技术时，可能并不明显，但没有理由需要将单个解决方案用于所有部署。实际上，没有理由需要在单个应用程序中使用相同的解决方案。一旦将应用程序拆分为多个组件或微服务，您就可以自由地将每个组件分别部署在完全不同的基础设施上，如果这是最符合您需求的。&lt;/p&gt;
+
+&lt;p&gt;同样，每个用于其特定目的微服务也可以用最佳技术（即语言）开发。 “分解单体”带来的自由带来了新的挑战，以下部分重点介绍了在选择平台和开发微服务时应该考虑的一些方面。&lt;/p&gt;
+
+&lt;h3 id=&quot;跨部署目标拆分组件&quot;&gt;跨部署目标拆分组件&lt;/h3&gt;
+
+&lt;p&gt;考虑将正确的技术与正确的工作相匹配，例如，物联网演示可能同时使用PaaS应用程序处理对连接设备仪表板的请求，以及一组 serverless 函数来处理来自设备本身的MQTT消息事件。 Serverless不是一个银弹，而是在您的云原生架构中可以考虑的新选择。&lt;/p&gt;
+
+&lt;h3 id=&quot;设计多个部署目标&quot;&gt;设计多个部署目标&lt;/h3&gt;
+
+&lt;p&gt;另一种设计选择是使您的代码尽可能通用，允许在本地进行测试，并依赖于上下文信息（如环境变量）来影响它在特定环境中的运行方式。 例如，一组普通的POJO可能能够在三个主要环境中的任何一个中运行，并且可以根据可用的环境变量，类库或绑定服务来定制精确的行为。&lt;/p&gt;
+
+&lt;h3 id=&quot;为任意方式继续使用devops管道&quot;&gt;为任意方式继续使用DevOps管道&lt;/h3&gt;
+
+&lt;p&gt;大多数容器编排平台，PaaS实现和serverless框架都可以由命令行工具驱动，并且相同的容器镜像可以构建一次并在每个平台上重用。&lt;/p&gt;
+
+&lt;h3 id=&quot;考虑抽象以简化模型之间的可移植性&quot;&gt;考虑抽象以简化模型之间的可移植性&lt;/h3&gt;
+
+&lt;p&gt;有越来越多的第三方项目生态系统弥补了将当前在PaaS或CaaS上运行的基于HTTP的Web应用程序移植到serverless平台的差距。 其中包括来自Serverless, Inc.和Zappa Framework的几个工具。&lt;/p&gt;
+
+&lt;p&gt;Serverless框架提供的适配器使得使用流行的Web应用程序框架（如Python WSGi和JAX-RS REST API）编写的应用程序能够在Serverless平台上运行。这些框架还可以提供可移植性和多个Serverless平台之间差异性的抽象。&lt;/p&gt;
+
+&lt;h1 id=&quot;详细信息视图serverless处理模型&quot;&gt;详细信息视图：Serverless处理模型&lt;/h1&gt;
+
+&lt;p&gt;本节总结了serverless框架中当前的函数使用，并概括了serverless 函数需求，生命周期，调用类型和所需的抽象。 我们的目标是定义serverless 函数规范，以便相同的函数可以编码一次并在不同的serverless框架中使用。 本节未定义确切的函数配置和API。&lt;/p&gt;
+
+&lt;p&gt;我们可以将FaaS解决方案概括为具有下图中显示的几个关键元素：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/serverless-overview_0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Event sources/事件源&lt;/strong&gt; - 触发事件或流式传输触发到一个或多个函数实例中&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Function instances/函数实例&lt;/strong&gt; - 单个函数/微服务，可以按需扩展&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;FaaS Controller/FaaS控制器&lt;/strong&gt;- 部署，控制和监视函数实例及其来源&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Platform services/平台服务&lt;/strong&gt; - FaaS解决方案使用的一般集群或云服务（有时称为Backend-as-a-Service）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;让我们首先看一下serverless环境中函数的生命周期。&lt;/p&gt;
+
+&lt;h2 id=&quot;函数生命周期&quot;&gt;函数生命周期&lt;/h2&gt;
+
+&lt;p&gt;以下部分描述了函数生命周期的各个方面以及serverless框架/运行时通常如何管理它们。&lt;/p&gt;
+
+&lt;h3 id=&quot;函数部署管道&quot;&gt;函数部署管道&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/serverless-overview_1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;函数的生命周期从编写代码并提供规范和元数据开始（参见下面的函数定义），“builder”实体将获取代码和规范，编译并将其转换为工件（代码二进制文件，包或容器镜像）。 然后将工件部署在具有控制器实体的集群上，该控制器实体负责基于事件流量和/或实例上的负载来扩展函数实例的数量。&lt;/p&gt;
+
+&lt;h3 id=&quot;函数操作&quot;&gt;函数操作&lt;/h3&gt;
+
+&lt;p&gt;Serverless框架可以允许以下动作和方法来定义和控制函数生命周期：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Create - 创建新函数，包括其规格和代码&lt;/li&gt;
+  &lt;li&gt;Publish - 创建可在群集上部署的函数新版本&lt;/li&gt;
+  &lt;li&gt;Update Alias/Label (版本的) - 更新别名/标签（版本） - 更新版本别名&lt;/li&gt;
+  &lt;li&gt;Execute/Invoke - 调用特定版本，不通过其事件源&lt;/li&gt;
+  &lt;li&gt;Event Source association - 将特定版本的函数与事件源连接&lt;/li&gt;
+  &lt;li&gt;Get - 返回函数元数据和规范&lt;/li&gt;
+  &lt;li&gt;Update - 修改函数的最新版本&lt;/li&gt;
+  &lt;li&gt;Delete - 删除函数，可以删除特定版本或其所有版本的函数&lt;/li&gt;
+  &lt;li&gt;List - 显示函数列表及其元数据&lt;/li&gt;
+  &lt;li&gt;Get Stats - 返回有关函数运行时使用情况的统计信息&lt;/li&gt;
+  &lt;li&gt;Get Logs - 返回函数生成的日志&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/serverless-overview_2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在创建函数时，提供其元数据（稍后在函数规范中描述）作为函数创建的一部分，函数将被编译并可能被发布。 稍后可以启动，禁用和启用函数。函数部署需要能够支持以下用例：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Event streaming/事件流，在此用例中，队列中可能始终存在事件，而处理的暂停/恢复可能需要通过显式请求&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Warm startup/热启动 - 在任何时候具有最少实例数量的函数，在接收的“first”事件时进行热启动，因为该函数已经部署并准备好为事件服务（而不是冷启动，冷启动时指函数获得通过“incoming”事件在第一次调用时部署）&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;用户可以&lt;strong&gt;发布&lt;/strong&gt;函数，这将创建新版本（“latest”版本的副本），发布的版本可能被标记或具有别名，请参阅下文。&lt;/p&gt;
+
+&lt;p&gt;用户可能希望直接&lt;strong&gt;执行/调用&lt;/strong&gt;函数（绕过事件源或API gateway）以进行调试和开发过程。用户可以指定调用参数，例如所需版本，同步/异步操作，详细级别等。&lt;/p&gt;
+
+&lt;p&gt;用户可能想要获得函数&lt;strong&gt;统计&lt;/strong&gt;（例如调用次数，平均运行时间，平均延迟，失败，重试等），统计可以是当前度量值或时间序列值（例如存储在Prometheus或云提供者设施中例如AWS Cloud Watch）。&lt;/p&gt;
+
+&lt;p&gt;用户可能希望检索函数&lt;strong&gt;日志&lt;/strong&gt;数据。这可以通过严重性级别和/或时间范围和/或内容来进行过滤。 Log数据是每个函数都有的，它包括诸如函数创建和删除，显式错误，警告或调试消息之类的事件，以及可选的函数Stdout或Stderr。倾向每次调用有一个日志条目或者将日志条目与特定调用相关联的方式（以允许更简单地跟踪函数执行流程）。&lt;/p&gt;
+
+&lt;h3 id=&quot;函数版本控制和别名&quot;&gt;函数版本控制和别名&lt;/h3&gt;
+
+&lt;p&gt;一个函数可能有多个版本，使用户能够运行不同版本的代码，如beta / production，A / B测试等。使用版本控制时，函数版本默认为“最新”，“最新”版本可以更新和修改，可能会触发每个此类更改的新构建过程。&lt;/p&gt;
+
+&lt;p&gt;一旦用户想要冻结版本，他将使用发布操作，该操作将创建具有潜在标签或别名的新版本（例如“beta”，“production”），以便在配置事件源时使用，因此事件或API调用可以路由到特定的功能版本。非最新函数版本是不可变的（它们的代码和全部或部分函数规范），并且一旦发布就不能更改;函数不能“未发布”，而应删除它们。&lt;/p&gt;
+
+&lt;p&gt;请注意，今天的大多数实现都不允许函数分支/ fork（更新旧版本代码），因为它使实现和使用变得复杂，但是将来可能需要这样做。&lt;/p&gt;
+
+&lt;p&gt;当存在相同功能的多个版本时，用户必须指定他想要操作的功能的版本以及如何在不同版本之间划分事件的流量（例如，用户可以决定路由90％的事件流量到一个稳定的版本和10％的流量到测试版又名“金丝雀发布”）。这可以通过指定确切版本或指定版本别名来实现。版本别名通常会引用特定的函数版本。&lt;/p&gt;
+
+&lt;p&gt;当用户创建或更新某个功能时，它可能会根据更改的性质推动新的构建和部署。&lt;/p&gt;
+
+&lt;h3 id=&quot;函数关联的事件源&quot;&gt;函数关联的事件源&lt;/h3&gt;
+
+&lt;p&gt;由事件源触发的事件调用函数。函数和事件源之间存在n：m映射。每个事件源可用于调用多个函数，函数可由多个事件源触发。事件源可以映射到函数的特定版本或函数的别名，后者提供了更改函数和部署新版本的方法，而无需更改事件关联。事件源也可以定义为使用相同函数的不同版本，并定义应为每个版本分配多少流量。&lt;/p&gt;
+
+&lt;p&gt;在创建函数之后，或者在稍后的某个时间点，需要关联应该触发函数调用的事件源作为该事件的结果。这需要一组操作和方法，例如：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;创建事件源关联&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;更新事件源关联&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;列出事件源关联&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;事件来源&lt;/p&gt;
+
+&lt;p&gt;不同类型的事件源包括：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;事件和消息服务，例如：RabbitMQ，MQTT，SES，SNS，Google Pub / Sub&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;存储服务，例如：S3，DynamoDB，Kinesis，Cognito，Google云存储，Azure Blob，iguazio V3IO（对象/流/数据库）&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;端点服务，例如：物联网，HTTP网关，移动设备，Alexa，Google Cloud端点&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;配置存储库，例如：Git，CodeCommit&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;使用特定于语言的SDK的用户应用程序&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;计划事件 - 定期启用函数调用&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;虽然每个事件提供的数据可能在不同的事件源之间有所不同，但事件结构应该是通用的，能够封装关于事件源的特定信息（事件数据和元数据下的详细信息）。&lt;/p&gt;
+
+&lt;h3 id=&quot;函数要求&quot;&gt;函数要求&lt;/h3&gt;
+
+&lt;p&gt;以下列表描述了函数和无服务器运行时应基于当前技术水平满足的常见需求集：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;函数必须与不同事件类的底层实现分离&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;可以从多个事件源调用Function&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;每个调用方法不需要不同的函数&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;事件源可以调用多个函数&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;函数可能需要一种机制来与底层平台服务进行持久绑定，这可能是跨函数调用。函数可能是短暂的，但如果需要在每次调用时执行，例如在记录，连接和安装外部数据源的情况下，引导程序可能很昂贵。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;每个函数都可以使用与在同一应用程序中使用的其他函数不同的代码语言编写&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;函数运行时应尽可能减少事件序列化和反序列化开销（例如，使用本机语言结构或高效编码方案）&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;工作流程相关要求：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;函数可以作为工作流的一部分调用，其中函数的结果是另一个函数的触发器&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;函数可以由事件或“和/或事件组合”触发&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;一个事件可以触发按顺序或并行执行的多个函数&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;“和/或事件组合”可以触发按顺序或并行或分支运行的m个函数&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在工作流程的中间，可能会收到不同的事件或函数结果，这会触发分支到不同的函数&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;部分或全部函数的结果需要作为输入传递给另一个函数&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;函数可能需要一种与底层平台服务进行持久绑定的机制，这可能是跨函数调用或函数可能是短暂的。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;函数调用类型&quot;&gt;函数调用类型&lt;/h3&gt;
+
+&lt;p&gt;可以根据不同的用例从不同的事件源调用函数，例如：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;同步请求（Req / Rep）&lt;/strong&gt;，例如， HTTP请求，gRPC调用&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;客户发出请求并等待立即响应。这是一个阻止电话。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;异步消息队列请求（发布/订阅）&lt;/strong&gt;，例如， RabbitMQ，AWS SNS，MQTT，电子邮件，对象（S3）更改，计划事件（如CRON job）&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;消息发布到交换机并分发给订户&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;没有严格的消息排序。完全一次处理&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;消息/记录流：&lt;/strong&gt;例如Kafka，AWS Kinesis，AWS DynamoDB Streams，数据库CDC&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;一组有序的消息/记录（必须按顺序处理）&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;通常，每个分片使用单个工作程序（分片消费者）将流分片为多个分区/分片&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;可以从消息，数据库更新（日志）或文件（例如CSV，Json，Parquet）生成流&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;事件可以推送到函数运行时或由函数运行时拉动&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;批量作业&lt;/strong&gt;例如ETL工作，分布式深度学习，HPC仿真&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;作业被调度或提交到队列，并在运行时使用并行的多个函数实例进行处理，每个函数实例处理工作集的一个或多个部分（任务）&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;当所有并行工作程序成功完成所有计算任务时，作业完成&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/serverless-overview_3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;函数代码&quot;&gt;函数代码&lt;/h3&gt;
+
+&lt;p&gt;函数代码和依赖关系和/或二进制文件可以驻留在外部存储库中，例如S3对象桶或Git存储库，或者由用户直接提供。 如果代码位于外部存储库中，则用户需要指定路径和凭据。&lt;/p&gt;
+
+&lt;p&gt;无服务器框架还可以允许用户观察代码库以进行更改（例如，使用web钩子）并在每次提交时自动构建函数镜像/二进制文件。&lt;/p&gt;
+
+&lt;p&gt;函数可能依赖于外部库或二进制文件，需要由用户提供，包括描述其构建过程的方法（例如，使用Dockerfile，Zip）。&lt;/p&gt;
+
+&lt;p&gt;另外，可以通过一些二进制包装（例如OCI图像）将该函数提供给框架。&lt;/p&gt;
+
+&lt;h3 id=&quot;函数定义&quot;&gt;函数定义&lt;/h3&gt;
+
+&lt;p&gt;无服务器函数定义可能包含以下规范和元数据，函数定义是特定于版本的：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Unique ID&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Name&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Description&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Labels (or tags)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Version ID (and/or Version Aliases)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Version creation time&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Last Modified Time (of function definition)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Function Handler&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Runtime language&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Code + Dependencies or Code path and credentials&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Environment Variables&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Execution Role and Secret&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Resources (Required CPU, Memory)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Execution Timeout&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Log Failure (Dead Letter Queue)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Network Policy / VPC&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Data Bindings&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;元数据详细信息&quot;&gt;元数据详细信息&lt;/h3&gt;
+
+&lt;p&gt;函数框架可以包括以下函数元数据：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;版本&lt;/strong&gt; - 每个函数版本应该具有唯一标识符，此外版本可以使用一个或多个别名标记（例如“最新”，“生产”，“测试版”）。 API网关和事件源会将流量/事件路由到特定的函数版本。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;环境变量&lt;/strong&gt; - 用户可以指定将在运行时提供给函数的环境变量。环境变量也可以从秘密和加密内容中导出，或者从平台变量中导出（例如像Kubernetes EnvVar定义）。环境变量使开发人员能够控制函数行为和参数，而无需修改代码和/或重建函数，从而允许更好的开发人员体验和函数重用。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;执行角色&lt;/strong&gt; - 该函数应在特定用户或角色身份下运行，以授予和审核其对平台资源的访问权限。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;资源&lt;/strong&gt; - 定义所需或最大的硬件资源，例如函数使用的内存和CPU。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;超时&lt;/strong&gt; - 指定函数调用可以运行的最长时间，直到平台终止。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;失败日志（死信队列）&lt;/strong&gt; - 一个队列或流的路径，它将存储具有适当详细信息的失败函数执行列表。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;网络策略&lt;/strong&gt; - 分配给该函数的网络域和策略（用于与外部服务/资源通信的函数）。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;执行语义&lt;/strong&gt; - 指定如何执行函数（例如，每个事件至少一次，最多一次，恰好一次）。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;数据绑定&quot;&gt;数据绑定&lt;/h3&gt;
+
+&lt;p&gt;一些无服务器框架允许用户指定函数使用的输入/输出数据资源，这使开发人员简化，性能（在执行之间保留数据连接，可以预取数据等），以及更好的安全性（数据资源）凭证是上下文的一部分，而不是代码）。&lt;/p&gt;
+
+&lt;p&gt;绑定数据可以是文件，对象，记录，消息等形式。函数规范可以包括数据绑定定义的数组，每个数据绑定定义指定数据资源，其凭证和使用参数。数据绑定可以引用事件数据（例如，数据库密钥是从事件“用户名”字段派生的），请参阅以下内容：&lt;a href=&quot;https：//docs.microsoft.com/azure/azure-functions/functions-triggers-bindings&quot;&gt;https：//docs.microsoft.com/azure/azure-functions/functions-triggers-bindings&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h3 id=&quot;函数输入&quot;&gt;函数输入&lt;/h3&gt;
+
+&lt;p&gt;函数输入包括事件数据和元数据，并且可以包括上下文对象。&lt;/p&gt;
+
+&lt;h4 id=&quot;事件数据和元数据&quot;&gt;事件数据和元数据&lt;/h4&gt;
+
+&lt;p&gt;事件细节应该传递给函数处理程序，不同的事件可能具有不同的元数据，因此希望函数能够确定事件的类型并轻松地解析公共和特定于事件的元数据。&lt;/p&gt;
+
+&lt;p&gt;可能需要将事件类与实现分离，例如：无论流存储是Kafka还是Kinesis，处理消息流的函数都将起作用。在这两种情况下，它将接收消息正文和事件元数据，该消息可以在不同框架之间路由。&lt;/p&gt;
+
+&lt;p&gt;事件可以包括单个记录（例如，在请求/响应模型中），或者接受多个记录或微批（例如，在流模式中）。&lt;/p&gt;
+
+&lt;p&gt;FaaS解决方案使用的常见事件数据和元数据的示例：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;活动类/种类&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;版本&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;活动ID&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;事件源&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;来源身份&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;内容类型&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;消息正文&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;时间戳&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;事件/记录特定元数据的示例&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;HTTP：路径，方法，标题，查询参数&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;消息队列：主题，标题&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;记录流：表，键，操作，修改时间，旧字段，新字段&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;事件源结构的示例：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://docs.aws.amazon.com/lambda/latest/dg/eventsources.html&quot;&gt;http://docs.aws.amazon.com/lambda/latest/dg/eventsources.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/azure/azure-functions/functions-triggers-bindings&quot;&gt;https://docs.microsoft.com/azure/azure-functions/functions-triggers-bindings&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://cloud.google.com/functions/docs/concepts/events-triggers&quot;&gt;https://cloud.google.com/functions/docs/concepts/events-triggers&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;一些实现关注于JSON作为向事件传递事件信息的机制。这可能为更高速度的函数（例如流处理）或低能量设备（IoT）增加大量的序列化/解串行化开销。在这些情况下，可能需要考虑本机语言结构或其他序列化机制作为选项。&lt;/p&gt;
+
+&lt;h4 id=&quot;函数上下文&quot;&gt;函数上下文&lt;/h4&gt;
+
+&lt;p&gt;调用函数时，框架可能希望提供对跨多个函数调用的平台资源或常规属性的访问，而不是将所有静态数据放在事件中或强制函数在每次调用时初始化平台服务。&lt;/p&gt;
+
+&lt;p&gt;函数上下文作为一组输入属性，环境变量或全局变量提供。一些实现使用所有三种的组合。&lt;/p&gt;
+
+&lt;p&gt;上下文的示例：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;函数名称，版本，ARN&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;内存限制&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;请求ID&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;云区&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;环境变量&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;安全密钥/令牌&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;运行时/ Bin路径&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;日志&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;数据绑定&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;某些实现初始化日志对象（例如，作为AWS中的全局变量或Azure中的部分上下文），使用日志对象，用户可以使用集成平台工具跟踪函数执行。除了传统的日志记录之外，未来的实现可以将计数器/监视和跟踪活动抽象为平台上下文的一部分，以进一步提高函数的可用性。&lt;/p&gt;
+
+&lt;p&gt;数据绑定是函数上下文的一部分，平台基于用户配置启动与外部数据资源的连接，并且这些连接可以跨多个函数调用重用。&lt;/p&gt;
+
+&lt;h3 id=&quot;函数输出&quot;&gt;函数输出&lt;/h3&gt;
+
+&lt;p&gt;当函数退出时，它可以：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;将值返回给调用者（例如，在HTTP请求/响应示例中）&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;将结果传递到工作流中的下一个执行阶段&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;将输出写入日志&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;应该有一种确定的方法来通过返回的错误值或退出代码来了解函数是成功还是失败。&lt;/p&gt;
+
+&lt;p&gt;函数输出可以是结构化的（例如HTTP响应对象）或非结构化的（例如某些输出字符串）。&lt;/p&gt;
+
+&lt;h4 id=&quot;无服务器函数工作流程&quot;&gt;无服务器函数工作流程&lt;/h4&gt;
+
+&lt;p&gt;在无服务器域中，用例属于以下类别之一：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;一个事件触发一个函数&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;事件和/或事件组合触发一个函数&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;一个事件触发按顺序或并行执行的多个函数&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;该函数的结果可能是另一个函数的触发器&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;N个事件（在和/或中）触发m个函数，即例如事件 - 函数交错的工作流。 event1触发function1，完成function1以及event2和event3触发function2，然后function2的不同结果触发分支到function3或function4。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;用户需要一种方法来指定其无服务器用例或工作流。例如，一个用例可能是“当照片上传到云存储上时，对照片进行面部识别（照片存储事件发生）。”当接收到运动检测事件时，另一个物联网用例可以是“进行运动分析”，然后根据分析函数的结果，“触发房屋警报加上对警察部门的呼叫”或者只是“发送运动图像到房主。“有关详细信息，请参阅用例部分。&lt;/p&gt;
+
+&lt;p&gt;AWS为用户提供“步骤函数”原语（基于状态机的原语）以指定其工作流程，但步骤函数不允许指定触发工作流中的哪些函数的事件/事件。请参阅&lt;a href=&quot;https://aws.amazon.com/step-functions/&quot;&gt;https://aws.amazon.com/step-functions/&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;下图是用户工作流程的示例，涉及事件和函数。使用这样的函数图，用户可以轻松指定事件和函数之间的交互，以及如何在工作流中的函数之间传递信息。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/serverless-overview_4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;函数图状态包括以下内容：&lt;/p&gt;
+
+&lt;p&gt;事件状态此状态允许等待事件源中的事件，然后触发函数运行或多个函数按顺序或并行或在分支中运行。&lt;/p&gt;
+
+&lt;p&gt;操作/任务状态此状态允许按顺序或并行运行一个或多个函数，而无需等待任何事件。&lt;/p&gt;
+
+&lt;p&gt;切换/选择状态该状态允许转换到多个其他状态（例如，先前的函数结果触发分支/转换到不同的下一状态）。&lt;/p&gt;
+
+&lt;p&gt;结束/停止状态此状态使用“失败/成功”终止工作流程。&lt;/p&gt;
+
+&lt;p&gt;通过状态此状态在两个状态之间注入事件数据。&lt;/p&gt;
+
+&lt;p&gt;延迟/等待状态此状态使工作流程执行延迟指定的持续时间或直到指定的时间/日期。&lt;/p&gt;
+
+&lt;p&gt;需要将状态和相关信息保存在某些持久存储中以进行故障恢复。在一些用例中，用户可能希望将来自一个州的信息传递到下一个状态。该信息可以是函数执行结果的一部分或与事件触发器相关联的输入数据的一部分。需要在每个状态定义信息过滤器以过滤掉需要在状态之间传递的信息。&lt;/p&gt;
+
+&lt;h3 id=&quot;结论&quot;&gt;结论&lt;/h3&gt;
+
+&lt;p&gt;无服务器架构为云原生工作负载提供了令人兴奋的新部署选项。正如我们在无服务器工作负载部分中看到的，某些用例中无服务器技术提供了超过其他云托管技术的主要优势。&lt;/p&gt;
+
+&lt;p&gt;但是，无服务器技术并不适合所有情况，应该在适当的时候仔细考虑。短期的，事件驱动的处理正在推动早期采用和使用案例，这些企业预计会出现具有不可预测的容量和基础架构需求的高变化率。有关无服务器计算的更多阅读材料和见解，请参阅其他参考资料部分。&lt;/p&gt;
+
+&lt;p&gt;CNCF无服务器工作组与Redpoint Ventures合作，最近发布了无服务器景观。它说明了生态系统中可用的一些主要的无服务器项目，工具和服务。它无意代表一个全面的，完全包容的无服务器生态系统，也不是一种认可，而只是对景观的概述。预计每个人的所有者将提供更新以试图使其保持最新。&lt;/p&gt;
+
+&lt;h3 id=&quot;cncf的后续步骤&quot;&gt;CNCF的后续步骤&lt;/h3&gt;
+
+&lt;p&gt;关于CNCF应该考虑在这个领域做什么，为技术监督委员会的考虑提供以下建议：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;鼓励更多无服务器技术供应商和开源开发人员加入CNCF&lt;/strong&gt;，分享想法，并在彼此的创新基础上再接再厉。例如，更新无服务器横向文档中列出的开源项目并维护函数矩阵。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;通过建立可互操作的API，确保开放式生态系统，确保与供应商承诺和开源工具的可互操作实施&lt;/strong&gt;。在平台提供商和第三方开发人员库创建者的帮助下，类似于CSI和CNI的新互操作性和可移植性工作。其中一些可能值得他们自己的CNCF工作组，或者可能继续作为无服务器工作组的一项倡议。例如：&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;strong&gt;事件&lt;/strong&gt;：定义公共事件格式和API以及元数据。一些初始提案可以在Serverless WG github repo中找到。&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;strong&gt;部署&lt;/strong&gt;：利用现有的CNCF成员（也是无服务器提供商），启动一个新的工作组，探索可用于协调一组通用函数定义元数据的可能小步骤。例如：&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;&lt;strong&gt;应用程序定义清单&lt;/strong&gt;，例如AWS SAM和OpenWhisk Packaging Specification。&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;跨不同提供商的无服务器平台的函数工作流。有许多使用场景超出触发单个函数的单个事件，并且将涉及按顺序或并行执行的多个函数的工作流程，并且由事件的不同组合+工作流的前一步骤中的函数的返回值触发。如果我们可以定义开发人员可以用来定义其用例工作流的一组通用构造，那么他们将能够创建可以在不同的无服务器平台上使用的工具。这些构造指定事件和函数之间的关系/交互，工作流中函数之间的关系/交互以及如何将信息从一个函数传递到下一个步骤函数等。一些示例是AWS步骤函数构造和华为函数图/工作流程构造。&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;培养开源工具生态系统，加快开发人员的采用和速度，探索关注的领域，例如：&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;仪表&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;可调试&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;教育：为新用户提供一套设计模式，参考架构和通用词汇表。&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;术语表：以公布的形式保留术语表（附录A），并确保工作组文档始终如一地使用这些术语&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;用例：维护用例列表，按常用模式分组，创建共享的高级词汇表。支持以下目标：&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;对于不熟悉无服务器平台的开发人员：增加对常见用例的理解，确定好的入口点&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;对于无服务器提供商和库/框架作者，便于考虑共同需求&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;CNCF GitHub仓库中的示例应用程序和开源工具，优先突出互操作性方面或链接到每个提供商的外部资源。&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;提供有关如何评估无服务器架构相对于CaaS或PaaS的函数和非函数特性的指导。这可以采用决策树的形式，也可以从CNCF项目系列中推荐一套工具。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;提供有关无服务器安全主题的指导，例如：安全无服务器开发指南，强化无服务器部署，充分的安全日志记录和监视以及相关工具和过程（请参阅&lt;a href=&quot;https://github.com/puresec/sas-top-10&quot;&gt;无服务器体系结构中十大最关键的安全风险&lt;/a&gt;）。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;开始CNCF输出的过程（对于上面提到的建议文档），例如来自无服务器工作组和存储工作组，在GitHub中作为Markdown文件存在，可以随着时间的推移进行协作维护，这一点尤为重要 这个领域的创新速度。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;参考资料&quot;&gt;参考资料&lt;/h1&gt;
+
+&lt;p&gt;[1] &lt;a href=&quot;https://github.com/cncf/wg-serverless/tree/master/whitepapers/serverless-overview&quot;&gt;CNCF Serverless Whitepaper&lt;/a&gt;&lt;/p&gt;</content><author><name>Yu Peng</name></author><category term="Serverless" /><summary type="html">Serverless CNCF 白皮书</summary></entry><entry><title type="html">Kubernetes HPA</title><link href="https://y2p.cc/2018/12/20/kubernetes-hpa/" rel="alternate" type="text/html" title="Kubernetes HPA" /><published>2018-12-20T00:00:00+08:00</published><updated>2018-12-20T00:00:00+08:00</updated><id>https://y2p.cc/2018/12/20/kubernetes-hpa</id><content type="html" xml:base="https://y2p.cc/2018/12/20/kubernetes-hpa/">&lt;p&gt;Kubernetes HPA&lt;/p&gt;
+
+&lt;h2 id=&quot;kubernetes-设计理念&quot;&gt;Kubernetes 设计理念&lt;/h2&gt;
+
+&lt;p&gt;用户定义应用程序的规格，Kubernetes 按照定义的规格部署并运行应用程序。&lt;/p&gt;
+
+&lt;p&gt;其实现依赖于 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;声明式 API&lt;/code&gt;: 就是当用户向 Kubernetes 提交了一个 API 对象的描述之后，Kubernetes 会负责为你保证整个集群里各项资源的状态，都与你的 API 对象描述的需求相一致。更重要的是，这个保证是一项“无条件的”、“没有期限”的承诺：对于每个保存在 etcd 里的 API 对象，Kubernetes 都通过启动一种叫做“控制器模式”（Controller Pattern）的无限循环，不断检查，然后调谐，最后确保整个集群的状态与这个 API 对象的描述一致。&lt;/p&gt;
+
+&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;实际状态&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;获取集群中对象X的实际状态&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;（&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Actual&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;State&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;）&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;期望状态&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;获取集群中对象X的期望状态&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;（&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Desired&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;State&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;）&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;实际状态&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;期望状态&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;什么都不做&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;执行编排动作&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;将实际状态调整为期望状态&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;hpa&quot;&gt;HPA&lt;/h2&gt;
+
+&lt;p&gt;1、HPA全称Horizontal Pod Autoscaling，即POD的水平自动伸缩。&lt;/p&gt;
+
+&lt;p&gt;Kubernetes 最大的特点是在用户定义的应用程序规格内进行自动伸缩，自动伸缩主要分为两种，其一为POD的水平伸缩，针对于POD数目的增减，也就是HPA；其二为垂直伸缩，即单个POD可以使用的资源的增减，也就是在POD的requests（最小资源）、limits（最大资源）范围内增减资源。&lt;/p&gt;
+
+&lt;p&gt;2、HPA是Kubernetes中实现POD水平自动伸缩的功能。&lt;/p&gt;
+
+&lt;p&gt;云计算具有水平弹性的特性，这是云计算区别于传统IT技术架构的主要特性。对于Kubernetes中的POD来说，HPA可以实现很多自动化功能，比如当POD中业务负载上升的时候，可以创建新的POD来保证业务系统稳定运行，当POD中业务负载下降的时候，可以销毁POD来提高资源利用率。&lt;/p&gt;
+
+&lt;p&gt;3、HPA控制器默认每隔30秒就会运行一次。&lt;/p&gt;
+
+&lt;p&gt;如果要修改间隔时间，可以设置horizontal-pod-autoscaler-sync-period参数。&lt;/p&gt;
+
+&lt;p&gt;4、HPA的操作对象是RC、RS或Deployment对应的POD&lt;/p&gt;
+
+&lt;p&gt;根据观察到的CPU等实际使用量与用户的期望值进行比对，做出是否需要增减POD实例数量的决策。&lt;/p&gt;
+
+&lt;p&gt;5、HPA的发展历程&lt;/p&gt;
+
+&lt;p&gt;在Kubernetes v1.1中首次引入了HPA特性。HPA第一个版本基于观察到的CPU利用率，后续版本支持基于内存使用。&lt;/p&gt;
+
+&lt;p&gt;在Kubernetes 1.6中引入了一个新的API，用来自定义指标，它允许HPA访问任意指标。&lt;/p&gt;
+
+&lt;p&gt;Kubernetes 1.7引入了聚合层，允许第三方应用程序通过注册为API附加组件来扩展Kubernetes API。自定义指标API以及聚合层使得像Prometheus这样的监控系统可以向HPA控制器公开特定于应用程序的指标。&lt;/p&gt;
+
+&lt;h2 id=&quot;部署监测工具&quot;&gt;部署监测工具&lt;/h2&gt;
+
+&lt;p&gt;因为POD的metrics信息来源于其他第三方监控组件，所以在开始之前要保证监控组件的运行正常，我们拿metrics-server来举例。&lt;/p&gt;
+
+&lt;h3 id=&quot;部署metrics-server&quot;&gt;部署metrics-server&lt;/h3&gt;
+
+&lt;p&gt;可以按照以下方式部署：&lt;/p&gt;
+
+&lt;p&gt;测量 CPU/Memory HPA ，可以使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://github.com/kubernetes-incubator/metrics-server&lt;/code&gt; 中所示方式，如下：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir K8s-monitor
+cd K8s-monitor
+git clone https://github.com/kubernetes-incubator/metrics-server.git
+# 如果 Kubernetes &amp;gt; 1.8
+cd metrics-server/deploy/1.8+/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;修改 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;metrics-server-deployment.yaml&lt;/code&gt; 配置，在 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;containers&lt;/code&gt; 中添加 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;command&lt;/code&gt; 有关的内容&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;      containers:
+      - name: metrics-server
+        image: k8s.gcr.io/metrics-server-amd64:v0.3.1
+        imagePullPolicy: Always
+        command:
+        - /metrics-server
+        - --kubelet-insecure-tls
+        - --kubelet-preferred-address-types=InternalIP,Hostname,InternalDNS,ExternalDNS,ExternalIP
+        volumeMounts:
+        - name: tmp-dir
+          mountPath: /tmp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;部署&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl apply -f ./
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;验证&lt;/p&gt;
+
+&lt;p&gt;可以通过运行 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kubectl top node&lt;/code&gt; 来验证metrics-server是否运行正常。&lt;/p&gt;
+
+&lt;p&gt;运行不正常情况&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl top node
+error: metrics not available yet
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;运行正常情况&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl top node
+NAME       CPU(cores)   CPU%      MEMORY(bytes)   MEMORY%
+master01   228m         5%        2551Mi          26%
+minion01   189m         4%        1991Mi          20%
+minion02   138m         3%        1594Mi          16%
+minion03   75m          1%        941Mi           9%
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;提示：刚部署完成后，需要稍等一会才会出现运行正常的情况。&lt;/p&gt;
+
+&lt;h3 id=&quot;部署prometheus&quot;&gt;部署prometheus&lt;/h3&gt;
+
+&lt;p&gt;可以使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://github.com/coreos/prometheus-operator&lt;/code&gt; 中所示方式。&lt;/p&gt;
+
+&lt;h3 id=&quot;部署其他监控维度的监测工具&quot;&gt;部署其他监控维度的监测工具&lt;/h3&gt;
+
+&lt;p&gt;可以参考 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://github.com/heptiolabs/eventrouter&lt;/code&gt; 中所示方式。&lt;/p&gt;
+
+&lt;h2 id=&quot;制作镜像&quot;&gt;制作镜像&lt;/h2&gt;
+
+&lt;p&gt;新建文件夹hpa-test-app&lt;/p&gt;
+
+&lt;p&gt;在hpa-test-app文件夹下，新建hpa-test-app.go文件，内容如下：&lt;/p&gt;
+
+&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;fmt&quot;&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;log&quot;&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;net/http&quot;&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;strconv&quot;&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;strings&quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HandleFunc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;compPiHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Server work at :8080 ...&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ListenAndServe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;:8080&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Fatal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ListenAndServe: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;compPiHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ResponseWriter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lenI&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt;  &lt;span class=&quot;kt&quot;&gt;error&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;lenS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;URL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Query&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;length&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lenS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lenI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strconv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Atoi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lenS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;lenI&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lenI&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;fmt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Fprintf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;compPi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lenI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;compPi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;L&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Pi&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;L&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;make&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([]&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;make&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([]&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;make&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([]&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;make&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([]&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;L&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1.39793&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;16&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;239&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;57121&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;sub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;sub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;Pi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fmt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sprintf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Pi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fmt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sprintf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%04d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strings&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;carry&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;carry&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10000&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;carry&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10000&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;carry&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;borrow&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;borrow&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;borrow&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10000&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;borrow&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remain&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remain&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;remain&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10000&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;编译成linux下的程序包，我是在mac上开发的，需要编译到linux下运行，涉及到跨平台编译。&lt;/p&gt;
+
+&lt;p&gt;编译代码命令：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo env GOOS=linux GOARCH=386 go build hpa-test-app.go
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;如果知道linux系统的准确信息（采用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;uname -a&lt;/code&gt; 命令查看），例如amd64或者i386，将上述命令中的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GOARCH=386&lt;/code&gt; 替换为 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GOARCH=amd64&lt;/code&gt; 或者 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GOARCH=i386&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;编译完成后，本地会多出一个 hpa-test-app 程序，备用。&lt;/p&gt;
+
+&lt;p&gt;在hpa-test-app文件夹下，新建Dockerfile文件，内容如下：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;FROM alpine:latest
+MAINTAINER YP &quot;yu3peng@qq.com&quot;
+WORKDIR $GOPATH/src/github.com/yu3peng/hpa-test-app
+ADD hpa-test-app $GOPATH/src/github.com/yu3peng/hpa-test-app
+EXPOSE 8080
+ENTRYPOINT  [&quot;./hpa-test-app&quot;]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;在当前目录下，执行docker build -t hpa-test-app .
+输出&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Sending build context to Docker daemon  5.12 kB
+Step 1/6 : FROM golang:latest
+ ---&amp;gt; 2422e4d43e15
+Step 2/6 : MAINTAINER YP &quot;yu3peng@qq.com&quot;
+ ---&amp;gt; Using cache
+ ---&amp;gt; f4a9005be88b
+Step 3/6 : WORKDIR $GOPATH/src/github.com/yu3peng
+ ---&amp;gt; Using cache
+ ---&amp;gt; 6d5fec3b81a1
+Step 4/6 : ADD . $GOPATH/src/github.com/yu3peng
+ ---&amp;gt; Using cache
+ ---&amp;gt; 24b3025ae163
+Step 5/6 : EXPOSE 8080
+ ---&amp;gt; Using cache
+ ---&amp;gt; c2e09786bf15
+Step 6/6 : ENTRYPOINT ./hpa-test-app
+ ---&amp;gt; Using cache
+ ---&amp;gt; b9d6c77740b8
+Successfully built b9d6c77740b8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;执行docker image ls&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+hpa-test-app        latest              b9d6c77740b8        14 minutes ago      10 MB
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;服务测试&quot;&gt;服务测试&lt;/h2&gt;
+&lt;p&gt;基于上面提供的hpa-test-app镜像, 我们创建一个hpa-test-app service, 然后为该service添加HPA机制。&lt;/p&gt;
+
+&lt;h3 id=&quot;创建deployment-和-service&quot;&gt;创建Deployment 和 service&lt;/h3&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~$ kubectl get svc,deploy
+NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+service/kubernetes   ClusterIP   10.96.0.1    &amp;lt;none&amp;gt;        443/TCP   45d
+
+~$ kubectl run hpa-test-app  --image=yu3peng/hpa-test-app:latest  --requests=cpu=6m,memory=32Mi --limits=cpu=60m,memory=128Mi --expose --port=8080
+service &quot;hpa-test-app&quot; created
+deployment.apps &quot;hpa-test-app&quot; created
+~$ kubectl get svc,deploy
+NAME                   TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/hpa-test-app   ClusterIP   10.105.191.80   &amp;lt;none&amp;gt;        8080/TCP   4s
+service/kubernetes     ClusterIP   10.96.0.1       &amp;lt;none&amp;gt;        443/TCP    45d
+
+NAME                                 DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+deployment.extensions/hpa-test-app   1         1         1            0           4s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;创建hpa&quot;&gt;创建HPA&lt;/h3&gt;
+
+&lt;h4 id=&quot;基于cpu利用率&quot;&gt;基于CPU利用率&lt;/h4&gt;
+
+&lt;p&gt;可以直接使用命令创建HPA&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~$ kubectl autoscale deployment hpa-test-app --cpu-percent=70 --min=1 --max=10
+deployment.apps &quot;hpa-test-app&quot; autoscaled
+~$ kubectl get hpa
+NAME           REFERENCE                 TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+hpa-test-app   Deployment/hpa-test-app   31%/70%   1         10        1          16s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;基于memory利用率&quot;&gt;基于Memory利用率&lt;/h4&gt;
+
+&lt;p&gt;需要通过配置文件创建&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat &amp;lt;&amp;lt; EOF &amp;gt; hpa-test-app-memory-metrics.yaml
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-test-app-memory-metrics
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: extensions/v1beta1
+    kind: Deployment
+    name: hpa-test-app
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: memory
+      targetAverageValue: 100Mi
+EOF
+kubectl create -f hpa-test-app-memory-metrics.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;增压和减压测试&quot;&gt;增压和减压测试&lt;/h3&gt;
+
+&lt;p&gt;首先我们启动一个busybox的pod, 用来对hap-test-app服务进行压力测试&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat &amp;lt;&amp;lt; EOF &amp;gt; pod-busybox.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+  namespace: default
+spec:
+  containers:
+  - image: busybox
+    command:
+      - sleep
+      - &quot;3600&quot;
+    imagePullPolicy: IfNotPresent
+    name: busybox
+  restartPolicy: Always
+EOF
+kubectl create -f pod-busybox.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;然后我们找到hpa-test-app服务的clusterIP:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~$ kubectl get svc hpa-test-app
+NAME           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+hpa-test-app   ClusterIP   10.105.191.80   &amp;lt;none&amp;gt;        8080/TCP   3m
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;应用扩张&quot;&gt;应用扩张&lt;/h4&gt;
+
+&lt;p&gt;进入容器, 持续访问hpa-test-app的API&lt;/p&gt;
+
+&lt;p&gt;默认计算100位的π，用以下命令实现&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl exec -it busybox /bin/sh
+/ # while true; do wget -q -O- 10.105.191.80:8080; done
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;如果想加大计算（例如计算1000为的π）可以通过以下命令实现&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl exec -it busybox /bin/sh
+/ # while true; do wget -q -O- 10.105.191.80:8080/?length=1000; done
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;然后我们持续关系HPA的扩张&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~$ kubectl get hpa
+NAME           REFERENCE                 TARGETS    MINPODS   MAXPODS   REPLICAS   AGE
+hpa-test-app   Deployment/hpa-test-app   100%/70%   1         10        1          3m
+~$ kubectl get hpa
+NAME           REFERENCE                 TARGETS    MINPODS   MAXPODS   REPLICAS   AGE
+hpa-test-app   Deployment/hpa-test-app   100%/70%   1         10        2          3m
+~$ kubectl get hpa
+NAME           REFERENCE                 TARGETS    MINPODS   MAXPODS   REPLICAS   AGE
+hpa-test-app   Deployment/hpa-test-app   331%/70%   1         10        2          4m
+~$ kubectl get hpa
+NAME           REFERENCE                 TARGETS    MINPODS   MAXPODS   REPLICAS   AGE
+hpa-test-app   Deployment/hpa-test-app   331%/70%   1         10        5          4m
+~$ kubectl get hpa
+NAME           REFERENCE                 TARGETS    MINPODS   MAXPODS   REPLICAS   AGE
+hpa-test-app   Deployment/hpa-test-app   185%/70%   1         10        8          5m
+~$ kubectl get hpa
+NAME           REFERENCE                 TARGETS    MINPODS   MAXPODS   REPLICAS   AGE
+hpa-test-app   Deployment/hpa-test-app   130%/70%   1         10        10         7m
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;pod数量的变化情况 1–&amp;gt;2–&amp;gt;5–&amp;gt;8–&amp;gt;10, 最终达到最大的扩展上线而停止。&lt;/p&gt;
+
+&lt;h4 id=&quot;应用收缩&quot;&gt;应用收缩&lt;/h4&gt;
+
+&lt;p&gt;中断对app的访问, 会发现容器又收缩为原来的1个:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~$ kubectl get hpa
+NAME           REFERENCE                 TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+hpa-test-app   Deployment/hpa-test-app   33%/70%   1         10        3          21m
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;参考资料&quot;&gt;参考资料&lt;/h2&gt;
+
+&lt;p&gt;[1] &lt;a href=&quot;https://blog.csdn.net/qq_17016649/article/details/79297796&quot;&gt;如何利用kubernetes实现应用的水平扩展(HPA)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[2] &lt;a href=&quot;https://blog.csdn.net/weixin_39961559/article/details/80578907&quot;&gt;k8s controller-manager之hpa源码分析&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[3] &lt;a href=&quot;http://www.cnblogs.com/cuishuai/p/9857120.html&quot;&gt;k8s全栈监控之metrics-server和prometheus&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[4] &lt;a href=&quot;http://blog.51cto.com/ylw6006/2113848&quot;&gt;K8S集群基于heapster的HPA测试&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[5] &lt;a href=&quot;https://www.yangcs.net/posts/what-happens-when-k8s/&quot;&gt;kubectl run 背后到底发生了什么？&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[6] &lt;a href=&quot;https://blog.csdn.net/kozazyh/article/details/79514742&quot;&gt;Kubernetes之kubectl常用命令使用指南:2:故障排查&lt;/a&gt;&lt;/p&gt;</content><author><name>Yu Peng</name></author><category term="Kubernetes" /><summary type="html">Kubernetes HPA</summary></entry><entry><title type="html">5G</title><link href="https://y2p.cc/2018/12/12/5g/" rel="alternate" type="text/html" title="5G" /><published>2018-12-12T00:00:00+08:00</published><updated>2018-12-12T00:00:00+08:00</updated><id>https://y2p.cc/2018/12/12/5g</id><content type="html" xml:base="https://y2p.cc/2018/12/12/5g/">&lt;p&gt;5G三大场景、三大组成部分、SA &amp;amp; NSA&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-Future.jpg&quot; alt=&quot;5G-Future&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;5g三大场景&quot;&gt;5G三大场景&lt;/h2&gt;
+
+&lt;p&gt;5G的主要优点，总结而言，就三个：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;em&gt;1Gbps的用户体验速率&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;em&gt;毫秒级的延迟&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;em&gt;百万级/k㎡的终端接入&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;对应三大典型应用场景：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-scenarios.png&quot; alt=&quot;5G-scenarios&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;em&gt;eMBB（enhanced Mobile Broadban，增强移动宽带）&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;em&gt;uRLLC（Ultra－Reliable and Low Latency Communications，高可靠低时延通信）&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;em&gt;mMTC（massive Machine Type Communications，海量机器类通信）&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;其中mMTC又包括eMTC（enhanced Machine Type Communications，增强型物联网）和NB－IoT（Narrow Band Internet of Things，窄带物联网）。&lt;/p&gt;
+
+&lt;p&gt;eMTC和NB－IoT两者同属3GPP标准内的LWPA（Low Power Wide Area，低功耗广域）技术，两者既相互竞争，又相互补充。
+  两者的标准化进程、产业发展、现网应用等有很多相似之处，但同时两者在移动性、速率以及成本等有一些不同之处。
+  若对语音、移动性、速率等有较高要求，则可选择eMTC技术。
+  若对这些要求不高，而对成本、覆盖等要求较高，则可选择NB－IoT技术。&lt;/p&gt;
+
+&lt;p&gt;与5G相关的所有行业应用，都是围绕这三个场景：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-Applications.png&quot; alt=&quot;5G-Applications&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;典型的行业应用如下：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;em&gt;VR（虚拟现实）&lt;/em&gt;&lt;/strong&gt;，超高分辨率显示，会涉及到巨大的数据传输带宽，和增强型移动宽带相关。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;em&gt;自动驾驶（或远程驾驶）&lt;/em&gt;&lt;/strong&gt;，高速行驶的车辆，需要极低的通信时延，和高可靠低时延通信相关。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;em&gt;智慧城市&lt;/em&gt;&lt;/strong&gt;，例如远程抄表、智慧路灯，需要和海量的终端进行有效通信，和大规模机器通信相关。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;5g三大组成部分&quot;&gt;5G三大组成部分&lt;/h2&gt;
+
+&lt;p&gt;一般来说，移动通信网络，通常由 &lt;strong&gt;&lt;em&gt;接入网、承载网、核心网&lt;/em&gt;&lt;/strong&gt; 三大部分组成，如下图所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/access-net&amp;amp;core-net&amp;amp;bearer-net.png&quot; alt=&quot;access-net&amp;amp;core-net&amp;amp;bearer-net&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;接入网&quot;&gt;接入网&lt;/h3&gt;
+
+&lt;p&gt;接入网，就是一个“窗口”，负责把用户手机的数据收集上来（无线基站就属于接入网）。&lt;/p&gt;
+
+&lt;p&gt;在5G网络中，接入网不再是由BBU（基带处理单元）、RRU（射频拉远单元）、天线这些东西组成了。而是被重构为以下3个功能实体：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;CU（Centralized Unit，集中单元）&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;DU（Distribute Unit，分布单元）&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;AAU（Active Antenna Unit，有源天线单元）&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/4G5G-Access-net.png&quot; alt=&quot;4G5G-Access-net&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;CU：原BBU的非实时部分被分割出来，重新定义为CU，负责处理非实时协议和服务。&lt;/p&gt;
+
+&lt;p&gt;DU：BBU的剩余功能重新定义为DU，负责处理物理层协议和实时服务。&lt;/p&gt;
+
+&lt;p&gt;AAU：BBU的部分物理层处理功能与原RRU及无源天线合并为AAU。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/RRU&amp;amp;AAU.png&quot; alt=&quot;RRU&amp;amp;AAU&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;简单来说，AAU=RRU+天线&lt;/p&gt;
+
+&lt;p&gt;再抛一张图给大家，应该能看得更明白一些：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/4G5G-Architecher.png&quot; alt=&quot;4G5G-Architecher&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;注：图中，EPC（就是核心网部分）被分为New Core和MEC两部分，并且下沉（离基站更近）。&lt;/p&gt;
+
+&lt;h3 id=&quot;承载网&quot;&gt;承载网&lt;/h3&gt;
+
+&lt;p&gt;相比于4G来说，5G需求多样化，所以要网络多样化；&lt;/p&gt;
+
+&lt;p&gt;因为网络多样化，所以要&lt;a href=&quot;../../../../2017/12/21/5g-network-slice/&quot;&gt;切片&lt;/a&gt;；&lt;/p&gt;
+
+&lt;p&gt;因为要&lt;a href=&quot;../../../../2017/12/21/5g-network-slice/&quot;&gt;切片&lt;/a&gt;，所以网元要能灵活部署；&lt;/p&gt;
+
+&lt;p&gt;因为网元灵活部署，所以网元之间的连接（承载网：基站和基站之间、基站和核心网之间的连接系统）也要灵活变化。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/rebuild-bearer-net.png&quot; alt=&quot;rebuild-bearer-net&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;所以，才有了DU和CU这样的新架构，才有了变来变去的回传、中传、前传，这三个概念，简单说，就是对不同实体之间的连接，这是承载网的主要组成部分。&lt;/p&gt;
+
+&lt;p&gt;依据5G提出的标准，CU、DU、AAU可以采取分离或合设的方式，所以，会出现多种部署形态：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/net-deploy.png&quot; alt=&quot;net-deploy&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;上图所列的部署形态，依次为：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;1 与传统4G宏站一致，CU与DU共硬件部署，构成BBU单元。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;2 DU部署在4G BBU机房，CU集中部署。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;3 DU集中部署，CU更高层次集中。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;4 CU与DU共站集中部署，类似4G的C-RAN方式。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;我们再来具体看看，对于前、中、回传，到底怎么个承载法。&lt;/p&gt;
+
+&lt;h4 id=&quot;前传&quot;&gt;前传&lt;/h4&gt;
+
+&lt;p&gt;前传（AAU + DU）。主要有三种方式：&lt;/p&gt;
+
+&lt;p&gt;第一种，光纤直连方式。&lt;/p&gt;
+
+&lt;p&gt;每个AAU与DU全部采用光纤点到点直连组网，如下图：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/direct-link.png&quot; alt=&quot;direct-link&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这就属于典型的“土豪”方式了，实现起来很简单，但最大的问题是光纤资源占用很多。随着5G基站、载频数量的急剧增加，对光纤的使用量也是激增。&lt;/p&gt;
+
+&lt;p&gt;所以，光纤资源比较丰富的区域，可以采用此方案。&lt;/p&gt;
+
+&lt;p&gt;第二种，无源WDM方式。&lt;/p&gt;
+
+&lt;p&gt;将彩光模块安装到AAU和DU上，通过无源设备完成WDM功能，利用一对或者一根光纤提供多个AAU到DU的连接。如下图：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/colourful-link.png&quot; alt=&quot;colourful-link&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;什么是彩光模块？&lt;/p&gt;
+
+&lt;p&gt;光复用传输链路中的光电转换器，也称为WDM波分光模块。不同中心波长的光信号在同一根光纤中传输是不会互相干扰的，所以彩光模块实现将不同波长的光信号合成一路传输，大大减少了链路成本。&lt;/p&gt;
+
+&lt;p&gt;采用无源WDM方式，虽然节约了光纤资源，但是也存在着运维困难，不易管理，故障定位较难等问题。&lt;/p&gt;
+
+&lt;p&gt;第三种，有源WDM/OTN方式。&lt;/p&gt;
+
+&lt;p&gt;在AAU站点和DU机房中配置相应的WDM/OTN设备，多个前传信号通过WDM技术共享光纤资源。如下图：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/OTN.png&quot; alt=&quot;OTN&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这种方案相比无源WDM方案，组网更加灵活（支持点对点和组环网），同时光纤资源消耗并没有增加。&lt;/p&gt;
+
+&lt;h4 id=&quot;中传和回传&quot;&gt;中传和回传&lt;/h4&gt;
+
+&lt;p&gt;中传（DU + CU）和回传（CU以上），由于中传与回传对于承载网在带宽、组网灵活性、网络切片等方面需求是基本一致的，所以可以使用统一的承载方案。&lt;/p&gt;
+
+&lt;p&gt;主要有两种方案：&lt;/p&gt;
+
+&lt;p&gt;第一种，分组增强型OTN + IPRAN&lt;/p&gt;
+
+&lt;p&gt;利用分组增强型OTN设备组建中传网络，回传部分继续使用现有IPRAN架构。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/OTN+IPRAN.png&quot; alt=&quot;OTN+IPRAN&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;第二种，端到端分组增强型OTN&lt;/p&gt;
+
+&lt;p&gt;中传与回传网络全部使用分组增强型OTN设备进行组网&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/OTN+OTN.png&quot; alt=&quot;OTN+OTN&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;核心网&quot;&gt;核心网&lt;/h3&gt;
+
+&lt;h4 id=&quot;重要性&quot;&gt;重要性&lt;/h4&gt;
+
+&lt;p&gt;接入网是一个“窗口”，负责把用户手机的数据收集上来；承载网，就是“卡车”，负责把数据送来送去；核心网呢，就是“管理中枢”，负责管理这些数据，对数据进行分拣，然后告诉它，该去何方。&lt;/p&gt;
+
+&lt;p&gt;说白了，核心网就是一个加强版的“路由器”，管理数据，分发数据，处理数据。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/core-net&amp;amp;router.jpg&quot; alt=&quot;core-net&amp;amp;router&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;核心网的英文叫Core Network（核心网络），简称CN，和中国的英文简称一致。&lt;/p&gt;
+
+&lt;p&gt;既然是管理中枢，核心网的意义就非同小可了。所有的用户数据，最终都是要到核心网的。所有的业务功能（例如用户权限控制、业务开通或取消），也都是要靠核心网实现的。所以，核心网的组网很复杂，设备类型很多，随便数一数，都有几十种。这些不同类型的核心网设备，分工协作，对接联调，完成工作。&lt;/p&gt;
+
+&lt;p&gt;而且，一旦核心网出问题，就会导致大面积的故障，影响十万、百万甚至千万级的用户（单个基站出问题，一般只会影响几百个用户）。所以，核心网的重要性，在通信网络里当之无愧排名第一。&lt;/p&gt;
+
+&lt;p&gt;核心网虽然复杂而且重要，但是，在整个项目设备报价里面，它并不是大头。&lt;/p&gt;
+
+&lt;p&gt;谁是大头？基站。&lt;/p&gt;
+
+&lt;p&gt;为什么呢？因为基站的数量多啊。核心网的单价是很贵的，但是数量不多，几十套设备而已。但是基站一般都是几千套几万套，所以，基站总价很高，占了一个项目总金额的大头。&lt;/p&gt;
+
+&lt;p&gt;现在运营商买设备，砍价都很厉害。设备商干脆就买一送一，买基站送核心网。也就是说，核心网设备根本不赚钱，赔本送。靠无线那边赚钱，来补贴核心网产品线。&lt;/p&gt;
+
+&lt;p&gt;如果一个项目，无线设备和核心网设备都是自己的，那就会好做很多。如果部分是自己的，部分是别人的，那就意味着项目执行难度的大幅增加。&lt;/p&gt;
+
+&lt;p&gt;因为你要和别的厂家进行对接联调，会多了很多困难甚至是人为阻碍。&lt;/p&gt;
+
+&lt;p&gt;虽然通信设备都是遵循统一标准，各个设备之间的接口都是标准的，业务流程也是标准的，但是具体在对接的时候，还是会有很多技术细节问题。&lt;/p&gt;
+
+&lt;p&gt;万一对方不配合，某些参数下个套，或者存在未知的兼容问题，拖你的工期，能把你搞死。&lt;/p&gt;
+
+&lt;p&gt;核心网要搞无线其实是很好搞的。以前恶意竞争的时候，这种事情很常见，互相下套，互相推诿，然后拖对方工期。工期就意味着成本和客户满意度，甚至是项目的验收和回款。&lt;/p&gt;
+
+&lt;p&gt;除了增加项目执行难度之外，如果核心网被捏在别人手里，相当于你被“边缘化”了，接触不到很多业务功能层面的东西，你的价值也会随之失去很多。也就是说，更加沦为“管道”了。&lt;/p&gt;
+
+&lt;p&gt;卖设备其实只是一次性收入，卖服务卖维保才是源源不断的收入。后面开新功能，要扩容，要升级，要优化，都是服务项目，都是专门另行收费的。&lt;/p&gt;
+
+&lt;p&gt;更需要关注的是，5G核心网，基本上都是虚拟化设备，使用的是通用x86硬件，硬件价格是不会高的，主要是软件。基于SBA的服务架构，包括切片等，管理控制编排等，都是仰仗核心网的，如果核心网不是自己的，就相当于任人摆布了。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;总而言之，没有核心网，就意味着丧失了大部分主动权。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;这也是为什么，设备商哪怕是送，也一定会让自家的核心网设备先进去。核心网一旦进了，无线进去的概率，就大大增加了。&lt;/p&gt;
+
+&lt;p&gt;而且，一般来说，运营商不会轻易搬迁替换核心网。因为核心网太复杂了，搬迁替换的难度很大。&lt;/p&gt;
+
+&lt;h4 id=&quot;复杂性&quot;&gt;复杂性&lt;/h4&gt;
+
+&lt;p&gt;核心网之所以复杂，其实是人为造成的。再具体一点说，就是因为市场的需要。用户产生欲望，市场满足欲望：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;欲望越多&lt;/em&gt;&lt;/strong&gt; –&amp;gt; &lt;strong&gt;&lt;em&gt;需求越多&lt;/em&gt;&lt;/strong&gt; –&amp;gt; &lt;strong&gt;&lt;em&gt;业务越多&lt;/em&gt;&lt;/strong&gt; –&amp;gt; &lt;strong&gt;&lt;em&gt;设备越多&lt;/em&gt;&lt;/strong&gt; –&amp;gt; &lt;strong&gt;&lt;em&gt;接口越多&lt;/em&gt;&lt;/strong&gt; –&amp;gt; &lt;strong&gt;&lt;em&gt;网络越复杂&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;最早的时候，固定电话网的核心网，说白了就是把电线两头的电话连接起来，这种交换，非常简单。&lt;/p&gt;
+
+&lt;p&gt;后来，用户数量越来越多，网络范围越来越大，开始有了分层。&lt;/p&gt;
+
+&lt;p&gt;网络架构也复杂了，有了网元。网元就是Net Element（网络单元），简称NE，是具有某种功能的网络单元实体。&lt;/p&gt;
+
+&lt;p&gt;同时，我们要识别和管理用户了——不是任何一个用户都允许用这个通信网络。只有被授权的合法用户，才能使用。&lt;/p&gt;
+
+&lt;p&gt;于是，多了一堆和用户有关的设备（网元）。简而言之，它们的核心任务只有三个：认证、授权和记账。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;认证&lt;/em&gt;&lt;/strong&gt;，就是看你是不是合法用户，有没有密钥。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;授权&lt;/em&gt;&lt;/strong&gt;，就是看你有权限做什么事，哪些服务可以用，哪些不能用。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;记账&lt;/em&gt;&lt;/strong&gt;，就是看你做了哪些事，然后记录下来，收你的钱。&lt;/p&gt;
+
+&lt;p&gt;再后来，有了无线通信，连接用户的方式变了，从电话线变成无线电波，无线接入网诞生。接入网变了，核心网也要跟着变，于是有了无线核心网。&lt;/p&gt;
+
+&lt;p&gt;再再后来，有了2G，3G，4G。&lt;/p&gt;
+
+&lt;p&gt;每一代通信标准，每一项具体制式，都有属于自己的网络架构，自己的硬件平台，自己的网元，自己的设备。&lt;/p&gt;
+
+&lt;p&gt;为什么每一代新通信标准出现，都要换新的设备呢？&lt;/p&gt;
+
+&lt;p&gt;主要原因在于：&lt;/p&gt;
+
+&lt;p&gt;第一，因为用户数量激增，无线速率激增，所以网络设备的数据处理能力必须随之激增。处理器的运算速度激增，设备单板端口数量和带宽激增（电口变光口），内部线路（总线）的带宽激增。&lt;/p&gt;
+
+&lt;p&gt;就像我们的电脑一样，以前是586,1M网卡，后来是奔腾处理器，100M网卡，现在是酷睿处理器，1000M网卡。&lt;/p&gt;
+
+&lt;p&gt;这就是升级换代，速度和性能的提升。&lt;/p&gt;
+
+&lt;p&gt;第二，就是我前面说的，业务变得无比复杂了。&lt;/p&gt;
+
+&lt;p&gt;最开始是打电话，后来多了发短信，再后来，多了上网（数据业务）。&lt;/p&gt;
+
+&lt;p&gt;你以为就这三种简单业务？细究起来，远远不止啊：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;以前是后付费，你打电话，我记账，月底给你账单。后来，有了预付费，你先存钱，你打电话的同时，我随时盯着你，只要你的余额一用完，我立刻掐掉你的电话。为了实现“预付费”这个功能，我们多了“智能网”设备。&lt;/p&gt;
+
+  &lt;p&gt;以前发文本短信，后来要发彩信。&lt;/p&gt;
+
+  &lt;p&gt;以前电话振铃就是嘟嘟嘟，后来有了彩铃。&lt;/p&gt;
+
+  &lt;p&gt;以前电话号码是正常位数，现在多了短号码，多了集团用户，多了特服号码（不是你想的那种“特殊服务”啊，是110,119,120这种特殊情况服务号码）。更别说还有变态的一卡双号和一号双卡。&lt;/p&gt;
+
+  &lt;p&gt;以前上网就是统一按流量收费，现在有了定向免流量（像腾讯大王卡这样）。&lt;/p&gt;
+
+  &lt;p&gt;……&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;所有这些特殊的业务，都带来了新网元，新设备，新功能，从而导致整个核心网，越来越庞大，越来越复杂。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2G3G4G.jpg&quot; alt=&quot;2G3G4G&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;核心网，就是路由交换，打包发包，围着协议栈、TCP/IP、OSI模型、报文转，没有空间波那些高深的理论，也不需要想破头去考虑如何突破速率瓶颈和对抗干扰。&lt;/p&gt;
+
+&lt;p&gt;但是，它涉及的功能性网元种类多，网元与网元之间的接口非常多。不同的接口，使用的是不同的协议。&lt;/p&gt;
+
+&lt;p&gt;而且，核心网有各种业务，例如短信、智能网、VoLTE等，业务的流程非常复杂，涉及到很多网元的配合，甚至跨网络类型（例如同时接入3GPP无线和Non-3GPP无线）。&lt;/p&gt;
+
+&lt;h2 id=&quot;5g-sa--nsa&quot;&gt;5G SA &amp;amp; NSA&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-SA-NSA.png&quot; alt=&quot;5G-SA-NSA&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;由于部署新的网络投资巨大且要分别部署这两部分，所以3GPP（3rd Generation Partnership Project，一个标准化组织）分为了两种方式进行部署，
+  SA（Standalone，独立组网）和NSA（Non－Standalone，非独立组网）。
+  独立组网指的是新建一个网络，包括新基站、回程链路以及核心网，非独立组网指的是使用现有的4G基础设施，进行5G网络的部署。&lt;/p&gt;
+
+&lt;p&gt;在2016年6月制定的标准中，3GPP共列举了Option1、Option2 、Option 3／3a、Option 4／4a、Option 5、Option 6、Option 7／7a、Option 8／8a等8种5G架构选项。
+  其中，Option1、Option 2、Option5和Option 6属于独立组网方式，其余属于非独立组网方式。&lt;/p&gt;
+
+&lt;p&gt;在2017年3月发布的版本中，优选了（并同时增加了2个子选项3x和7x）Option 2、Option 3／3a／3x、Option 4／4a、Option 5、Option 7／7a／7x等5种5G架构选项。
+  独立组网方式还剩下Option 2和Option 5两个选项。&lt;/p&gt;
+
+&lt;h3 id=&quot;独立组网&quot;&gt;独立组网&lt;/h3&gt;
+
+&lt;p&gt;独立组网（Standalone, SA），在2016年6月制定的标准中，有1系、2系、5系和6系，在2017年3月发布的版本中，去掉了1系和6系，剩下2系和5系。&lt;/p&gt;
+
+&lt;p&gt;在以下图示中，实线叫做用户面，代表传输的数据，虚线叫做控制面，代表传输管理和调度数据的命令。&lt;/p&gt;
+
+&lt;h4 id=&quot;1系&quot;&gt;1系&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-SA1.png&quot; alt=&quot;5G-SA1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;4G 网络，目前的部署方式，由 4G 核心网和 4G 基站组成。&lt;/p&gt;
+
+&lt;h4 id=&quot;2系&quot;&gt;2系&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-SA2.png&quot; alt=&quot;5G-SA2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这种方案下，从核心网到基站，全部新建，服务质量最好，成本也最高，也是最土豪的方案了。&lt;/p&gt;
+
+&lt;h4 id=&quot;5系&quot;&gt;5系&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-SA5.png&quot; alt=&quot;5G-SA5&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这种方案下，4G基站升级一下，变成增强型4G基站，然后把它们接入5G核心网，这样可以利旧，多少也能省点钱。&lt;/p&gt;
+
+&lt;p&gt;这种方案，可以理解为先部署5G的核心网，并在5G核心网中实现4G核心网的功能，先使用增强型4G基站，随后再逐步部署5G基站。&lt;/p&gt;
+
+&lt;h4 id=&quot;6系&quot;&gt;6系&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-SA6.png&quot; alt=&quot;5G-SA6&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这种方案，是先部署5G基站，采用4G核心网。但此选项会限制5G系统的部分功能，如网络切片，所以选项6已经被舍弃。&lt;/p&gt;
+
+&lt;h3 id=&quot;非独立组网&quot;&gt;非独立组网&lt;/h3&gt;
+
+&lt;p&gt;非独立组网（Non-Standalone, NSA），4G 基站和 5G 基站联合部署，参考的是LTE双连接架构。&lt;/p&gt;
+
+&lt;p&gt;什么是双连接架构？&lt;/p&gt;
+
+&lt;p&gt;在LTE双连接构架中，UE（用户终端）在连接态下可同时使用至少两个不同基站的无线资源(分为主站和从站)。&lt;/p&gt;
+
+&lt;h4 id=&quot;3系&quot;&gt;3系&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-NSA3.png&quot; alt=&quot;5G-NSA3&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;5G基站是无法直接连在4G核心网上面的，所以，它会通过4G基站接到4G核心网。
+  传统4G基站的处理能力有限，无法承载5G基站这个“拖油瓶”，所以，需要进行硬件改造，变成增强型4G基站。&lt;/p&gt;
+
+&lt;p&gt;有的运营商，不愿意花钱改造4G基站（毕竟都是旧设备，迟早要淘汰）。于是，想了别的办法。&lt;/p&gt;
+
+&lt;p&gt;第一种办法，5G基站的用户面直接通4G核心网，控制面继续锚定于4G基站。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-NSA3a.png&quot; alt=&quot;5G-NSA3a&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;什么叫用户面？什么叫控制面？&lt;/p&gt;
+
+&lt;p&gt;简单来说，用户面就是用户具体的数据，控制面就是管理和调度的那些命令。&lt;/p&gt;
+
+&lt;p&gt;上面这种方式，叫做 “3a”。&lt;/p&gt;
+
+&lt;p&gt;第二种方法，就是把用户面数据分为两部分，会对 4G 基站造成瓶颈的那部分，迁移到 5G 基站。剩下的部分，继续走 4G 基站&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-NSA3x.png&quot; alt=&quot;5G-NSA3x&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这种方式，叫做”3x”。&lt;/p&gt;
+
+&lt;p&gt;我们把它们三个放在一起，可以对比看看：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-NSA3-all.png&quot; alt=&quot;5G-NSA3-all&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;需要注意的是，只有 “3” 是增强型 4G 基站&lt;/p&gt;
+
+&lt;p&gt;3/3a/3x 组网方式，是目前国外运营商最喜欢的方式，原因很简单：&lt;/p&gt;
+
+&lt;p&gt;利旧了4G基站，省钱。&lt;/p&gt;
+
+&lt;p&gt;部署起来很快很方便，有利于迅速推入市场，抢占用户。&lt;/p&gt;
+
+&lt;h4 id=&quot;4系&quot;&gt;4系&lt;/h4&gt;
+
+&lt;p&gt;在”4系”组网里，4G 基站和 5G 基站共用 5G 核心网，5G 基站为主站，4G 基站为从站。&lt;/p&gt;
+
+&lt;p&gt;唯一不同的，选项4的用户面从 5G 基站走，选项 4a 的用户面直接连 5G 核心网。如下图所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-NSA4-all.png&quot; alt=&quot;5G-NSA4-all&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;7系&quot;&gt;7系&lt;/h4&gt;
+
+&lt;p&gt;把”3系”组网方式里面的4G核心网替换成5G核心网，这就是”7系”组网方式。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-NSA7-all.png&quot; alt=&quot;5G-NSA7-all&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;需要注意的是，因为核心网是 5G 核心网，所以此类方式下，4G 基站都需要升级成增强型 4G 基站。&lt;/p&gt;
+
+&lt;h4 id=&quot;8系&quot;&gt;8系&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-NSA8-all.png&quot; alt=&quot;5G-NSA8-all&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;8和8a使用的是4G核心网，运用5G基站将控制面命令和用户面数据传输至4G核心网中，
+  由于需要对4G核心网进行升级改造，成本更高，改造更加复杂，所以这个选项在2017年3月发布的版本中被舍弃，这里不做更多的介绍。&lt;/p&gt;
+
+&lt;h3 id=&quot;选择&quot;&gt;选择&lt;/h3&gt;
+
+&lt;p&gt;5G标准落地后，运营商们采取何种方式组网是关注焦点。中国三大运营商均选择了5G独立组网（SA）的技术路线。&lt;/p&gt;
+
+&lt;h4 id=&quot;中国移动&quot;&gt;中国移动&lt;/h4&gt;
+
+&lt;p&gt;打通全球首个全息视频通话&lt;/p&gt;
+
+&lt;p&gt;中国移动在上海全球移动通信大会上放出一颗重磅炸弹。昨日上午，中国移动联合大唐电信、爱立信、华为、英特尔和诺基亚等全球合作伙伴共同发布“5G SA（独立组网）起航行动”。&lt;/p&gt;
+
+&lt;p&gt;其间，中央网信办副主任杨小伟与上海移动技术人员现场进行了基于5G独立组网端到端系统的全息视频通话，首次采用5G独立组网端到端系统技术，包括5G CPE终端、新空口和新核心网。引人关注的是，这是全球首个5G独立组网端到端系统全息视频通话，在业界看来，这标志着5G独立组网技术取得突破进展，距离商用更进一层。&lt;/p&gt;
+
+&lt;p&gt;在同日发布的《5G SA（独立组网）核心网实现优化白皮书》里，中国移动展示了5G独立组网技术和产业发展的最新进展。其中电网差动保护系统利用了5G的网络切片特性，快速完成配网线路的故障判断及隔离；AR/VR直播系统利用了5G网络切片和边缘计算特性，实现高清视频信号的独立采集、跨域传输和本地分发。这些枯燥的技术术语背后，反映出中国移动对SA的高投入正迎来收获期。&lt;/p&gt;
+
+&lt;p&gt;6月14日，3GPP冻结了5G第一版本的独立组网标准，加上之前确定的非独立组网标准（NSA)，第一版本5G国际标准由此正式出炉。&lt;/p&gt;
+
+&lt;p&gt;此前，中国移动研究院院长黄宇红表示，在5G SA标准的制定过程中，中国移动做出了重要贡献，其中主导提出了5G独立组网的基础架构。&lt;/p&gt;
+
+&lt;p&gt;按照中国移动的时间表，2018年7月将展开5G非独立组网的外场测试，11月启动独立组网外场测试，明年10月启动友好用户测试；在产品计划方面，今年底首批5G芯片将面世，明年一季度推出首批5G终端，三季度推出5G智能手机。&lt;/p&gt;
+
+&lt;h4 id=&quot;中国联通&quot;&gt;中国联通&lt;/h4&gt;
+
+&lt;p&gt;首次明确以独立组网方式建网&lt;/p&gt;
+
+&lt;p&gt;首次明确表态将以SA为目标架构。前期聚焦eMBB（增强移动宽带），持续保持中国联通在3G和4G时代的网络速率优势，为高清视频、VR/AR游戏娱乐、车载影音、智能家庭等大流量高带宽应用提供全方位的网络支持。未来将结合技术标准和生态系统的发展进程，引入uRLLC（低时延高可靠）和mMTC(海量机器类通信)技术，提供车联网、工业互联网等垂直行业的数字化转型支持。&lt;/p&gt;
+
+&lt;p&gt;根据时间表，2019年该公司将进行5G业务规模示范应用及试商用，计划在2020年正式商用。&lt;/p&gt;
+
+&lt;p&gt;中国联通5G战略最引人关注的是，与不少“小伙伴”联手打造5G产业合作新生态，合作对象包括腾讯、百度、华为等。&lt;/p&gt;
+
+&lt;h4 id=&quot;中国电信&quot;&gt;中国电信&lt;/h4&gt;
+
+&lt;p&gt;已经率先发布5G技术白皮书，指出中国电信将在5G核心网采用SA组网方案。&lt;/p&gt;
+
+&lt;h4 id=&quot;设备商&quot;&gt;设备商&lt;/h4&gt;
+
+&lt;p&gt;亢奋的不只是电信运营商，产业链各方也密集发布5G战略。设备商们都在迎风热舞，狂刷存在感。&lt;/p&gt;
+
+&lt;p&gt;大唐发布了《5G业务应用白皮书》，围绕5G三大典型应用场景，选取了与5G结合点较强的十大应用领域进行研究，阐述该公司的5G技术储备能力，同时还与多家企业达成了5G应用方面的签约合作。&lt;/p&gt;
+
+&lt;p&gt;爱立信联合中国联通、驭势科技进行国内首个5G超远程智能驾驶实车演示，并与中国移动联手开展5G智能工厂改造应用试点。&lt;/p&gt;
+
+&lt;p&gt;诺基亚贝尔与腾讯签署战略合作框架协议，将合作建设5G联合实验室，推动5G新业务研究与验证。&lt;/p&gt;
+
+&lt;p&gt;新华三带着自家的5G小站加入5G的冲刺大战，将于今年底在运营商网络中进行试商用。华为则宣布将于2018年9月30日推出基于NSA的全套5G商用网络解决方案；2019年3月30日则会推出基于SA的5G商用系统。&lt;/p&gt;
+
+&lt;h2 id=&quot;参考资料&quot;&gt;参考资料&lt;/h2&gt;
+
+&lt;p&gt;[1] &lt;a href=&quot;http://baijiahao.baidu.com/s?id=1604539329979819110&amp;amp;wfr=spider&amp;amp;for=pc&quot;&gt;三大运营商5G路径全选SA&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[2] &lt;a href=&quot;http://fiber.ofweek.com/2018-06/ART-210007-8500-30242892.html&quot;&gt;5G独立组网和非独立组网的8种方式有何不同&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[3] &lt;a href=&quot;https://www.sohu.com/a/234996896_160923&quot;&gt;鲜枣课堂：关于5G的NSA和SA，看完秒懂！&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[4] &lt;a href=&quot;http://www.eeworld.com.cn/mp/xzclasscom/a52525.jspx&quot;&gt;鲜枣课堂：关于5G接入网，看这一篇就够啦！&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[5] &lt;a href=&quot;http://www.eeworld.com.cn/mp/xzclasscom/a38831.jspx&quot;&gt;鲜枣课堂：核心网，你为什么这么难？！&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[6] &lt;a href=&quot;http://www.eeworld.com.cn/mp/xzclasscom/a46959.jspx&quot;&gt;鲜枣课堂：从2G到5G，核心网，你到底经历了什么？&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[7] &lt;a href=&quot;http://www.eeworld.com.cn/mp/xzclasscom/a22859.jspx&quot;&gt;鲜枣课堂：有史以来最强的5G入门科普！&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[8] &lt;a href=&quot;https://www.sdnlab.com/23647.html&quot;&gt;专用5G网络的7种部署方案&lt;/a&gt;&lt;/p&gt;</content><author><name>Yu Peng</name></author><category term="5G" /><summary type="html">5G三大场景、三大组成部分、SA &amp;amp; NSA</summary></entry><entry><title type="html">NFV 关键定义</title><link href="https://y2p.cc/2018/01/16/nfv-key-definition/" rel="alternate" type="text/html" title="NFV 关键定义" /><published>2018-01-16T00:00:00+08:00</published><updated>2018-01-16T00:00:00+08:00</updated><id>https://y2p.cc/2018/01/16/nfv-key-definition</id><content type="html" xml:base="https://y2p.cc/2018/01/16/nfv-key-definition/">&lt;p&gt;[WIP] NFV 关键定义&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/key.jpg&quot; alt=&quot;key&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;virtualisation-container&quot;&gt;virtualisation container&lt;/h2&gt;
+
+&lt;p&gt;在 ETSI GS NFV 003&lt;sup&gt;&lt;a href=&quot;#参考资料&quot;&gt;[1]&lt;/a&gt;&lt;/sup&gt; 中定义如下：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;virtualisation container:&lt;/strong&gt; partition of a compute node that provides an isolated virtualized computation environment.&lt;br /&gt;
+NOTE: Examples of virtualization container includes virtual machine and OS container.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;计算节点的分区，提供独立的虚拟计算环境。&lt;/p&gt;
+
+&lt;p&gt;注意：&lt;/p&gt;
+
+&lt;p&gt;虚拟化容器包含了虚机（virtual machine）和 操作系统级别的容器（OS container），当需要特别指明的时候，请使用 virtual machine 或者 OS container。&lt;/p&gt;
+
+&lt;p&gt;关于 OS container，在 ETSI GS NFV-EVE 004&lt;sup&gt;&lt;a href=&quot;#参考资料&quot;&gt;[2]&lt;/a&gt;&lt;/sup&gt; 中解释如下：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Container-based virtualisation, also called operating system (OS)-level virtualisation, is an approach to virtualisation which allows multiple isolated user space instances on top of a kernel space within the OS. The isolated guests are called containers.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;在 ETSI GS NFV-EVE 004&lt;sup&gt;&lt;a href=&quot;#参考资料&quot;&gt;[2]&lt;/a&gt;&lt;/sup&gt; 中，将 Docker&lt;sup&gt;TM&lt;/sup&gt; 划入了OS Container 的范畴：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Docker&lt;sup&gt;TM&lt;/sup&gt; is an open-source project that provides an additional layer of abstraction and automation of operating-system-level virtualisation on Linux&lt;sup&gt;TM&lt;/sup&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;如果在同一篇文章中出现了 OS container 和 Application container，请提高警惕，前方有雷！
+  想要排雷，请看下图：
+  &lt;img src=&quot;/images/posts/os-vs-app-containers.jpg&quot; alt=&quot;os-vs-app&quot; /&gt;
+  更多解读，请参考 operating-system-containers-vs-application-containers&lt;sup&gt;&lt;a href=&quot;#参考资料&quot;&gt;[7]&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;vnfc&quot;&gt;VNFC&lt;/h2&gt;
+
+&lt;p&gt;在 ETSI GS NFV 003&lt;sup&gt;&lt;a href=&quot;#参考资料&quot;&gt;[1]&lt;/a&gt;&lt;/sup&gt; 中定义如下：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Virtualised Network Function Component (VNFC):&lt;/strong&gt; internal component of a VNF providing a VNF Provider a defined sub-set of that VNF’s functionality, with the main characteristic that a single instance of this component maps 1:1 against a single Virtualisation Container.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;VNF 的内部组件，可为 VNF 提供商提供相关功能的子集，主要的特征是：该组件的单个实例被 1：1 地映射到单个的&lt;a href=&quot;#virtualisation-container&quot;&gt;虚拟化容器&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;注意：&lt;/p&gt;
+
+&lt;p&gt;VNFC 的单个实例被 1：1 地映射到单个的虚机（virtual machine）或通常所指的容器（OS container）。&lt;/p&gt;
+
+&lt;h3 id=&quot;vnfc-instance&quot;&gt;VNFC Instance&lt;/h3&gt;
+&lt;p&gt;在 ETSI GS NFV 003&lt;sup&gt;&lt;a href=&quot;#参考资料&quot;&gt;[1]&lt;/a&gt;&lt;/sup&gt; 中定义如下：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Virtualised Network Function Component (VNFC) Instance:&lt;/strong&gt;  instance of a VNFC deployed in a specific Virtualisation Container instance. It has a lifecycle dependency with its parent VNF instance&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;部署在特定虚拟化容器实例中的 VNFC 实例。 它与其父 VNF 实例具有生命周期依赖关系。&lt;/p&gt;
+
+&lt;h2 id=&quot;vnfd&quot;&gt;VNFD&lt;/h2&gt;
+
+&lt;h3 id=&quot;定义&quot;&gt;定义&lt;/h3&gt;
+
+&lt;p&gt;在 ETSI GS NFV 003&lt;sup&gt;&lt;a href=&quot;#参考资料&quot;&gt;[1]&lt;/a&gt;&lt;/sup&gt; 中定义 如下：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Virtualised Network Function Descriptor (VNFD):&lt;/strong&gt; configuration template that describes a VNF in terms of its deployment and operational behaviour, and is used in the process of VNF on-boarding and managing the lifecycle of a VNF instance&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;描述 VNF 的部署与操作行为的配置模板，其被用于 VNF 的运行过程，以及对于 VNF 实例的生命周期管理。&lt;/p&gt;
+
+&lt;p&gt;在 ETSI GS NFV-IFA 011&lt;sup&gt;&lt;a href=&quot;#参考资料&quot;&gt;[3]&lt;/a&gt;&lt;/sup&gt; 中描述 如下：&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;A VNFD is a deployment template which describes a VNF in terms of deployment and operational behaviour requirements. It also contains connectivity, interface and virtualised resource requirements.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;VNFD 是根据部署和操作行为要求描述 VNF 的部署模板。 它包含连接性，接口和虚拟化资源要求。&lt;/p&gt;
+
+&lt;h3 id=&quot;主要内容&quot;&gt;主要内容&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;VDU（虚拟化部署单元）：描述部署 VNFC 时 VNFC 的资源需求。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Connectivity：&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;外部连接点：描述 VNF 的外部连接点，其中 VDU 的内部连接点作为外部连接点公开，或者外部连接点直接连接到内部虚拟链路。&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;内部虚拟链路：描述一个或多个 VDU 的虚拟链路。&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;内部连接点：描述 VDU 的内部连接点。&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;部署风格：根据内部拓扑结构和资源需求，指定 VNF 的给定部署配置。&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;实例化级别：根据为每个 VDU 创建的 VNFC 实例的数量描述在部署风格内实例化的资源的级别。&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;VDU 配置文件：描述用于特定部署风格的给定 VDU 的附加实例化数据。&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;VL 配置文件：描述用于特定部署风格的给定 &lt;a href=&quot;../../../../2017/11/23/nfv-link/#virtual-links&quot;&gt;Virtual Links&lt;/a&gt; 的附加实例化数据。&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;VNF LCM 操作配置：表示配置生命周期管理操作的信息。&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Scaling Aspect：描述用于水平缩放的细节。&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;更多详细信息可以参考 ETSI GS NFV-SOL 001&lt;sup&gt;&lt;a href=&quot;#参考资料&quot;&gt;[4]&lt;/a&gt;&lt;/sup&gt; 的 A.1	VNFD with deployment flavour modelling design example 章节&lt;/p&gt;
+
+&lt;h3 id=&quot;vnfd-的-tosca-描述&quot;&gt;VNFD 的 TOSCA 描述&lt;/h3&gt;
+
+&lt;p&gt;在 ETSI GS NFV-SOL 001&lt;sup&gt;&lt;a href=&quot;#参考资料&quot;&gt;[4]&lt;/a&gt;&lt;/sup&gt; 的第6章 VNFD TOSCA model 模型中有具体描述，目前这份标准的版本是 0.5.0，处在早期草案阶段，还未对外公布。&lt;/p&gt;
+
+&lt;p&gt;但是在对外公布的 TOSCA-Simple-Profile-NFV-v1.0&lt;sup&gt;&lt;a href=&quot;#参考资料&quot;&gt;[6]&lt;/a&gt;&lt;/sup&gt; 的第5章 VNF Descriptor Template for NFV 有具体描述，此描述与 ETSI GS NFV-SOL 001&lt;sup&gt;&lt;a href=&quot;#参考资料&quot;&gt;[4]&lt;/a&gt;&lt;/sup&gt; 中的描述一致。&lt;/p&gt;
+
+&lt;h3 id=&quot;vnfd-的-yang-描述&quot;&gt;VNFD 的 YANG 描述&lt;/h3&gt;
+
+&lt;p&gt;ETSI GS NFV-SOL 006&lt;sup&gt;&lt;a href=&quot;#参考资料&quot;&gt;[5]&lt;/a&gt;&lt;/sup&gt; 的第6章 VNFD YANG module definitions 是有关的描述，但是目前只有目录结构，并无实质内容，目前这份标准的版本是 0.2.0，处在早期草案阶段，还未对外公布。&lt;/p&gt;
+
+&lt;h2 id=&quot;vnf&quot;&gt;VNF&lt;/h2&gt;
+&lt;p&gt;在 ETSI GS NFV 003&lt;sup&gt;&lt;a href=&quot;#参考资料&quot;&gt;[1]&lt;/a&gt;&lt;/sup&gt; 中定义如下：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Virtualised Network Function (VNF):&lt;/strong&gt; implementation of an NF that can be deployed on a Network Function Virtualisation Infrastructure (NFVI)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;可以被部署于网络功能虚拟化基础设施 NFVI 的 NF（网络功能）&lt;/p&gt;
+
+&lt;h3 id=&quot;vnf-instance&quot;&gt;VNF Instance&lt;/h3&gt;
+
+&lt;p&gt;在 ETSI GS NFV 003&lt;sup&gt;&lt;a href=&quot;#参考资料&quot;&gt;[1]&lt;/a&gt;&lt;/sup&gt; 中定义如下：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Virtualised Network Function Instance (VNF Instance):&lt;/strong&gt; run-time instantiation of the VNF software, resulting from completing the instantiation of its components and of the connectivity between them, using the VNF deployment and operational information captured in the VNFD, as well as additional run-time instance-specific information and constraints&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;VNF 软件的运行时实例，VNF 实例是各个组件及其相互间连接的实例化在完成之后的结果。在相关实例化的过程之中，使用了在 VNFD（Virtualised Network Function Descriptor，虚拟化的网络功能模块描述符）之中捕获的虚拟化网络功能部署及运行信息，以及额外的运行时实例特定信息与约束条件。&lt;/p&gt;
+
+&lt;h2 id=&quot;vnfm&quot;&gt;VNFM&lt;/h2&gt;
+
+&lt;p&gt;在 ETSI GS NFV 003&lt;sup&gt;&lt;a href=&quot;#参考资料&quot;&gt;[1]&lt;/a&gt;&lt;/sup&gt; 中定义如下：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Virtualised Network Function Manager (VNFM):&lt;/strong&gt; functional block that is responsible for the lifecycle management of VNF&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;负责 VNF 生命周期管理的功能块&lt;/p&gt;
+
+&lt;p&gt;主要功能如下:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;根据 VNF 类型和容量规划
+  VNF 所包含的 VNFC 类型、VNFC 数量、VNFC 冗余关系、VNFC 软件信息及软件间关联关系，VNFC 所需的 VM 资源、VNFC 间网络连接关系等。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;根据 VNFD 生成对 VIM 的资源需求，规划网元需要的虚拟资源
+  根据网元容量、网元模型（例如虚拟网元包含哪些子功能模块及各模块之间的关系）以及虚拟机推导模板，推导出虚拟网网元所需的虚拟机资源描述（Resource Request Description，RRD），在资源预留池中，根据 RRD 向 VIM 申请需要的虚拟资源。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;VNF生命周期管理，包括以下5个方面。&lt;/p&gt;
+
+    &lt;p&gt;实例化： VNF 向N FVO 申请分配 VM 资源， NFVO 分配资源成功后， VNFM 向 VIM 申请创建并启动 VM ，加载相关软件。&lt;/p&gt;
+
+    &lt;p&gt;查询：指查询有哪些 VNF 实例。&lt;/p&gt;
+
+    &lt;p&gt;扩容和缩容：根据节能策略以及虚拟网元的资源负荷（包括虚拟机资源和物理服务器资源）状况，触发虚拟机扩容和缩容流程，并指示 VIM 申请/释放所需虚拟机资源。&lt;/p&gt;
+
+    &lt;p&gt;自愈：指查询有哪些 VNF 实例。&lt;/p&gt;
+
+    &lt;p&gt;终止。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;VNF 所用 NFVI 资源的数据配置（如虚拟机 IP 地址）。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;VNFI 性能、事件的采集并向 EMS 或 VNF 上报。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;VNF 业务量、事件的采集。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;VNFI 事件与 VNF 事件关系的对应。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;运行过程中根据 NFVI / VNF 的故障/性能等情况决定 VM 是否迁移，如果判断需要迁移，则向 NFVO 发起迁移请求，由 NFVO 统一协调。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;构建 VNF 实例描述 VID（VNF Instance Description）文件
+  根据虚拟资源申请结果生成 VID 文件，并传递给 OMU ，由 OMU 引导和监控虚拟网元中的各个虚拟机业务软件版本装载过程。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;网络管理。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;参考资料&quot;&gt;参考资料&lt;/h2&gt;
+
+&lt;p&gt;[1] &lt;a href=&quot;http://www.etsi.org/deliver/etsi_gs/NFV/001_099/003/01.03.01_60/gs_nfv003v010301p.pdf&quot;&gt;ETSI GS NFV 003 Terminology for Main Concepts in NFV&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[2] &lt;a href=&quot;http://www.etsi.org/deliver/etsi_gs/NFV-EVE/001_099/004/01.01.01_60/gs_NFV-EVE004v010101p.pdf&quot;&gt;ETSI GS NFV-EVE 004 Report on the application of Different Virtualisation Technologies in the NFV Framework&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[3] &lt;a href=&quot;http://www.etsi.org/deliver/etsi_gs/NFV-IFA/001_099/011/02.04.01_60/gs_nfv-ifa011v020401p.pdf&quot;&gt;ETSI GS NFV-IFA 011 VNF Packaging Specification&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[4] &lt;a href=&quot;http://docbox.etsi.org/ISG/NFV/Open/Drafts/SOL001_TOSCA_desc/NFV-SOL001v050.zip&quot;&gt;ETSI GS NFV-SOL 001&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[5] &lt;a href=&quot;http://docbox.etsi.org/ISG/NFV/Open/Drafts/SOL006_YANG_based_NFV_Descriptors_spec/NFV-SOL006v002.zip&quot;&gt;ETSI GS NFV-SOL 006&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[6] &lt;a href=&quot;http://docs.oasis-open.org/tosca/tosca-nfv/v1.0/tosca-nfv-v1.0.html&quot;&gt;TOSCA-Simple-Profile-NFV-v1.0&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[7] &lt;a href=&quot;https://blog.risingstack.com/operating-system-containers-vs-application-containers/&quot;&gt;operating-system-containers-vs-application-containers&lt;/a&gt;&lt;/p&gt;</content><author><name>Yu Peng</name></author><category term="NFV" /><summary type="html">[WIP] NFV 关键定义</summary></entry><entry><title type="html">5G 网络切片</title><link href="https://y2p.cc/2017/12/21/5g-network-slice/" rel="alternate" type="text/html" title="5G 网络切片" /><published>2017-12-21T00:00:00+08:00</published><updated>2017-12-21T00:00:00+08:00</updated><id>https://y2p.cc/2017/12/21/5g-network-slice</id><content type="html" xml:base="https://y2p.cc/2017/12/21/5g-network-slice/">&lt;p&gt;5G 网络切片介绍&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-network-slice-logo.jpg&quot; alt=&quot;network-slice&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;何为网络切片&quot;&gt;何为网络切片？&lt;/h2&gt;
+&lt;p&gt;打个比方，车辆是用户，道路是网络。随着车辆的增多，城市道路变得拥堵不堪…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-network-slice-traffic.png&quot; alt=&quot;traffic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;为了缓解交通拥堵，交通部门不得不根据不同的车辆、运营方式进行分流管理，比如设置BRT快速公交通道，非机动车专用通道等…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-network-slice-traffic-1.png&quot; alt=&quot;traffic-1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;网络亦是如此，要实现从人-人连接到万物连接，连接数量成倍上升，网络必将越来越拥堵，我们就得像交通管理一样，对网络实行分流管理——网络切片。&lt;/p&gt;
+
+&lt;p&gt;其实，网络切片并不是一个全新概念，例如VPN就是网络切片的基本版本；本质上网络切片就是将运营商的物理网络划分为多个虚拟网络，每一个虚拟网络根据不同的服务需求，比如时延、带宽、安全性和可靠性等来划分，以灵活的应对不同的网络应用场景。&lt;/p&gt;
+
+&lt;h2 id=&quot;5g的主要应用场景&quot;&gt;5G的主要应用场景&lt;/h2&gt;
+&lt;p&gt;具体的讲，5G网络将应对三类场景：移动宽带、大规模物联网和关键任务型物联网。三大应用场景对网络服务的需求是不相同的：&lt;/p&gt;
+
+&lt;h3 id=&quot;移动宽带&quot;&gt;移动宽带&lt;/h3&gt;
+
+&lt;p&gt;面向4K/8K超高清视频、全息技术、增强现实/虚拟现实等应用，对网络带宽和速率要求较高。&lt;/p&gt;
+
+&lt;h3 id=&quot;大规模物联网&quot;&gt;大规模物联网&lt;/h3&gt;
+
+&lt;p&gt;海量的物联网传感器部署于测量、建筑、农业、物流、智慧城市、家庭等领域，这些传感器设备是非常密集的，规模庞大，且大部分是静止的，对时延和移动性要求不高。&lt;/p&gt;
+
+&lt;h3 id=&quot;关键任务型物联网&quot;&gt;关键任务型物联网&lt;/h3&gt;
+
+&lt;p&gt;主要应用于无人驾驶、车联网、自动工厂、远程医疗等领域，要求超低时延和高可靠性。&lt;/p&gt;
+
+&lt;h3 id=&quot;解决方案&quot;&gt;解决方案&lt;/h3&gt;
+&lt;p&gt;这是不是意味着我们需要为每一个服务建设一个专用网络了？例如，一个服务移动宽带，一个服务大规模物联网，一个服务关键任务型物联网。&lt;/p&gt;
+
+&lt;p&gt;其实不需要，因为我们可以通过网络切片技术在一个独立的物理网络上切分出多个逻辑的网络，这是一个非常节省成本的做法！&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/Network-Slicing-5G-fig-2.png&quot; alt=&quot;5G-network-slice&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;网络切片的构架与挑战&quot;&gt;网络切片的构架与挑战&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-network-slice-architecture.png&quot; alt=&quot;architecture&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;看完这张图，首先映入脑海的是什么？满满的复杂性和挑战性。&lt;/p&gt;
+
+&lt;p&gt;不过总结起来就是“多横三纵”：多横是指应用场景，例如自动驾驶、只能收集、宽带接入、VR以及AR等；三纵是指接入网、核心网、数据网和服务。&lt;/p&gt;
+
+&lt;p&gt;1） 在接入网面向用户侧的主要挑战是，某些终端设备（比如汽车）需要要同时接入多个切片网络，另外还涉及鉴权、用户识别等问题。&lt;/p&gt;
+
+&lt;p&gt;2） 接入网切片如何与核心网切片配对？接入网切片如何选择核心网切片？&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-network-slice-match.jpeg&quot; alt=&quot;match&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/5G-network-slice-match-2.jpeg&quot; alt=&quot;match-2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3） 编排与自动化是关键。
+  所谓编排与自动化包括：&lt;/p&gt;
+
+&lt;p&gt;3.1）具备快速创建新服务的能力&lt;/p&gt;
+
+&lt;p&gt;3.2）具备应用模板驱动(Template Driven)切片创建环境的能力&lt;/p&gt;
+
+&lt;p&gt;3.3）具备切片参数多样化的能力，以满足不同的商业用例需求&lt;/p&gt;
+
+&lt;p&gt;3.4）具备自动化切片部署的能力&lt;/p&gt;
+
+&lt;p&gt;3.5）具备弹性伸缩能力和还原能力&lt;/p&gt;
+
+&lt;p&gt;3.6）通过服务质量监控，具备动态优化切片性能的能力&lt;/p&gt;
+
+&lt;h2 id=&quot;参考资料&quot;&gt;参考资料&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.ngmn.org/fileadmin/user_upload/NGMN_5G_White_Paper_V1_0_01.pdf&quot;&gt;NGMN_5G_White_Paper&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.sohu.com/a/130302264_120921&quot;&gt;到底什么叫5G网络切片？&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.cnblogs.com/sddai/p/6129340.html&quot;&gt;网络切片在5G中的应用&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.sohu.com/a/119472555_481832&quot;&gt;5G系列报告一：千倍容量毫秒时延，万物互联时代即将到来&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Yu Peng</name></author><category term="5G" /><summary type="html">5G 网络切片介绍</summary></entry><entry><title type="html">NFV 中与 Virtual Links 相关的内容</title><link href="https://y2p.cc/2017/11/23/nfv-link/" rel="alternate" type="text/html" title="NFV 中与 Virtual Links 相关的内容" /><published>2017-11-23T00:00:00+08:00</published><updated>2017-11-23T00:00:00+08:00</updated><id>https://y2p.cc/2017/11/23/nfv-link</id><content type="html" xml:base="https://y2p.cc/2017/11/23/nfv-link/">&lt;p&gt;NFV中VL、NFP、VNF-FG、NS之间的关联&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/virtual links.jpg&quot; alt=&quot;virtual links&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;virtual-links&quot;&gt;Virtual Links&lt;/h2&gt;
+&lt;p&gt;下面，你会看到三个需要互相连接的VNF。 让我们假设这三个VNF是运营商的移动核心网络的组成部分，每个都有不同的角色（了解他们的角色在这里并不重要）&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/VL.png&quot; alt=&quot;VL&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;第一步是在三个VNF之间创建虚拟链接。&lt;/p&gt;
+
+&lt;p&gt;通常情况下，虚拟化层（管理程序）将抽象下面的硬件资源，使VNF通过虚拟链接连接，如下所示。 现在为什么他们被称为虚拟是因为你没有看到他们的物理实体。 一个简单的例子就是两个VNF可能存在于一台服务器上，并通过虚拟链接进行内部连接，而您并没有看到。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/VL-1.png&quot; alt=&quot;VL-1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;现在您可以看到VNF之间的多个虚拟链接。 虚拟连接可以基于二层拓扑，例如，MEF E-Line，E-LAN或E-Tree服务。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/VL-2.png&quot; alt=&quot;VL-2&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;network-forwarding-pathnfp&quot;&gt;Network Forwarding Path(NFP)&lt;/h2&gt;
+&lt;p&gt;下一个重要概念是网络转发路径。 网络转发路径显示虚拟链路上实际业务流的路径。&lt;/p&gt;
+
+&lt;p&gt;在移动核心网中，有两种流量：控制流量和用户流量。&lt;/p&gt;
+
+&lt;p&gt;在以下情况下，控制流量有两条路径，用户流量只有一条路径：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NFP1&lt;/em&gt;&lt;/strong&gt; - 需要通过VNF1，VNF2和VNF3并使用VL2的“控制流量”的转发路径&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NFP2&lt;/em&gt;&lt;/strong&gt; - 需要通过VNF1和VNF3（但不是VNF2）但仍然使用VL2（VL2可以应用某些策略限制VNF2）的“控制流量”转发路径&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;NFP3&lt;/em&gt;&lt;/strong&gt; - 需要通过VNF1和VNF3的“用户流量”转发路径，但需要使用VL3&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/NFP.png&quot; alt=&quot;NFP&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;vnf-forwarding-graph-vnf-fg&quot;&gt;VNF Forwarding Graph (VNF-FG)&lt;/h2&gt;
+&lt;p&gt;下一个非常重要的概念是VNF转发图（VNF-FG）&lt;/p&gt;
+
+&lt;p&gt;在当前的例子中，控制流量将制作一个VNF-Forwarding Graph（VNF-FG），而用户流量将制作另一个VNF-FG。 将转发路径看作是VNF-FG的子集。 也就是说，一个VNF-FG可以有多个转发路径。&lt;/p&gt;
+
+&lt;p&gt;为了描述这些VNF之间的业务流，VNF-FG显示了连接VNF节点的逻辑链路图。 在这种情况下，由于这两条路径之间的不同虚拟链接的参与，将会有两个不同的VNF-FG。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;VNF-FG1&lt;/em&gt;&lt;/strong&gt; - 用于控制业务的VNF-FG&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;VNF-FG2&lt;/em&gt;&lt;/strong&gt; - 用于用户流量的VNF-FG&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/VNF-FG.png&quot; alt=&quot;VNF-FG&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;network-service-ns&quot;&gt;Network Service (NS)&lt;/h2&gt;
+&lt;p&gt;一旦你了解了NFP和VNF-FG的概念，网络服务的概念变得非常简单。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/NS.png&quot; alt=&quot;NS&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;将网络服务看作VNF-FG之上的一层。&lt;/p&gt;
+
+&lt;p&gt;根据定义，网络服务是其组成功能块的行为的组合，其可以包括VNF，VNF-FG和/或基础设施网络。&lt;/p&gt;
+
+&lt;p&gt;注意！ 我们不只是在谈论某些VNF的组合，而是在谈论将某些VNF连接在一起时所定义的行为。&lt;/p&gt;
+
+&lt;p&gt;知道VNF组合是否构成网络服务的最好方法是找出是否有与之相关的网络服务描述符（NSD）。 NSD模板描述了网络服务的部署，包括服务拓扑（组成部分VNF，虚拟链路，VNF-FG）以及相关的服务特性，如SLA。&lt;/p&gt;
+
+&lt;p&gt;通过将移动RAN业务与移动核心业务相结合，两个或两个以上的网络业务可以结合起来，提供端到端的业务，如下面的端到端业务。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/E2E-NS.png&quot; alt=&quot;E2E-NS&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;key-takeaway&quot;&gt;Key Takeaway:&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;em&gt;端到端业务是网络业务的组合。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;em&gt;网络服务是VNF-FG的组合。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;em&gt;VNF-FG是NFP的组合。&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;参考资料&quot;&gt;参考资料&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.telcocloudbridge.com/beginners-guide-to-network-service-and-vnf-forwarding-graph-in-nfv/&quot;&gt;Beginner’s Guide to Network Service and VNF Forwarding Graph in NFV&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Yu Peng</name></author><category term="NFV" /><summary type="html">NFV中VL、NFP、VNF-FG、NS之间的关联</summary></entry><entry><title type="html">Containerd的前世今生和未来</title><link href="https://y2p.cc/2017/10/11/containerd/" rel="alternate" type="text/html" title="Containerd的前世今生和未来" /><published>2017-10-11T00:00:00+08:00</published><updated>2017-10-11T00:00:00+08:00</updated><id>https://y2p.cc/2017/10/11/containerd</id><content type="html" xml:base="https://y2p.cc/2017/10/11/containerd/">&lt;p&gt;Containerd的前世今生和未来&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/containerd.png&quot; alt=&quot;containerd&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://containerd.io&quot;&gt;Containerd官网&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/containerd/containerd&quot;&gt;Containerd代码&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;containerd的未来&quot;&gt;Containerd的未来&lt;/h2&gt;
+&lt;p&gt;按照前世今生和未来的顺序，这个章节不是应该放到最后吗？&lt;/p&gt;
+
+&lt;p&gt;好菜不怕早，赶紧端上来，言归正传，先来看看Containerd的雄心。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/containerd-ecosystem.png&quot; alt=&quot;containerd-ecosystem&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;oci-标准&quot;&gt;OCI 标准&lt;/h3&gt;
+&lt;p&gt;Linux基金会于2015年6月成立&lt;a href=&quot;https://github.com/opencontainers&quot;&gt;OCI（Open Container Initiative）&lt;/a&gt;组织，旨在围绕容器镜像格式和容器运行时制定一个开放的工业化标准，
+  让一个兼容性的容器可以在主要的具有兼容性的操作系统和平台之间进行移植，没有人为的技术屏障。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/opencontainers&quot;&gt;OCI&lt;/a&gt; 定义了容器基础设施的规范，获得了众多厂家的支持。
+  该组织一成立便得到了包括谷歌、微软、亚马逊、华为等一系列云计算厂商的支持。&lt;/p&gt;
+
+&lt;h3 id=&quot;kubernetes对containerd的支持&quot;&gt;Kubernetes对Containerd的支持&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/kubernetes-incubator/cri-containerd&quot;&gt;Kubernetes孵化项目：通过CRI引入Containerd&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;为了让Kubernetes在容器运行时使用containerd，需要实现CRI接口。 CRI代表“容器运行时接口”，负责群集上运行的pod和容器的分发以及生命周期管理。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/kubernetes_containerd.png&quot; alt=&quot;kubernetes_containerd&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;从这张图，我们可以看到Kubernetes集成Containerd方式的变化，也是Kubernetes摆脱Docker依赖的方式。&lt;/p&gt;
+
+&lt;p&gt;虽然目前这个项目还处在孵化阶段，但是 Containerd 已经在2017年3月15日，CloudNativeCon + KubeCon Europe 2017峰会上，被 Docker 捐赠给 CNCF 基金会，
+  它和 Kubernetes 都属于 CNCF 基金会下面的项目，一母同胞，何况 Containerd 还有 Docker 撑腰，发展还是可以期待的。&lt;/p&gt;
+
+&lt;h3 id=&quot;docker对containerd的支持&quot;&gt;Docker对Containerd的支持&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/docker_component.png&quot; alt=&quot;docker_component&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;从这张图中，我们可以看到，Containerd是基于&lt;a href=&quot;https://github.com/opencontainers/runc&quot;&gt;runC&lt;/a&gt;的，是runC的一个集成。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/opencontainers/runc&quot;&gt;runC&lt;/a&gt;是Docker贡献给 &lt;a href=&quot;https://github.com/opencontainers&quot;&gt;OCI&lt;/a&gt; 组织的，
+  按照该开放容器格式标准（OCF, Open Container Format）制定的一种具体实现，用来屏蔽各种操作系统上执行容器的差异，
+  这种差异主要体现在各种操作系统的凌乱系统调用和各种驱动程序的不同支持方式。&lt;/p&gt;
+
+&lt;h2 id=&quot;containerd的前世&quot;&gt;Containerd的前世&lt;/h2&gt;
+&lt;p&gt;Containerd的最初目标是解决容器引擎的升级问题，并提供一个代码库。&lt;/p&gt;
+
+&lt;p&gt;containerd向上为Docker Engine提供了gRPC接口，使得Docker Engine屏蔽下面的结构变化，确保原有接口向下兼容；向下通过containerd-shim结合runC。&lt;/p&gt;
+
+&lt;p&gt;这样使得引擎可以独立升级，避免之前Docker Engine升级会导致所有容器不可用的问题。&lt;/p&gt;
+
+&lt;h2 id=&quot;containerd的今生&quot;&gt;Containerd的今生&lt;/h2&gt;
+&lt;p&gt;随着Containerd项目的逐步开发，其目标不仅仅只是解决容器引擎的升级问题，也不仅仅只是在runC的基础上抽象出一系列的API。&lt;/p&gt;
+
+&lt;p&gt;目前变成了一个具有存储，镜像分发和运行时功能的全功能容器守护进程，以便可以为用户构建一个功能集。&lt;/p&gt;
+
+&lt;p&gt;其架构如下图所示：
+  &lt;img src=&quot;/images/posts/containerd-architechture.png&quot; alt=&quot;containerd-architechture&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;参考资料&quot;&gt;参考资料&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/k8scaptain/article/details/68924975&quot;&gt;Docker捐出containerd，CoreOS捐出rkt&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/yanjingnan/p/6473831.html&quot;&gt;docker 内部组件结构 – docker daemon, container,runC&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://chuansong.me/n/2032520&quot;&gt;OCI标准和runC原理解读&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://blog.docker.com/2017/09/kubernetes-containerd-integration/&quot;&gt;KUBERNETES 1.8 RELEASE INTEGRATES WITH CONTAINERD 1.0 BETA&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Yu Peng</name></author><category term="Docker" /><summary type="html">Containerd的前世今生和未来</summary></entry></feed>

@@ -1,0 +1,159 @@
+<!DOCTYPE html><html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /><title>DOCKER环境变量解析 &mdash; Yu Peng</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/vendor/primer-css/css/primer.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/components/collection.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/components/repo-card.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/sections/repo-list.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/components/boxed-group.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/globals/common.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/globals/responsive.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/css/posts/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/vendor/octicons/octicons/octicons.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/rouge-themes@master/dist/github.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/vendor/share.js/dist/css/share.min.css"><link rel="canonical" href="https://y2p.cc/2017/02/24/docker-env/"><link rel="alternate" type="application/atom+xml" title="Yu Peng" href="https://y2p.cc/feed.xml"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/favicon.ico"><meta property="og:title" content="DOCKER环境变量解析"><meta name="keywords" content="yupeng"><meta name="og:keywords" content="yupeng"><meta name="description" content="[WIP] DOCKER环境变量解析"><meta name="og:description" content="[WIP] DOCKER环境变量解析"><meta property="og:url" content="https://y2p.cc/2017/02/24/docker-env/"><meta property="og:site_name" content="Yu Peng"><meta property="og:type" content="article"><meta property="og:locale" content="zh_CN" /><meta property="article:published_time" content="2017-02-24"> <script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/vendor/jquery/dist/jquery.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/js/jquery-ui.js"></script> <script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/js/main.js"></script> <script data-ad-client="ca-pub-7093222719567591" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170170785-1"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-170170785-1'); </script></head><body class="" data-mz=""><header class="site-header"><div class="container"><h1><a href="https://y2p.cc/" title="Yu Peng"><span class="octicon octicon-mark-github"></span> Yu Peng</a></h1><button class="collapsed mobile-visible" type="button" onclick="toggleMenu();"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button><nav class="site-header-nav" role="navigation"> <a href="https://y2p.cc/" class=" site-header-nav-item" target="" title="首页">首页</a> <a href="https://y2p.cc/categories/" class=" site-header-nav-item" target="" title="分类">分类</a> <a href="https://y2p.cc/notes/" class=" site-header-nav-item" target="" title="笔记">笔记</a> <a href="https://y2p.cc/about/" class=" site-header-nav-item" target="" title="关于">关于</a></nav></div></header><section class="collection-head small geopattern" data-pattern-id="DOCKER环境变量解析"><div class="container"><div class="columns"><div class="column three-fourths"><div class="collection-title"><h1 class="collection-header">DOCKER环境变量解析</h1><div class="collection-info"> <span class="meta-info"> <span class="octicon octicon-calendar"></span> 2017/02/24 </span> <span class="meta-info"> <span class="octicon octicon-file-directory"></span> <a href="https://y2p.cc/categories/#Docker" title="Docker">Docker</a> </span> <span class="meta-info"> <span class="octicon octicon-clock"></span> 共 4801 字，约 14 分钟 </span></div></div></div><div class="column one-fourth mobile-hidden"><div class="collection-title"></div></div></div></div></section><section class="container content"><div class="columns"><div class="column three-fourths" ><article class="article-content markdown-body"><p>[WIP] DOCKER环境变量解析</p><h2 id="环境变量的设置">环境变量的设置</h2><h3 id="查看docker环境变量">查看docker环境变量</h3><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>查看全局环境变量：env | grep DOCKER
+查看所有环境变量：set | grep DOCKER
+</code></pre></div></div><h3 id="修改环境变量">修改环境变量</h3><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 用命令直接修改全局环境变量，但只能在当前会话生效
+    export XXXXXX=XXXXXX
+
+2. 修改全局配置文件，机器重启后依然有效
+    vim /etc/profile
+    在文档最后，添加:   export XXXXXX=XXXXXX
+    执行 source /etc/profile 否则需要重写登陆
+
+3. 类似个人环境变量配置文件
+    vim ~/.bash_profile
+    执行 source /etc/profile 否则需要重写登陆
+</code></pre></div></div><h2 id="在代码中搜索环境变量">在代码中搜索环境变量</h2><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>通过关键字：os.Getenv("DOCKER
+</code></pre></div></div><h2 id="docker_hide_legacy_commands">DOCKER_HIDE_LEGACY_COMMANDS</h2><h3 id="含义">含义</h3><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>这些命令在旧的版本中使用过，在新版本中不推荐使用。
+</code></pre></div></div><h3 id="使用">使用</h3><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>将其赋为非空字符串，则不推荐使用的命令被隐藏
+将其赋为空字符串，则不推荐使用的命令出现
+</code></pre></div></div><h3 id="示例">示例</h3><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ export DOCKER_HIDE_LEGACY_COMMANDS=""
+[node1] (local) root@10.0.5.3 ~
+$ env | grep DOCKER
+DOCKER_BUCKET=get.docker.com
+DOCKER_HIDE_LEGACY_COMMANDS=
+DOCKER_SHA256=97892375e756fd29a304bd8cd9ffb256c2e7c8fd759e12a55a6336e15100ad75
+DOCKER_STORAGE_DRIVER=overlay2
+DOCKER_VERSION=1.13.1
+[node1] (local) root@10.0.5.3 ~
+$ docker --help
+
+Usage:  docker COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/root/.docker")
+  -D, --debug              Enable debug mode
+      --help               Print usage
+  -H, --host list          Daemon socket(s) to connect to (default [])
+  -l, --log-level string   Set the logging level ("debug", "info", "warn", "error", "fatal") (default "
+info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/root/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/root/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/root/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  checkpoint  Manage checkpoints
+  container   Manage containers
+  image       Manage images
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  volume      Manage volumes
+
+Commands:
+  attach      Attach to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  deploy      Deploy a new stack or update an existing stack
+  diff        Inspect changes on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+[node1] (local) root@10.0.5.3 ~
+$ export DOCKER_HIDE_LEGACY_COMMANDS="test"
+[node1] (local) root@10.0.5.3 ~
+$ env | grep DOCKER
+DOCKER_BUCKET=get.docker.com
+DOCKER_HIDE_LEGACY_COMMANDS=test
+DOCKER_SHA256=97892375e756fd29a304bd8cd9ffb256c2e7c8fd759e12a55a6336e15100ad75
+DOCKER_STORAGE_DRIVER=overlay2
+DOCKER_VERSION=1.13.1
+[node1] (local) root@10.0.5.3 ~
+$ docker --help
+
+Usage:  docker COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/root/.docker")
+  -D, --debug              Enable debug mode
+      --help               Print usage
+  -H, --host list          Daemon socket(s) to connect to (default [])
+  -l, --log-level string   Set the logging level ("debug", "info", "warn", "error", "fatal") (default "in
+fo")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/root/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/root/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/root/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  checkpoint  Manage checkpoints
+  container   Manage containers
+  image       Manage images
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  volume      Manage volumes
+
+Commands:
+  build       Build an image from a Dockerfile
+  deploy      Deploy a new stack or update an existing stack
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  run         Run a command in a new container
+  search      Search the Docker Hub for images
+  version     Show the Docker version information
+
+Run 'docker COMMAND --help' for more information on a command.
+</code></pre></div></div><div style="margin-top:2em;padding:0 1.5em;border:1px solid #d3d3d3;background-color:#deebf7"><h3>文档信息</h3><ul><li>本文作者：<a href="https://y2p.cc" target="_blank">Yu Peng</a></li><li>本文链接：<a href="https://y2p.cc/2017/02/24/docker-env/" target="_blank">https://y2p.cc/2017/02/24/docker-env/</a></li><li>版权声明：自由转载-非商用-非衍生-保持署名（<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank">创意共享3.0许可证</a>）</li></ul></div></article><div class="share"><div class="share-component" data-disabled='qq,facebook'></div></div><div class="comment"><div id="gitalk-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/vendor/gitalk/gitalk.css"> <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script> <script> var gitalk = new Gitalk({ id: '/2017/02/24/docker-env/', clientID: 'b2ad054f2e4daf7ad564', clientSecret: 'c742e4086336e58b70e0e88dc791e5bce6e37330', repo: 'blog-comments', owner: 'yu3peng', admin: ['yu3peng'], labels: ['gitment'], perPage: 50, }); gitalk.render('gitalk-container'); </script></div></div><div class="column one-fourth"><h3>Search</h3><div id="site_search"> <input style="width:96%" type="text" id="search_box" placeholder="Search"></div><ul id="search_results" style="font-size:14px;list-style-type:none;padding-top:10px;padding-left:10px;"></ul><script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/js/simple-jekyll-search.min.js"></script> <script type="text/javascript"> SimpleJekyllSearch({ searchInput: document.getElementById('search_box'), resultsContainer: document.getElementById('search_results'), json: 'https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@built/assets/search_data.json?v=1651813977', searchResultTemplate: '<li><a href="{url}" title="{title}">{title}</a></li>', noResultsText: 'No results found', limit: 10, fuzzy: false, exclude: ['Welcome'] }) </script><h3 class="post-directory-title mobile-hidden">Table of Contents</h3><div id="post-directory-module" class="mobile-hidden"><section class="post-directory"><dl></dl></section></div><script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/js/jquery.toc.js"></script></div></div></section><footer class="container"><div class="site-footer" role="contentinfo"><div class="copyright left mobile-block"> © 2022 <span title="Yu Peng">Yu Peng</span> <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a></div><ul class="site-footer-links right mobile-hidden"><li> <a href="javascript:window.scrollTo(0,0)" >TOP</a></li></ul><a href="https://github.com/yu3peng/yu3peng.github.io" target="_blank" aria-label="view source code"> <span class="mega-octicon octicon-mark-github" title="GitHub"></span> </a><ul class="site-footer-links mobile-hidden"><li> <a href="https://y2p.cc/" title="首页" target="">首页</a></li><li> <a href="https://y2p.cc/categories/" title="分类" target="">分类</a></li><li> <a href="https://y2p.cc/notes/" title="笔记" target="">笔记</a></li><li> <a href="https://y2p.cc/about/" title="关于" target="">关于</a></li><li><a href="https://y2p.cc/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li></ul></div></footer><div class="tools-wrapper"> <a class="gotop" href="#" title="回到顶部"><span class="octicon octicon-arrow-up"></span></a></div><script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/vendor/share.js/dist/js/share.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/yu3peng/yu3peng.github.io@master/assets/js/geopattern.js"></script> <script> jQuery(document).ready(function($) { $('.geopattern').each(function(){ $(this).geopattern($(this).data('pattern-id')); }); /* hljs.initHighlightingOnLoad(); */ }); </script></body></html>
