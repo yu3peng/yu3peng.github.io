@@ -11,7 +11,7 @@ keywords: 中文文案排版指北
 Other languages:
 
 * [Chinese Traditional](http://sparanoid.com/note/chinese-copywriting-guidelines/)
-* [English](https://github.com/mzlogin/chinese-copywriting-guidelines/blob/Simplified/README.en.md)
+* [English](https://github.com/yu3peng/chinese-copywriting-guidelines/blob/Simplified/README.en.md)
 
 -----
 
