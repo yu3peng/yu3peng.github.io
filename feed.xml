@@ -1,4 +1,82 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://y2p.cc/feed.xml" rel="self" type="application/atom+xml" /><link href="https://y2p.cc/" rel="alternate" type="text/html" /><updated>2022-05-06T13:54:18+08:00</updated><id>https://y2p.cc/feed.xml</id><title type="html">Yu Peng</title><subtitle>个人博客</subtitle><author><name>Yu Peng</name></author><entry><title type="html">MEC</title><link href="https://y2p.cc/2020/02/02/mec/" rel="alternate" type="text/html" title="MEC" /><published>2020-02-02T00:00:00+08:00</published><updated>2020-02-02T00:00:00+08:00</updated><id>https://y2p.cc/2020/02/02/mec</id><content type="html" xml:base="https://y2p.cc/2020/02/02/mec/">&lt;h2 id=&quot;五个边缘计算开源框架功能对比&quot;&gt;五个边缘计算开源框架功能对比&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://y2p.cc/feed.xml" rel="self" type="application/atom+xml" /><link href="https://y2p.cc/" rel="alternate" type="text/html" /><updated>2022-05-06T17:17:27+08:00</updated><id>https://y2p.cc/feed.xml</id><title type="html">Yu Peng</title><subtitle>个人博客</subtitle><author><name>Yu Peng</name></author><entry><title type="html">GPU Share</title><link href="https://y2p.cc/2021/10/10/gpu-share/" rel="alternate" type="text/html" title="GPU Share" /><published>2021-10-10T00:00:00+08:00</published><updated>2021-10-10T00:00:00+08:00</updated><id>https://y2p.cc/2021/10/10/gpu-share</id><content type="html" xml:base="https://y2p.cc/2021/10/10/gpu-share/">&lt;h2 id=&quot;nvidia-gpu-共享方案&quot;&gt;NVIDIA GPU 共享方案&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://developer.nvidia.com/cuda-gpus&quot;&gt;GPU 的算力&lt;/a&gt;很强，GPU 硬件很贵，为了节省固定资产的投入，需要将多个服务部署在同一张 GPU 卡上，在保证服务质量的前提下通过 GPU 共享来提升 GPU 的利用率。目前英伟达官方的 GPU 共享技术主要有两种方案：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;vGPU&lt;/li&gt;
+  &lt;li&gt;MPS&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;nvidia-vgpu-方案&quot;&gt;NVIDIA vGPU 方案&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.nvidia.cn/data-center/virtual-pc-apps/&quot;&gt;NVIDIA vGPU 方案&lt;/a&gt;采用虚拟化的技术，基于 SR-IOV 进行 GPU 设备虚拟化管理，在驱动层提供了时间分片执行的逻辑，并做了一定的显存隔离，这样在对显卡进行初始化设置的时候就可以根据需求将显卡进行划分。其中时间分片调度的逻辑可以是按实例均分，或者是自定义比例，显卡的显存需要按照预设的比例进行划分。Nvdia的vGPU方案在实施中有下面两点限制：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;vGPU划分完成之后，如果要改变这种预定义的划分，需要重启显卡才能生效，无法做到不重启更改配置。&lt;/li&gt;
+  &lt;li&gt;其方案基于虚机，需要先对 GPU 物理机进行虚拟化之后，再在虚拟机内部署容器，无法直接基于物理机进行容器化的调度，另外 vGPU 方案需要收取 license 费用，增加了使用成本。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;nvidia-mps-方案&quot;&gt;NVIDIA MPS 方案&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://info.nvidia.com/228093-reg.html&quot;&gt;NVIDIA MPS 方案&lt;/a&gt;是一种算力分割的软件虚拟化方案。该方案和vGPU方案相比，配置很灵活，并且和docker适配良好。MPS 基于C/S 架构，配置成 MPS 模式的 GPU 上运行的所有进程，会动态的将其启动的内核发送给 MPS server，MPS Server 借助 CUDA stream，实现多个内核同时启动执行。除此之外，MPS 还可配置各个进程对 GPU 的使用占比。&lt;/p&gt;
+
+&lt;p&gt;该方案的一个问题在于，各个服务进程依赖 MPS，&lt;strong&gt;一旦 MPS 进程出现问题，所有在该GPU上的进程直接受影响&lt;/strong&gt;，需要使用 Nvidia-smi 重置GPU 的方式才能恢复。&lt;/p&gt;
+
+&lt;h2 id=&quot;第三方方案&quot;&gt;第三方方案&lt;/h2&gt;
+
+&lt;h3 id=&quot;方案评估点&quot;&gt;方案评估点&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;不会使用超过其被分配的算力大小&lt;/li&gt;
+  &lt;li&gt;隔离本身不应该对于 GPU 算力有过多损耗&lt;/li&gt;
+  &lt;li&gt;多个进程同时共享的时候，与其单独运行时相比，不应有太大的性能偏差，即共享可以有效避免进程之间的干扰。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;截获-cuda-api-实现显存及算力隔离&quot;&gt;截获 CUDA API 实现显存及算力隔离&lt;/h3&gt;
+
+&lt;h4 id=&quot;显存隔离&quot;&gt;显存隔离&lt;/h4&gt;
+
+&lt;p&gt;对于深度学习应用来说，对于显存的需求来自于三个方面。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;第一是模型的 CUDA kernel context，可类比于 CPU 程序中的 text 段，提供给 CUDA kernel 执行的环境，这是一项刚需，没有充足的显存，kernel 将无法启动，且 context 的大小随着 kernel 的复杂程度有增长，但在整体模型显存需求中是最小的一部分。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;第二部分来自于模型训练得出的一些参数，如卷积中的 weight 和 bias。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;第三部分来自于模型在推理过程中的临时存储，用于储存中间的计算结果。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;对于一般的模型来说，基本都不需要占用整个GPU的显存。但是这里有一个例外，Tensorflow 框架默认分配所有 GPU 的显存来进行自己的显存管理。当然 Tensorflow 框架有相应的选项可以屏蔽该行为，但是对于平台来说，要让每个用户修改 TF 的配置为屏蔽该行为，就不太可行。&lt;/p&gt;
+
+&lt;p&gt;为应对这一问题，一个巧妙的方法可以在不需要应用开发者参与的情况下，让 Tensorflow 的部署应用只分配它所需的显存大小而不出现问题。该方法即 API 动态拦截。Tensorflow 之所以可以知道当前 GPU 的剩余显存，是通过 cuDeviceTotalMem/cuMemGetInfo 这两个 CUDA library API。通过 LD_PRELOAD 的方式，在钩子 so 中实现这两个 API，那么 Tensorflow 执行的时候，link 首先会调用的是的 API 实现，而不是 CUDA 的，这样就可以动态的修改这两个 API 的返回结果，如这里想做的，将特定 Tensorflow 应用的显存配额限制在其申请数值。&lt;/p&gt;
+
+&lt;p&gt;在系统实现的过程中，还对 cuMemAlloc/cuMemFree 做了同样的拦截，目的是为了能够对同容器中的多个 GPU 进程进程统一管理。当多个 GPU 进程分配显存之和超过其配额时，可以通过 cuMalloc 来返回显存不足的错误。容器内显存配额管理是通过 share mem 来做的。&lt;/p&gt;
+
+&lt;p&gt;相关实现方式可以参考：&lt;a href=&quot;https://github.com/yu3peng/vcuMemGetInfo&quot;&gt;vcuMemGetInfo&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;算力隔离&quot;&gt;算力隔离&lt;/h4&gt;
+
+&lt;p&gt;GPU程序的执行，是通过kernel的片段来具体实施，在CPU侧launch了 kernel之后，具体的kernel及其调用参数随即交由GPU的硬件调度器来在某个未来的时间点真正运行起来。在默认的情况下，kernel是被派发给GPU上所有的SM，且执行过程中不能被中断。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/R-C.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;CUDA中用来区分thread，来判断代码应该处理数据的偏移量的方法，是通过CUDA中的blockIdx/threadIdx这两个内嵌变量。这两个变量在机器码上是只读的，在thread由硬件调度器派发的时候所指定。通过硬件调度器，就完成了抽象的blockIdx/threadIdx和具体的SM/SP的绑定。&lt;/p&gt;
+
+&lt;p&gt;为了能够精确的控制算力，我们就不能再依赖硬件调度器来控制内核启动。在这里用了一个取巧的方法，就是让内核启动之后被“困”在固定数目的SM上面，这个数目的值和GPU整体SM个数的比例就是给这个内核算力配比。&lt;/p&gt;
+
+&lt;p&gt;为了形象化来阐述思路，这里我们对GPU做了一个抽象化的改动，SM的个数被定义为10个。然后有一个启动参数为«&amp;lt;15,1»&amp;gt;的内核，即CUDA block size为15，thread size为1。它正常启动的时候，硬件调度器会给每一个SM上分配一个内核的副本。这样在第一时间就消耗了10个block的副本，随后每个SM上内核执行完毕之后会退出，硬件调度器会进一步分配剩下的5个block副本，在这个也执行完毕之后就完成了整个内核的执行。&lt;/p&gt;
+
+&lt;p&gt;算力切分之后，我们会在内核启动时，动态的修改其启动参数，将其CUDA block size从15变为5。这样硬件调度器就会将内核副本分配到GPU上一半数目的SM上，空闲的一半可以为其他内核所使用。&lt;/p&gt;
+
+&lt;p&gt;我们虽然通过动态修改启动参数的方法，避免了内核占满全部SM资源，但此时还没完成“困”这一动作。所以此时的内核行为是其完成预定逻辑之后，会退出，导致此时内核不能覆盖block size为15时的数据空间。为了将其“困“住，我们在内核的汇编EXIT处，替换成了BRANCH操作。这样内核完成本身的逻辑之后，会跳转到我们预设的一段逻辑中。这个逻辑完成虚拟blockIdx/threadIdx的自增操作，随后再跳转到内核开始位置，来基于更新的blockIdx/threadIdx来进行新一轮计算。&lt;/p&gt;
+
+&lt;p&gt;这次需要指出的是blockIdx/threadIdx为只读寄存器，所以没办法直接更改它的值。作为一个替代的解决方案时，将内核中的blockIdx/threadIdx进行整体替换为可写的寄存器，这样我们就可以在预设的跳转逻辑中做更改操作。&lt;/p&gt;
+
+&lt;h2 id=&quot;参考资料&quot;&gt;参考资料&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://baijiahao.baidu.com/s?id=1701253997258904666&amp;amp;wfr=spider&amp;amp;for=pc&quot;&gt;怎样节省 2/3 的 GPU？爱奇艺 vGPU 的探索与实践&lt;/a&gt;&lt;/p&gt;</content><author><name>Yu Peng</name></author><category term="GPU" /><summary type="html">NVIDIA GPU 共享方案</summary></entry><entry><title type="html">MEC</title><link href="https://y2p.cc/2020/02/02/mec/" rel="alternate" type="text/html" title="MEC" /><published>2020-02-02T00:00:00+08:00</published><updated>2020-02-02T00:00:00+08:00</updated><id>https://y2p.cc/2020/02/02/mec</id><content type="html" xml:base="https://y2p.cc/2020/02/02/mec/">&lt;h2 id=&quot;五个边缘计算开源框架功能对比&quot;&gt;五个边缘计算开源框架功能对比&lt;/h2&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
@@ -3129,77 +3207,4 @@ NOTE: Examples of virtualization container includes virtual machine and OS conta
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;http://www.telcocloudbridge.com/beginners-guide-to-network-service-and-vnf-forwarding-graph-in-nfv/&quot;&gt;Beginner’s Guide to Network Service and VNF Forwarding Graph in NFV&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Yu Peng</name></author><category term="NFV" /><summary type="html">NFV中VL、NFP、VNF-FG、NS之间的关联</summary></entry><entry><title type="html">Containerd的前世今生和未来</title><link href="https://y2p.cc/2017/10/11/containerd/" rel="alternate" type="text/html" title="Containerd的前世今生和未来" /><published>2017-10-11T00:00:00+08:00</published><updated>2017-10-11T00:00:00+08:00</updated><id>https://y2p.cc/2017/10/11/containerd</id><content type="html" xml:base="https://y2p.cc/2017/10/11/containerd/">&lt;p&gt;Containerd的前世今生和未来&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/containerd.png&quot; alt=&quot;containerd&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://containerd.io&quot;&gt;Containerd官网&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/containerd/containerd&quot;&gt;Containerd代码&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;containerd的未来&quot;&gt;Containerd的未来&lt;/h2&gt;
-&lt;p&gt;按照前世今生和未来的顺序，这个章节不是应该放到最后吗？&lt;/p&gt;
-
-&lt;p&gt;好菜不怕早，赶紧端上来，言归正传，先来看看Containerd的雄心。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/containerd-ecosystem.png&quot; alt=&quot;containerd-ecosystem&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;oci-标准&quot;&gt;OCI 标准&lt;/h3&gt;
-&lt;p&gt;Linux基金会于2015年6月成立&lt;a href=&quot;https://github.com/opencontainers&quot;&gt;OCI（Open Container Initiative）&lt;/a&gt;组织，旨在围绕容器镜像格式和容器运行时制定一个开放的工业化标准，
-  让一个兼容性的容器可以在主要的具有兼容性的操作系统和平台之间进行移植，没有人为的技术屏障。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/opencontainers&quot;&gt;OCI&lt;/a&gt; 定义了容器基础设施的规范，获得了众多厂家的支持。
-  该组织一成立便得到了包括谷歌、微软、亚马逊、华为等一系列云计算厂商的支持。&lt;/p&gt;
-
-&lt;h3 id=&quot;kubernetes对containerd的支持&quot;&gt;Kubernetes对Containerd的支持&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/kubernetes-incubator/cri-containerd&quot;&gt;Kubernetes孵化项目：通过CRI引入Containerd&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;为了让Kubernetes在容器运行时使用containerd，需要实现CRI接口。 CRI代表“容器运行时接口”，负责群集上运行的pod和容器的分发以及生命周期管理。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/kubernetes_containerd.png&quot; alt=&quot;kubernetes_containerd&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;从这张图，我们可以看到Kubernetes集成Containerd方式的变化，也是Kubernetes摆脱Docker依赖的方式。&lt;/p&gt;
-
-&lt;p&gt;虽然目前这个项目还处在孵化阶段，但是 Containerd 已经在2017年3月15日，CloudNativeCon + KubeCon Europe 2017峰会上，被 Docker 捐赠给 CNCF 基金会，
-  它和 Kubernetes 都属于 CNCF 基金会下面的项目，一母同胞，何况 Containerd 还有 Docker 撑腰，发展还是可以期待的。&lt;/p&gt;
-
-&lt;h3 id=&quot;docker对containerd的支持&quot;&gt;Docker对Containerd的支持&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/images/posts/docker_component.png&quot; alt=&quot;docker_component&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;从这张图中，我们可以看到，Containerd是基于&lt;a href=&quot;https://github.com/opencontainers/runc&quot;&gt;runC&lt;/a&gt;的，是runC的一个集成。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/opencontainers/runc&quot;&gt;runC&lt;/a&gt;是Docker贡献给 &lt;a href=&quot;https://github.com/opencontainers&quot;&gt;OCI&lt;/a&gt; 组织的，
-  按照该开放容器格式标准（OCF, Open Container Format）制定的一种具体实现，用来屏蔽各种操作系统上执行容器的差异，
-  这种差异主要体现在各种操作系统的凌乱系统调用和各种驱动程序的不同支持方式。&lt;/p&gt;
-
-&lt;h2 id=&quot;containerd的前世&quot;&gt;Containerd的前世&lt;/h2&gt;
-&lt;p&gt;Containerd的最初目标是解决容器引擎的升级问题，并提供一个代码库。&lt;/p&gt;
-
-&lt;p&gt;containerd向上为Docker Engine提供了gRPC接口，使得Docker Engine屏蔽下面的结构变化，确保原有接口向下兼容；向下通过containerd-shim结合runC。&lt;/p&gt;
-
-&lt;p&gt;这样使得引擎可以独立升级，避免之前Docker Engine升级会导致所有容器不可用的问题。&lt;/p&gt;
-
-&lt;h2 id=&quot;containerd的今生&quot;&gt;Containerd的今生&lt;/h2&gt;
-&lt;p&gt;随着Containerd项目的逐步开发，其目标不仅仅只是解决容器引擎的升级问题，也不仅仅只是在runC的基础上抽象出一系列的API。&lt;/p&gt;
-
-&lt;p&gt;目前变成了一个具有存储，镜像分发和运行时功能的全功能容器守护进程，以便可以为用户构建一个功能集。&lt;/p&gt;
-
-&lt;p&gt;其架构如下图所示：
-  &lt;img src=&quot;/images/posts/containerd-architechture.png&quot; alt=&quot;containerd-architechture&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;参考资料&quot;&gt;参考资料&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;http://blog.csdn.net/k8scaptain/article/details/68924975&quot;&gt;Docker捐出containerd，CoreOS捐出rkt&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/yanjingnan/p/6473831.html&quot;&gt;docker 内部组件结构 – docker daemon, container,runC&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;http://chuansong.me/n/2032520&quot;&gt;OCI标准和runC原理解读&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://blog.docker.com/2017/09/kubernetes-containerd-integration/&quot;&gt;KUBERNETES 1.8 RELEASE INTEGRATES WITH CONTAINERD 1.0 BETA&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Yu Peng</name></author><category term="Docker" /><summary type="html">Containerd的前世今生和未来</summary></entry></feed>
+&lt;/ol&gt;</content><author><name>Yu Peng</name></author><category term="NFV" /><summary type="html">NFV中VL、NFP、VNF-FG、NS之间的关联</summary></entry></feed>
