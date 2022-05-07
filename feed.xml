@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://y2p.cc/feed.xml" rel="self" type="application/atom+xml" /><link href="https://y2p.cc/" rel="alternate" type="text/html" /><updated>2022-05-07T11:40:16+08:00</updated><id>https://y2p.cc/feed.xml</id><title type="html">Yu Peng</title><subtitle>个人博客</subtitle><author><name>Yu Peng</name></author><entry><title type="html">GPU Share</title><link href="https://y2p.cc/2021/10/10/gpu-share/" rel="alternate" type="text/html" title="GPU Share" /><published>2021-10-10T00:00:00+08:00</published><updated>2021-10-10T00:00:00+08:00</updated><id>https://y2p.cc/2021/10/10/gpu-share</id><content type="html" xml:base="https://y2p.cc/2021/10/10/gpu-share/">&lt;h2 id=&quot;硬件厂家共享方案&quot;&gt;硬件厂家共享方案&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://y2p.cc/feed.xml" rel="self" type="application/atom+xml" /><link href="https://y2p.cc/" rel="alternate" type="text/html" /><updated>2022-05-07T11:43:59+08:00</updated><id>https://y2p.cc/feed.xml</id><title type="html">Yu Peng</title><subtitle>个人博客</subtitle><author><name>Yu Peng</name></author><entry><title type="html">GPU Share</title><link href="https://y2p.cc/2021/10/10/gpu-share/" rel="alternate" type="text/html" title="GPU Share" /><published>2021-10-10T00:00:00+08:00</published><updated>2021-10-10T00:00:00+08:00</updated><id>https://y2p.cc/2021/10/10/gpu-share</id><content type="html" xml:base="https://y2p.cc/2021/10/10/gpu-share/">&lt;h2 id=&quot;硬件厂家共享方案&quot;&gt;硬件厂家共享方案&lt;/h2&gt;
 
 &lt;h3 id=&quot;nvidia-gpu-共享方案&quot;&gt;NVIDIA GPU 共享方案&lt;/h3&gt;
 
@@ -66,7 +66,7 @@
 
 &lt;p&gt;另外，SR-IOV 还可以避免因分时复用切换应用带来的性能开销。vMLU 搭配 Docker 或 VM 运行时，单个 VF 业务性能保持在硬件性能的 91% 以上。这使得用户在多模型并行时，对各 VF 可以做出更准确的服务质量 (QoS) 预期，而不必考虑多模型时的拥塞或切换带来的性能开销。&lt;/p&gt;
 
-&lt;h5 id=&quot;基于-sr-iov-的-vmlu更好的租户隔离性&quot;&gt;基于 SR-IOV 的 vMLU：更好的租户隔离性&lt;/h5&gt;
+&lt;p&gt;基于 SR-IOV 的 vMLU：更好的租户隔离性&lt;/p&gt;
 
 &lt;p&gt;虚拟化技术被数据中心广泛采用，除了因为其提供了对资源共享的能力（提供了更好的密度性能），也因为相对于其它技术 (如 docker), 虚拟化提供了更好的隔离性和安全性。寒武纪 vMLU 基于 SR-IOV 的虚拟化技术可以帮助云用户实现更好的隔离特性，具体优势如下：&lt;/p&gt;
 
