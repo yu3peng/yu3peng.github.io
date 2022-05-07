@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://y2p.cc/feed.xml" rel="self" type="application/atom+xml" /><link href="https://y2p.cc/" rel="alternate" type="text/html" /><updated>2022-05-07T14:42:19+08:00</updated><id>https://y2p.cc/feed.xml</id><title type="html">Yu Peng</title><subtitle>个人博客</subtitle><author><name>Yu Peng</name></author><entry><title type="html">GPU</title><link href="https://y2p.cc/2021/10/10/gpu/" rel="alternate" type="text/html" title="GPU" /><published>2021-10-10T00:00:00+08:00</published><updated>2021-10-10T00:00:00+08:00</updated><id>https://y2p.cc/2021/10/10/gpu</id><content type="html" xml:base="https://y2p.cc/2021/10/10/gpu/">&lt;h1 id=&quot;awesome-gpu&quot;&gt;Awesome GPU&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://y2p.cc/feed.xml" rel="self" type="application/atom+xml" /><link href="https://y2p.cc/" rel="alternate" type="text/html" /><updated>2022-05-07T14:46:59+08:00</updated><id>https://y2p.cc/feed.xml</id><title type="html">Yu Peng</title><subtitle>个人博客</subtitle><author><name>Yu Peng</name></author><entry><title type="html">GPU</title><link href="https://y2p.cc/2021/10/10/gpu/" rel="alternate" type="text/html" title="GPU" /><published>2021-10-10T00:00:00+08:00</published><updated>2021-10-10T00:00:00+08:00</updated><id>https://y2p.cc/2021/10/10/gpu</id><content type="html" xml:base="https://y2p.cc/2021/10/10/gpu/">&lt;h1 id=&quot;awesome-gpu&quot;&gt;Awesome GPU&lt;/h1&gt;
 
 &lt;html&gt;
 &lt;head&gt;
@@ -8,11 +8,11 @@
 &lt;title&gt;Markmap&lt;/title&gt;
 &lt;style&gt;
 * {
-  margin: 0;
-  padding: 0;
+  margin: 10;
+  padding: 10;
 }
 #mindmap {
-  display: block;
+  display: inline;
   width: 100vw;
   height: 100vh;
 }
