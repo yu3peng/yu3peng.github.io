@@ -1,4 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://y2p.cc/feed.xml" rel="self" type="application/atom+xml" /><link href="https://y2p.cc/" rel="alternate" type="text/html" /><updated>2022-05-07T11:43:59+08:00</updated><id>https://y2p.cc/feed.xml</id><title type="html">Yu Peng</title><subtitle>个人博客</subtitle><author><name>Yu Peng</name></author><entry><title type="html">GPU Share</title><link href="https://y2p.cc/2021/10/10/gpu-share/" rel="alternate" type="text/html" title="GPU Share" /><published>2021-10-10T00:00:00+08:00</published><updated>2021-10-10T00:00:00+08:00</updated><id>https://y2p.cc/2021/10/10/gpu-share</id><content type="html" xml:base="https://y2p.cc/2021/10/10/gpu-share/">&lt;h2 id=&quot;硬件厂家共享方案&quot;&gt;硬件厂家共享方案&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://y2p.cc/feed.xml" rel="self" type="application/atom+xml" /><link href="https://y2p.cc/" rel="alternate" type="text/html" /><updated>2022-05-07T14:30:58+08:00</updated><id>https://y2p.cc/feed.xml</id><title type="html">Yu Peng</title><subtitle>个人博客</subtitle><author><name>Yu Peng</name></author><entry><title type="html">GPU</title><link href="https://y2p.cc/2021/10/10/gpu/" rel="alternate" type="text/html" title="GPU" /><published>2021-10-10T00:00:00+08:00</published><updated>2021-10-10T00:00:00+08:00</updated><id>https://y2p.cc/2021/10/10/gpu</id><content type="html" xml:base="https://y2p.cc/2021/10/10/gpu/">&lt;h1 id=&quot;awesome-gpu&quot;&gt;Awesome GPU&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/Jokeren/Awesome-GPU&quot;&gt;Awesome GPU&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/markmap.svg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;硬件厂家共享方案&quot;&gt;硬件厂家共享方案&lt;/h2&gt;
 
 &lt;h3 id=&quot;nvidia-gpu-共享方案&quot;&gt;NVIDIA GPU 共享方案&lt;/h3&gt;
 
@@ -143,7 +149,7 @@
   &lt;li&gt;
     &lt;p&gt;&lt;a href=&quot;https://cloud.tencent.com/developer/article/1831090&quot;&gt;GPU虚拟化，算力隔离，和qGPU&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Yu Peng</name></author><category term="GPU" /><summary type="html">硬件厂家共享方案</summary></entry><entry><title type="html">MEC</title><link href="https://y2p.cc/2020/02/02/mec/" rel="alternate" type="text/html" title="MEC" /><published>2020-02-02T00:00:00+08:00</published><updated>2020-02-02T00:00:00+08:00</updated><id>https://y2p.cc/2020/02/02/mec</id><content type="html" xml:base="https://y2p.cc/2020/02/02/mec/">&lt;h2 id=&quot;五个边缘计算开源框架功能对比&quot;&gt;五个边缘计算开源框架功能对比&lt;/h2&gt;
+&lt;/ol&gt;</content><author><name>Yu Peng</name></author><category term="GPU" /><summary type="html">Awesome GPU</summary></entry><entry><title type="html">MEC</title><link href="https://y2p.cc/2020/02/02/mec/" rel="alternate" type="text/html" title="MEC" /><published>2020-02-02T00:00:00+08:00</published><updated>2020-02-02T00:00:00+08:00</updated><id>https://y2p.cc/2020/02/02/mec</id><content type="html" xml:base="https://y2p.cc/2020/02/02/mec/">&lt;h2 id=&quot;五个边缘计算开源框架功能对比&quot;&gt;五个边缘计算开源框架功能对比&lt;/h2&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
