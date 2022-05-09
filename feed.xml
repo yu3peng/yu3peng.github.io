@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://y2p.cc/feed.xml" rel="self" type="application/atom+xml" /><link href="https://y2p.cc/" rel="alternate" type="text/html" /><updated>2022-05-07T15:10:37+08:00</updated><id>https://y2p.cc/feed.xml</id><title type="html">Yu Peng</title><subtitle>个人博客</subtitle><author><name>Yu Peng</name></author><entry><title type="html">GPU</title><link href="https://y2p.cc/2021/10/10/gpu/" rel="alternate" type="text/html" title="GPU" /><published>2021-10-10T00:00:00+08:00</published><updated>2021-10-10T00:00:00+08:00</updated><id>https://y2p.cc/2021/10/10/gpu</id><content type="html" xml:base="https://y2p.cc/2021/10/10/gpu/">&lt;h2 id=&quot;awesome&quot;&gt;Awesome&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="https://y2p.cc/feed.xml" rel="self" type="application/atom+xml" /><link href="https://y2p.cc/" rel="alternate" type="text/html" /><updated>2022-05-09T10:26:07+08:00</updated><id>https://y2p.cc/feed.xml</id><title type="html">Yu Peng</title><subtitle>个人博客</subtitle><author><name>Yu Peng</name></author><entry><title type="html">GPU</title><link href="https://y2p.cc/2021/10/10/gpu/" rel="alternate" type="text/html" title="GPU" /><published>2021-10-10T00:00:00+08:00</published><updated>2021-10-10T00:00:00+08:00</updated><id>https://y2p.cc/2021/10/10/gpu</id><content type="html" xml:base="https://y2p.cc/2021/10/10/gpu/">&lt;h2 id=&quot;awesome&quot;&gt;Awesome&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/Jokeren/Awesome-GPU&quot;&gt;Awesome GPU&lt;/a&gt;&lt;/p&gt;
 
@@ -11,19 +11,19 @@
 &lt;h3 id=&quot;方案评估点&quot;&gt;方案评估点&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;不会使用超过其被分配的算力大小&lt;/li&gt;
+  &lt;li&gt;不会使用超过被分配的算力、显存大小&lt;/li&gt;
   &lt;li&gt;隔离本身不应该对于 GPU 算力有过多损耗&lt;/li&gt;
-  &lt;li&gt;多个进程同时共享的时候，与其单独运行时相比，不应有太大的性能偏差，即共享可以有效避免进程之间的干扰。&lt;/li&gt;
+  &lt;li&gt;多个进程同时共享的时候，避免进程之间的干扰。&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;nvidia-gpu-共享方案&quot;&gt;NVIDIA GPU 共享方案&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://developer.nvidia.com/cuda-gpus&quot;&gt;GPU 的算力&lt;/a&gt;很强，GPU 硬件很贵，为了节省固定资产的投入，需要将多个推理服务部署在同一张 GPU 卡上，在保证服务质量的前提下通过 GPU 共享来提升 GPU 的利用率。目前英伟达官方的 GPU 共享技术主要有两种方案：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.nvidia.com/cuda-gpus&quot;&gt;GPU 的算力&lt;/a&gt;很强，GPU 硬件很贵，为了节省固定资产的投入，需要将多个推理服务部署在同一张 GPU 卡上，在保证服务质量的前提下通过 GPU 共享来提升 GPU 的利用率。目前英伟达官方的 GPU 共享技术主要有三种方案：&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;MIG&lt;/li&gt;
-  &lt;li&gt;vGPU&lt;/li&gt;
-  &lt;li&gt;MPS&lt;/li&gt;
+  &lt;li&gt;NVIDIA MIG 方案&lt;/li&gt;
+  &lt;li&gt;NVIDIA vGPU 方案&lt;/li&gt;
+  &lt;li&gt;NVIDIA MPS 方案&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;nvidia-mig-方案&quot;&gt;NVIDIA MIG 方案&lt;/h4&gt;
@@ -36,7 +36,11 @@
 
 &lt;h4 id=&quot;nvidia-vgpu-方案&quot;&gt;NVIDIA vGPU 方案&lt;/h4&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://www.nvidia.cn/data-center/virtual-pc-apps/&quot;&gt;NVIDIA vGPU 方案&lt;/a&gt;采用虚拟化的技术，基于 SR-IOV 进行 GPU 设备虚拟化管理，在驱动层提供了时间分片执行的逻辑，并做了一定的显存隔离，这样在对显卡进行初始化设置的时候就可以根据需求将显卡进行划分。其中时间分片调度的逻辑可以是按实例均分，或者是自定义比例，显卡的显存需要按照预设的比例进行划分。Nvdia的vGPU方案在实施中有下面两点限制：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.nvidia.cn/data-center/virtual-pc-apps/&quot;&gt;NVIDIA vGPU 方案&lt;/a&gt;采用虚拟化的技术，基于 SR-IOV 进行 GPU 设备虚拟化管理，在驱动层提供了时间分片执行的逻辑，并做了一定的显存隔离，这样在对显卡进行初始化设置的时候就可以根据需求将显卡进行划分。其中时间分片调度的逻辑可以是按实例均分，或者是自定义比例，显卡的显存需要按照预设的比例进行划分。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/nvidia%20vgpu.jpeg&quot; alt=&quot;NVIDIA vGPU&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Nvdia的vGPU方案在实施中有下面两点限制：&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;vGPU划分完成之后，如果要改变这种预定义的划分，需要重启显卡才能生效，无法做到不重启更改配置。&lt;/li&gt;
@@ -148,6 +152,9 @@
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;a href=&quot;https://cloud.tencent.com/developer/article/1831090&quot;&gt;GPU虚拟化，算力隔离，和qGPU&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://asphelzhn.github.io/2019/04/14/tensor_09_MPS/&quot;&gt;NVIDIA MPS总结&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;</content><author><name>Yu Peng</name></author><category term="GPU" /><summary type="html">Awesome</summary></entry><entry><title type="html">MEC</title><link href="https://y2p.cc/2020/02/02/mec/" rel="alternate" type="text/html" title="MEC" /><published>2020-02-02T00:00:00+08:00</published><updated>2020-02-02T00:00:00+08:00</updated><id>https://y2p.cc/2020/02/02/mec</id><content type="html" xml:base="https://y2p.cc/2020/02/02/mec/">&lt;h2 id=&quot;五个边缘计算开源框架功能对比&quot;&gt;五个边缘计算开源框架功能对比&lt;/h2&gt;
 
