@@ -7,17 +7,15 @@ comments: false
 menu: 关于
 permalink: /about/
 ---
-
+<!--
  <center>
      <h1>余 鹏</h1>
      <div>
-         <!--
          <span>
              <img src="/images/about/phone-solid.svg" width="18px">
              131****8833
          </span>
          ·
-         -->
          <span>
              <img src="/images/about/envelope-solid.svg" width="18px">
              yu3peng@qq.com
@@ -75,7 +73,7 @@ permalink: /about/
 - **[无线接入设备注册方法及装置](http://epub.cnipa.gov.cn/patent/CN106817699A?8kt2YOWWXQBD=1650544728649)**
 
 - **[检测非法无线接入点的方法及装置](http://epub.cnipa.gov.cn/patent/CN107708118A?8kt2YOWWXQBD=1650544870147)**
-
+-->
 <!--
 ![](/images/about/yupeng.jpeg)
 -->
