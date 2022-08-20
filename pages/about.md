@@ -66,6 +66,8 @@ permalink: /about/
 
 - **[一种调整网站负载的方法及装置](http://epub.cnipa.gov.cn/cred/CN109005143B?8kt2YOWWXQBD=1648781983435)**
 
+- **[Method and device of regulating website load](https://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&p=1&u=%2Fnetahtml%2FPTO%2Fsearch-bool.html&r=1&f=G&l=50&co1=AND&d=PTXT&s1=11405384.PN.&OS=PN/11405384&RS=PN/11405384)**
+
 - **[一种业务配置的实现方法、装置和设备](http://epub.cnipa.gov.cn/patent/CN111865638A?8kt2YOWWXQBD=1650543953261)**
 
 - **[一种资源请求响应方法、设备及存储介质](http://epub.cnipa.gov.cn/patent/CN110737527A)**
